@@ -222,11 +222,41 @@ public class Rect {
                     break;
             }
         }
-//        else if (type.equals("trapU")) {
-//            if () {
-//
-//            }
-//        }
+        else if (type.equals("trapU")) {
+            switch (section) {
+                case 1:
+                    if (y >= top & y < bottom & x >= mid & x <= right) {
+                        return true;
+                    } else if (x <= mid & y >= ((top - bottom) / (mid - left)) * (x - mid) + top & y < bottom) {
+                        return true;
+                    }
+                    break;
+                case 2:
+                    if (y >= mid & y <= right & x > bottom & x <= top) {
+                        return true;
+                    }
+                    else if (y <= mid & y >= ((mid-left)/(top-bottom))*(x-top)+mid & x > bottom) {
+                        return true;
+                    }
+                    break;
+                case 3:
+                    if (y > bottom & y <= top & x >= right & x <= mid) {
+                        return true;
+                    }
+                    else if (x >= mid & y <= ((top - bottom) / (mid - left)) * (x - mid) + top & y > bottom) {
+                        return true;
+                    }
+                    break;
+                case 4:
+                    if (y >= right & y <= mid & x >= top & x < bottom) {
+                        return true;
+                    }
+                    else if (y >= mid & y <= ((mid-left)/(top-bottom))*(x-top)+mid & x < bottom) {
+                        return true;
+                    }
+                    break;
+            }
+        }
         else if (type.equals("safeZ")) {
             switch (section) {
                 case 1:
