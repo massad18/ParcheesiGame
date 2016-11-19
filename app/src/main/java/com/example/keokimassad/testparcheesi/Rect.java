@@ -265,7 +265,7 @@ public class Rect {
                     }
                     break;
                 case 2:
-                    if (y > right & y < left & x >= top & x < bottom) {
+                    if (y > left & y < right & x <= top & x > bottom) {
                         return true;
                     }
                     break;
@@ -275,7 +275,7 @@ public class Rect {
                     }
                     break;
                 case 4:
-                    if (y > left & y < right & x > bottom & x <= top) {
+                    if (y > right & y < left & x < bottom & x >= top) {
                         return true;
                     }
                     break;

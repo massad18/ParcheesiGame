@@ -20,8 +20,10 @@ public class ParState {
     // left to right
     private int[] vert = {0, 82, 144, 205, 271, 337, 398, 464, 519, 578, 637, 696, 761, 820, 877, 939, 1003, 1066, 1133, 1191, 1261};
 
+    private String[] colors = {"red", "blue", "yellow", "green"};
+
     private Hashtable<Integer, Rect> boardPieces = new Hashtable<>();
-    private Hashtable<Integer, Rect> homebasePieces = new Hashtable<>();
+    private Hashtable<String, Rect> homebasePieces = new Hashtable<>();
     private Hashtable<Integer, Rect> safezonePieces = new Hashtable<>();
 
     void ParState() {
@@ -29,6 +31,7 @@ public class ParState {
     }
 
     protected void initBoardPieces() {
+        // normal rectangular board pieces
         boardPieces.put(1, new Rect(hori[11], hori[13], vert[15], vert[16], "rect", 1));
         boardPieces.put(2, new Rect(hori[11], hori[13], vert[14], vert[15], "rect", 1));
         boardPieces.put(3, new Rect(hori[11], hori[13], vert[13], vert[14], "rect", 1));
@@ -103,6 +106,7 @@ public class ParState {
         boardPieces.put(46, new Rect(hori[0], hori[1], vert[7], vert[9], "rect", 4));
 //        ...
 //        ...
+        // trapezoidal board pieces
         boardPieces.put(4, new Rect(hori[11], hori[13], vert[12], vert[13], hori[12], "trapD", 1));
         boardPieces.put(55, new Rect(hori[7], hori[8], vert[11], vert[13], vert[12], "trapD", 2));
         boardPieces.put(38, new Rect(hori[7], hori[9], vert[7], vert[8], hori[8], "trapD", 3));
@@ -115,10 +119,57 @@ public class ParState {
         boardPieces.put(5, new Rect(hori[12], hori[13], vert[11], vert[13], vert[12], "trapU", 4));
 //        ...
 //        ...
+        // neutral zone pieces
         boardPieces.put(64, new Rect(hori[9], hori[11], vert[19], vert[20], "neutral", 1));
         boardPieces.put(47, new Rect(hori[0], hori[1], vert[9], vert[11], "neutral", 2));
         boardPieces.put(30, new Rect(hori[9], hori[11], vert[0], vert[1], "neutral", 3));
         boardPieces.put(13, new Rect(hori[19], hori[20], vert[9], vert[11], "neutral", 4));
+//        ...
+//        ...
+
+        // homebase pieces
+//        homebasePieces.put("red", new Rect(hori[9], hori[10], hori[11], vert[10], vert[11], vert[12], 1));
+//        homebasePieces.put("blue", new Rect(hori[7], hori[8], hori[9], vert[9], vert[10], vert[11], 2));
+//        homebasePieces.put("yellow", new Rect(hori[9], hori[10], hori[11], vert[8], vert[9], vert[10], 3));
+//        homebasePieces.put("green", new Rect(hori[10], hori[11], hori[12], vert[9], vert[10], vert[11], 4));
+//        ...
+//        ...
+
+        // safezone pieces
+        safezonePieces.put(1, new Rect(hori[9], hori[11], vert[18], vert[19], "safeZ", 1));
+        safezonePieces.put(2, new Rect(hori[9], hori[11], vert[17], vert[18], "safeZ", 1));
+        safezonePieces.put(3, new Rect(hori[9], hori[11], vert[16], vert[17], "safeZ", 1));
+        safezonePieces.put(4, new Rect(hori[9], hori[11], vert[15], vert[16], "safeZ", 1));
+        safezonePieces.put(5, new Rect(hori[9], hori[11], vert[14], vert[15], "safeZ", 1));
+        safezonePieces.put(6, new Rect(hori[9], hori[11], vert[13], vert[14], "safeZ", 1));
+        safezonePieces.put(7, new Rect(hori[9], hori[11], vert[12], vert[13], "safeZ", 1));
+//        ...
+//        ...
+        safezonePieces.put(8, new Rect(hori[1], hori[2], vert[9], vert[11], "safeZ", 2));
+        safezonePieces.put(9, new Rect(hori[2], hori[3], vert[9], vert[11], "safeZ", 2));
+        safezonePieces.put(10, new Rect(hori[3], hori[4], vert[9], vert[11], "safeZ", 2));
+        safezonePieces.put(11, new Rect(hori[4], hori[5], vert[9], vert[11], "safeZ", 2));
+        safezonePieces.put(12, new Rect(hori[5], hori[6], vert[9], vert[11], "safeZ", 2));
+        safezonePieces.put(13, new Rect(hori[6], hori[7], vert[9], vert[11], "safeZ", 2));
+        safezonePieces.put(14, new Rect(hori[7], hori[8], vert[9], vert[11], "safeZ", 2));
+//        ...
+//        ...
+        safezonePieces.put(15, new Rect(hori[9], hori[11], vert[1], vert[2], "safeZ", 3));
+        safezonePieces.put(16, new Rect(hori[9], hori[11], vert[2], vert[3], "safeZ", 3));
+        safezonePieces.put(17, new Rect(hori[9], hori[11], vert[3], vert[4], "safeZ", 3));
+        safezonePieces.put(18, new Rect(hori[9], hori[11], vert[4], vert[5], "safeZ", 3));
+        safezonePieces.put(19, new Rect(hori[9], hori[11], vert[5], vert[6], "safeZ", 3));
+        safezonePieces.put(20, new Rect(hori[9], hori[11], vert[6], vert[7], "safeZ", 3));
+        safezonePieces.put(21, new Rect(hori[9], hori[11], vert[7], vert[8], "safeZ", 3));
+//        ...
+//        ...
+        safezonePieces.put(22, new Rect(hori[18], hori[19], vert[9], vert[11], "safeZ", 4));
+        safezonePieces.put(23, new Rect(hori[17], hori[18], vert[9], vert[11], "safeZ", 4));
+        safezonePieces.put(24, new Rect(hori[16], hori[17], vert[9], vert[11], "safeZ", 4));
+        safezonePieces.put(25, new Rect(hori[15], hori[16], vert[9], vert[11], "safeZ", 4));
+        safezonePieces.put(26, new Rect(hori[14], hori[15], vert[9], vert[11], "safeZ", 4));
+        safezonePieces.put(27, new Rect(hori[13], hori[14], vert[9], vert[11], "safeZ", 4));
+        safezonePieces.put(28, new Rect(hori[12], hori[13], vert[9], vert[11], "safeZ", 4));
     }
 
 //    protected void initLocations(ParPlayer player) {
@@ -187,15 +238,33 @@ public class ParState {
 //        return false;
 //    }
 
-    protected int containsInRect (float x, float y) {
+    protected String containsInRect (float x, float y) {
         for (int i = 1; i < 69; i++) {
             Rect rect = boardPieces.get(i);
             if (rect != null) {
                 if (rect.contains(x, y)) {
-                    return i;
+                    return "Normal " + i;
                 }
             }
         }
-        return -1;
+
+//        for (int j = 0; j < 4; j++) {
+//            Rect rect = homebasePieces.get(colors[j]);
+//            if (rect != null) {
+//                if (rect.contains(x,y));
+//                return j;
+//            }
+//        }
+
+        for (int k = 1; k < 29; k++) {
+            Rect rect = safezonePieces.get(k);
+            if (rect != null) {
+                if (rect.contains(x,y)) {
+                    return "Safe Zone " + k;
+                }
+            }
+        }
+
+        return "Error " + -1;
     }
 }

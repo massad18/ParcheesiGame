@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 textView.setText("Touch coordinates : " +
                         String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                textView1.setText(String.valueOf(parState.containsInRect(event.getX(), event.getY())));
+                textView1.setText(parState.containsInRect(event.getX(), event.getY()));
                 return true;
             }
         });
