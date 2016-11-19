@@ -186,11 +186,42 @@ public class Rect {
                     break;
             }
         }
-//        else if (type.equals("trapD")) {
-//            if () {
-//
-//            }
-//        }
+        else if (type.equals("trapD")) {
+            switch (section) {
+                case 1:
+                    if (y >= top & y < bottom & x >= left & x <= mid) {
+                        return true;
+                    }
+                    else if (x >= mid & y >= ((top-bottom)/(mid-right))*(x-mid)+top & y < bottom) {
+                        return true;
+                    }
+                    break;
+                case 2:
+                    if (y >= left & y <= mid & x > bottom & x <= top) {
+                        return true;
+                    }
+                    else if (y >= mid & y <= ((mid-right)/(top-bottom))*(x-top)+mid & x > bottom) {
+                        return true;
+                    }
+                    break;
+                case 3:
+                    if (y > bottom & y <= top & x >= mid & x <= left) {
+                        return true;
+                    }
+                    else if (x <= mid & y <= ((top-bottom)/(mid-right))*(x-mid)+top & y > bottom) {
+                        return true;
+                    }
+                    break;
+                case 4:
+                    if (y >= mid & y <= left & x >= top & x < bottom) {
+                        return true;
+                    }
+                    else if (y <= mid & y >= ((mid-right)/(top-bottom))*(x-top)+mid & x < bottom) {
+                        return true;
+                    }
+                    break;
+            }
+        }
 //        else if (type.equals("trapU")) {
 //            if () {
 //

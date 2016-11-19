@@ -101,6 +101,12 @@ public class ParState {
         boardPieces.put(44, new Rect(hori[2], hori[3], vert[7], vert[9], "rect", 4));
         boardPieces.put(45, new Rect(hori[1], hori[2], vert[7], vert[9], "rect", 4));
         boardPieces.put(46, new Rect(hori[0], hori[1], vert[7], vert[9], "rect", 4));
+//        ...
+//        ...
+        boardPieces.put(4, new Rect(hori[11], hori[13], vert[12], vert[13], hori[12], "trapD", 1));
+        boardPieces.put(55, new Rect(hori[7], hori[8], vert[11], vert[13], vert[12], "trapD", 2));
+        boardPieces.put(38, new Rect(hori[7], hori[9], vert[7], vert[8], hori[8], "trapD", 3));
+        boardPieces.put(21, new Rect(hori[12], hori[13], vert[7], vert[9], vert[8], "trapD", 4));
     }
 
 //    protected void initLocations(ParPlayer player) {
