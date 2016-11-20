@@ -23,6 +23,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
      */
     public ParHumanPlayer(String name) {
         super(name);
+        initLocations();
     }
 
     /**
@@ -49,7 +50,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     }
 
-    private void initiLocations() {
+    private void initLocations() {
         for (int i = 0; i < 4; i++) {
             location[i] = 0;
         }
