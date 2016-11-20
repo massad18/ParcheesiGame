@@ -25,6 +25,7 @@ public class ParState {
     private Hashtable<Integer, Rect> boardPieces = new Hashtable<>();
     private Hashtable<String, Rect> homebasePieces = new Hashtable<>();
     private Hashtable<Integer, Rect> safezonePieces = new Hashtable<>();
+    private
 
     void ParState() {
         count = 0;
