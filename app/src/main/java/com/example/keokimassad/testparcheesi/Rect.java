@@ -285,35 +285,35 @@ public class Rect {
             switch (section) {
                 case 1:
                     // little square on the top
-                    if (y >= top & y <= midH & x > left & x < midV) {
+                    if (y >= top & y <= midV & x > left & x < midH) {
                         return true;
                     }
                     // large rectangle on the bottom
-                    else if (y >= midH & y < bottom & x >= left & x <= right) {
+                    else if (y >= midV & y < bottom & x >= left & x <= right) {
                         return true;
                     }
                     break;
                 case 2:
-                    if (y > midV & y < left & x >= top & x <= midH) {
+                    if (y > left & y < midH & x >= midV & x <= top) {
                         return true;
                     }
-                    else if (y >= right & y <= left & x >= midH & x < bottom) {
+                    else if (y >= left & y <= right & x > bottom & x <= midV) {
                         return true;
                     }
                     break;
                 case 3:
-                    if (y >= midH & y <= top & x > midV & x < left) {
+                    if (y >= midV & y <= top & x > midH & x < left) {
                         return true;
                     }
-                    else if (y > bottom & y <= midH & x >= right & x < left) {
+                    else if (y > bottom & y <= midV & x >= right & x < left) {
                         return true;
                     }
                     break;
                 case 4:
-                    if (y > left & y < midV & x >= midH & x <= top) {
+                    if (y > midH & y < left & x >= top & x <= midV) {
                         return true;
                     }
-                    else if (y >= left & y <= right & x > bottom & x <= midH) {
+                    else if (y >= right & y <= left & x > midV & x <= bottom) {
                         return true;
                     }
                     break;

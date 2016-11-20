@@ -126,12 +126,11 @@ public class ParState {
         boardPieces.put(13, new Rect(hori[19], hori[20], vert[9], vert[11], "neutral", 4));
 //        ...
 //        ...
-
         // homebase pieces
-//        homebasePieces.put("red", new Rect(hori[9], hori[10], hori[11], vert[10], vert[11], vert[12], 1));
-//        homebasePieces.put("blue", new Rect(hori[7], hori[8], hori[9], vert[9], vert[10], vert[11], 2));
-//        homebasePieces.put("yellow", new Rect(hori[9], hori[10], hori[11], vert[8], vert[9], vert[10], 3));
-//        homebasePieces.put("green", new Rect(hori[10], hori[11], hori[12], vert[9], vert[10], vert[11], 4));
+        homebasePieces.put("red", new Rect(hori[9], hori[10], hori[11], vert[10], vert[11], vert[12], 1));
+        homebasePieces.put("blue", new Rect(hori[8], hori[9], hori[10], vert[9], vert[10], vert[11], 2));
+        homebasePieces.put("yellow", new Rect(hori[9], hori[10], hori[11], vert[8], vert[9], vert[10], 3));
+        homebasePieces.put("green", new Rect(hori[10], hori[11], hori[12], vert[9], vert[10], vert[11], 4));
 //        ...
 //        ...
 
@@ -248,13 +247,14 @@ public class ParState {
             }
         }
 
-//        for (int j = 0; j < 4; j++) {
-//            Rect rect = homebasePieces.get(colors[j]);
-//            if (rect != null) {
-//                if (rect.contains(x,y));
-//                return j;
-//            }
-//        }
+        for (int j = 0; j < 4; j++) {
+            Rect rect = homebasePieces.get(colors[j]);
+            if (rect != null) {
+                if (rect.contains(x,y)) {
+                    return "Home Base " + colors[j];
+                }
+            }
+        }
 
         for (int k = 1; k < 29; k++) {
             Rect rect = safezonePieces.get(k);
