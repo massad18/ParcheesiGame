@@ -2,18 +2,20 @@ package com.example.keokimassad.testparcheesi;
 
 import java.util.Hashtable;
 
+import game.infoMsg.GameState;
+
 /**
  * Created by KeokiMassad on 11/15/16.
  */
 
-public class ParState {
+public class ParState extends GameState {
 
     ParPlayer player0 = new ParPlayer();
     ParPlayer player1 = new ParPlayer();
     ParPlayer player2 = new ParPlayer();
     ParPlayer player3 = new ParPlayer();
     protected ParPlayer[] players = {player0, player1, player2, player3};
-    private int count;
+
 
     // up to down
     private int[] hori = {0, 81, 150, 217, 284, 358, 424, 491, 558, 626, 694, 763, 833, 898, 967, 1036, 1102, 1165, 1235, 1300, 1366};
@@ -25,11 +27,8 @@ public class ParState {
     private Hashtable<Integer, Rect> boardPieces = new Hashtable<>();
     private Hashtable<String, Rect> homebasePieces = new Hashtable<>();
     private Hashtable<Integer, Rect> safezonePieces = new Hashtable<>();
-    private
 
-    void ParState() {
-        count = 0;
-    }
+    public ParState() {super();}
 
     protected void initBoardPieces() {
         // normal rectangular board pieces
@@ -171,72 +170,6 @@ public class ParState {
         safezonePieces.put(27, new Rect(hori[13], hori[14], vert[9], vert[11], "safeZ", 4));
         safezonePieces.put(28, new Rect(hori[12], hori[13], vert[9], vert[11], "safeZ", 4));
     }
-
-//    protected void initLocations(ParPlayer player) {
-//        player.initLocation(0);
-//        player.initLocation(1);
-//        player.initLocation(2);
-//        player.initLocation(3);
-//    }
-
-//    protected int getPlayerIdx (ParPlayer player) {
-//        for (int i = 0; i < 4; i++) {
-//            if (players[i] == player) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
-
-//    protected boolean gameOver(ParPlayer player) {
-//        if (player.getLocation(0) == 50 & player.getLocation(1) == 50 & player.getLocation(2) == 50 & player.getLocation(3) == 50) {
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    protected boolean canMove (ParPlayer player) {
-//        int idx = getPlayerIdx(player);
-//        if (idx == count) {
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    protected boolean makeMove (ParPlayer player1, int numPlayer1, int locPlayer1Final, ParPlayer player2) {
-//        int locPlayer1Init = player1.getLocation(numPlayer1);
-//        int locPlayer2Init;
-//
-//        outerloop:
-//        for (int i = 0; i < 4; i++) {
-//            locPlayer2Init = player2.getLocation(i);
-//
-//            // determine if there is a block ahead
-//            for (int j = 0; j < i; j++) {
-//                if (locPlayer2Init == player2. getLocation(j)) {
-//                    // is the block between the initial position and the final position??
-//                    if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
-//                        break outerloop;
-//                    }
-//                }
-//            }
-//            for (int j = i+1; j < 4; j++) {
-//                if (locPlayer2Init == player2. getLocation(j)) {
-//                    // is the block between the initial position and the final position??
-//                    if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
-//                        break outerloop;
-//                    }
-//                }
-//            }
-//            // is the final location of the piece on a single opposing piece??
-//            if (locPlayer1Final == locPlayer2Init) {
-//                player1.setLocation(numPlayer1, locPlayer1Final);
-//                player2.initLocation(i);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     protected String containsInRect (float x, float y) {
         for (int i = 1; i < 69; i++) {

@@ -13,6 +13,7 @@ import game.infoMsg.GameInfo;
 public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener {
 
     ParLocalGame pigLocalGame = new ParLocalGame();
+    private int[] location = new int[4];
 
     // the android activity that we are running
     GameMainActivity myActivity;

@@ -46,9 +46,6 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 	private GameTimer myTimer = new GameTimer(this); // my player's timer
 	private boolean gameOver; // whether the game is over
 
-	public TextView playerNameTextView  = null;
-	public TextView oppNameTextView     = null;
-
 	ParLocalGame parLocalGame = new ParLocalGame();
 
 	/**

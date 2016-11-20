@@ -10,6 +10,7 @@ import game.infoMsg.GameInfo;
 public class ParComputerPlayerE extends GameComputerPlayer {
 
     ParLocalGame parLocalGame = new ParLocalGame();
+    private int[] location = new int[4];
 
     public ParComputerPlayerE (String name) {
         super(name);
