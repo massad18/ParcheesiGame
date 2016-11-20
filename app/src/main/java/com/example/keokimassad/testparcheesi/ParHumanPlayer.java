@@ -48,4 +48,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     public void setAsGui(GameMainActivity activity) {
 
     }
+
+    private void initiLocations() {
+        for (int i = 0; i < 4; i++) {
+            location[i] = 0;
+        }
+    }
 }
