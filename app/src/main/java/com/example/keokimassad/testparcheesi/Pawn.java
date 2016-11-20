@@ -1,6 +1,8 @@
 package com.example.keokimassad.testparcheesi;
 
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 
 /**
  * Created by AvayaBhattarai on 11/20/16.
@@ -12,6 +14,7 @@ public class Pawn {
     public float yCor;
     public float size;
     public Color color;
+    public Paint paint;
 
 
     public Pawn(float xCor, float yCor, float size, Color color) {
@@ -19,6 +22,9 @@ public class Pawn {
         this.yCor = yCor;
         this.size = size;
         this.color = color;
+        paint = new Paint();
+        paint.setColor(color.RED);
+
     }
 
 
@@ -53,4 +59,10 @@ public class Pawn {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public void drawOn(Canvas canvas) {
+        canvas.drawCircle(xCor, yCor, size, paint);
+    }
+
+
 }
