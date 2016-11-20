@@ -18,10 +18,35 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout rl_Main;
     private ParState parState;
 
+    GameConfig config  = null;
+
+
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.config = createDefaultConfig();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         parState = new ParState();
         parState.initBoardPieces();
