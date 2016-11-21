@@ -14,7 +14,7 @@ public class Rect {
     private float midV;
     private float mid;
     //rect, safeZ, trapD, trapU, homebase, neutral (square under the safeZone)
-    private String type;
+    protected String type;
     // section 1 = [65,68] & [1,4] & [22,29] (blue and red on bottom of screen)
     // seciton 2 = [48,55] & [5,12] (tilted 90˚ CCW)
     // section 3 = [31,38] & [56,63] (upside down 180˚),
