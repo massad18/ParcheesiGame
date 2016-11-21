@@ -10,7 +10,16 @@ import game.infoMsg.GameState;
 
 public class ParState extends GameState {
 
-    private int dieVals[];
+    //Defined integer constants for different substages of game
+    private static final int Roll = 0;
+    private static final int Begin_Move = 1;
+    private static final int Mid_Move = 2;
+    private static final int Game_Over = 3;
+
+    private int currentSubstage; //integer to hold current substage of the game
+    private int dieVals[]; //array to hold current dice values
+    private int numOfDoubles; //holds number of doubles current player has had in the turn
+    private int playerTurn; //holds who's turn it currently is
 
 
     // up to down
@@ -208,19 +217,32 @@ public class ParState extends GameState {
         return "Error " + -1;
     }
 
+    //Getter to return the number of doubles the current player has had in the turn
+    public int getNumOfDoubles() { return numOfDoubles; }
+
+    //Getter to return who's turn it currently is
+    public int getPlayerTurn() { return playerTurn; }
+
+    //Getter to return integer array of both dice values
     public int[] getDiceVals()
     {
         return dieVals;
     }
 
+    //Getter to return integer value of first die value
     public int getDice1Val() { return dieVals[0]; }
 
+    //Getter to return integer value of second die value
     public int getDice2Val() { return dieVals[1]; }
 
+    //Setter to set values of both dice
     public void setDieVals(int player, int dieVal1, int dieVal2) {
         dieVals[0] = dieVal1;
         dieVals[1] = dieVal2;
     }
+
+    //Getter to return current substage of turn
+    public int getCurrentSubstage() { return currentSubstage; }
 
     public int getSelectedLocation () {
         return selectedLocation;

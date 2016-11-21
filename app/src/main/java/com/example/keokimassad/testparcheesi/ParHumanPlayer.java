@@ -15,10 +15,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     //Instance Variables
     private GameMainActivity myActivity; //the android activity that we are running
     ParLocalGame pigLocalGame = new ParLocalGame();
-    private int[] location = new int[4];
+    private int[] locationIndex = new int[4];
     private int playerIdx;
 
-    private ImageButton[] diceButtons = null;
+    private ImageButton[] diceButtons = null; //array to hold dice button variables
 
     /**
      * constructor does nothing extra
@@ -43,7 +43,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     {
         if(info instanceof ParState)
         {
-            //Changes the image of die 1 based on the current die value
+            //Changes the image of die 1 based on the current die 1 value
             switch(((ParState)info).getDice1Val())
             {
                 case 1:
@@ -65,7 +65,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     diceButtons[0].setImageResource(R.mipmap.die_val_6);
                     break;
             }
-            //Changes the image of die 2 based on the current die value
+            //Changes the image of die 2 based on the current die 2 value
             switch(((ParState)info).getDice2Val())
             {
                 case 1:
@@ -98,6 +98,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //Peforms actions when dice pressed
         if(button == diceButtons[0])
         {
+            //ToDo: Decide which action is needed (rolling or moving piece)
 
         }
         else if(button == diceButtons[1])
@@ -123,15 +124,17 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         diceButtons[1].setOnClickListener(this);
     }
 
+    //Initializes players' pawn locations
     private void initLocations(int locationIdx) {
-
+        //ToDo: initialize starting pawn locations
     }
 
     private void setLocations(int locationIdx) {
-
+        //ToDo: change pawn locations when player wants to move
     }
 
     public int getLocationPlayer(int locationIdx) {
+        //ToDo: get current location of pawn?
         return -1;
     }
 }
