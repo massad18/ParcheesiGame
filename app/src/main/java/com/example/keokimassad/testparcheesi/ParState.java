@@ -213,6 +213,10 @@ public class ParState extends GameState {
         return dieVals;
     }
 
+    public int getDice1Val() { return dieVals[0]; }
+
+    public int getDice2Val() { return dieVals[1]; }
+
     public void setDieVals(int player, int dieVal1, int dieVal2) {
         dieVals[0] = dieVal1;
         dieVals[1] = dieVal2;
@@ -231,7 +235,7 @@ public class ParState extends GameState {
     }
 
     public int getLocation(int playerIdx, int index) {
-
+        return -1;
     }
 
     public void setLocation(int playerIdx, int index, String type) {

@@ -68,7 +68,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
 
-                <Button
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/die_val_1"
@@ -80,7 +80,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1" />
 
-                <Button
+                <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/die_val_2"
