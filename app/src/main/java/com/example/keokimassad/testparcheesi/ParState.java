@@ -21,6 +21,10 @@ public class ParState extends GameState {
     private int numOfDoubles; //holds number of doubles current player has had in the turn
     private int playerTurn; //holds who's turn it currently is
 
+    private Location[] player1Locations = new Location[4];
+    private Location[] player2Locations = new Location[4];
+    private Location[] player3Locations = new Location[4];
+    private Location[] player4Locations = new Location[4];
 
     // up to down
     private int[] hori = {0, 81, 150, 217, 284, 358, 424, 491, 558, 626, 694, 763, 833, 898, 967, 1036, 1102, 1165, 1235, 1300, 1366};
@@ -241,7 +245,7 @@ public class ParState extends GameState {
         dieVals[1] = dieVal2;
     }
 
-    //Getter to return current substage of turn
+    //Getter to return current substage
     public int getCurrentSubstage() { return currentSubstage; }
 
     public int getSelectedLocation () {
@@ -254,6 +258,47 @@ public class ParState extends GameState {
 
     public String getSelectedLocationColor () {
         return selectedLocationColor;
+    }
+
+    public Location[] getPawnLocationsForPlayer(int playerIdx)
+    {
+        switch (playerIdx)
+        {
+            case 1:
+                return player1Locations;
+            case 2:
+                return player2Locations;
+            case 3:
+                return player3Locations;
+            case 4:
+                return player4Locations;
+            default:
+                System.out.println("Error: The player index passed in is not a valid player ID");
+                return player1Locations;
+        }
+    }
+
+    public void setPawnLocationsForPlayer(int playerIdx, int pawnIndex, LocationType locationType, int locationIndex)
+    {
+        switch (playerIdx)
+        {
+            case 1:
+                player1Locations[pawnIndex].locationType = locationType;
+                player1Locations[pawnIndex].locationIndex = locationIndex;
+                break;
+            case 2:
+                player2Locations[pawnIndex].locationType = locationType;
+                player2Locations[pawnIndex].locationIndex = locationIndex;
+                break;
+            case 3:
+                player3Locations[pawnIndex].locationType = locationType;
+                player3Locations[pawnIndex].locationIndex = locationIndex;
+                break;
+            case 4:
+                player4Locations[pawnIndex].locationType = locationType;
+                player4Locations[pawnIndex].locationIndex = locationIndex;
+                break;
+        }
     }
 
     public int getLocation(int playerIdx, int index) {

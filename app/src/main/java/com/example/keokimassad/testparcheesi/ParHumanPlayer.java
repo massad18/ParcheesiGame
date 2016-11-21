@@ -14,8 +14,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     //Instance Variables
     private GameMainActivity myActivity; //the android activity that we are running
-    ParLocalGame pigLocalGame = new ParLocalGame();
-    private int[] locationIndex = new int[4];
+    ParLocalGame parLocalGame = new ParLocalGame();
     private int playerIdx;
 
     private ImageButton[] diceButtons = null; //array to hold dice button variables
@@ -90,6 +89,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         }
         else
         {
+            //Screen flashes black in info isn't an instance of ParState (which shouldn't occur unless error)
             flash(Color.BLACK, 5);
         }
     }
@@ -99,6 +99,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         if(button == diceButtons[0])
         {
             //ToDo: Decide which action is needed (rolling or moving piece)
+
 
         }
         else if(button == diceButtons[1])
@@ -126,6 +127,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     //Initializes players' pawn locations
     private void initLocations(int locationIdx) {
+
         //ToDo: initialize starting pawn locations
     }
 
