@@ -15,6 +15,7 @@ public class ParState extends GameState {
     ParPlayer player2 = new ParPlayer();
     ParPlayer player3 = new ParPlayer();
     protected ParPlayer[] players = {player0, player1, player2, player3};
+    private int dieVals[];
 
 
     // up to down
@@ -200,5 +201,16 @@ public class ParState extends GameState {
         }
 
         return "Error " + -1;
+    }
+
+    public int[] getDiceVals()
+    {
+        return dieVals;
+    }
+
+    public void setDieVals(int player, int dieVal1, int dieVal2)
+    {
+        dieVals[0] = dieVal1;
+        dieVals[1] = dieVal2;
     }
 }

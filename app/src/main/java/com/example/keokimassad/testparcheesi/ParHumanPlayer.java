@@ -1,19 +1,18 @@
 package com.example.keokimassad.testparcheesi;
 
+import android.graphics.Color;
 import android.view.View;
+import android.widget.ImageButton;
 
 import game.GameHumanPlayer;
 import game.GameMainActivity;
 import game.infoMsg.GameInfo;
 
-/**
- * Created by KeokiMassad on 11/20/16.
- */
-
 public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener {
 
     ParLocalGame pigLocalGame = new ParLocalGame();
     private int[] location = new int[4];
+    private ImageButton[] diceButtons = null;
 
     // the android activity that we are running
     GameMainActivity myActivity;
@@ -37,8 +36,30 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     }
 
     @Override
-    public void receiveInfo(GameInfo info) {
-
+    public void receiveInfo(GameInfo info)
+    {
+        if(info instanceof ParState)
+        {
+            /*switch(((ParState)info).getDiceVals())
+            {
+                case :
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+            }*/
+        }
+        else
+        {
+            flash(Color.BLACK, 5);
+        }
     }
 
     public void onClick (View button) {
