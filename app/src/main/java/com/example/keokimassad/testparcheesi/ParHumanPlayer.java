@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.Hashtable;
+
 import game.GameHumanPlayer;
 import game.GameMainActivity;
 import game.infoMsg.GameInfo;
@@ -12,7 +14,9 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     ParLocalGame pigLocalGame = new ParLocalGame();
     private int[] location = new int[4];
+
     private ImageButton[] diceButtons = null;
+    private int playerIdx;
 
     // the android activity that we are running
     GameMainActivity myActivity;
@@ -57,9 +61,15 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     }
 
-    private void initLocations() {
-        for (int i = 0; i < 4; i++) {
-            location[i] = 0;
-        }
+    private void initLocations(int locationIdx) {
+
+    }
+
+    private void setLocations(int locationIdx) {
+
+    }
+
+    public int getLocationPlayer(int locationIdx) {
+
     }
 }

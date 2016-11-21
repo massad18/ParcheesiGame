@@ -10,9 +10,20 @@ import game.actionMsg.GameAction;
 
 public class ParLocalGame extends LocalGame {
 
+    ParState parState;
+    GameAction myAction;
+
+    public ParLocalGame () {
+        parState = new ParState();
+    }
+
     @Override
     protected boolean canMove(int playerIdx) {
-        return false;
+        if (parState.getPlayerTurn() == playerIdx) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -22,6 +33,64 @@ public class ParLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
+
+        int locPlayer1Init;
+        int locPlayer2Init;
+        ParPlayer currentPlayer;
+        ParPlayer targetPlayer;
+        myAction = action;
+
+        for (int m = 0; m < players.length; m ++) {
+            if (canMove(m)) {
+                // need an array of the players
+                currentPlayer = players[m];
+                if (myAction instanceof ParMoveAction) {
+                    // need a method to get the selected pawn piece to move
+                    int pawn = ...something.getSelectedPiece();
+                    // need a method within the par human player to get the location of the selected pawn piece
+                    locPlayer1Init = currentPlayer.getLocationPlayer(pawn);
+
+                    if (currentPlayer.)
+
+                    for (int k = 0; k < m; k++) {
+                        targetPlayer = players[k];
+
+                        outerloop:
+                        for (int i = 0; i < 4; i++) {
+                            locPlayer2Init = targetPlayer.getLocationPlayer(i);
+
+                            // determine if there is a block ahead
+                            for (int j = 0; j < i; j++) {
+                                if (locPlayer2Init == targetPlayer.getLocation(j)) {
+                                    // is the block between the initial position and the final position??
+                                    if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
+                                        break outerloop;
+                                    }
+                                }
+                            }
+                            for (int j = i + 1; j < 4; j++) {
+                                if (locPlayer2Init == targetPlayer.getLocation(j)) {
+                                    // is the block between the initial position and the final position??
+                                    if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
+                                        break outerloop;
+                                    }
+                                }
+                            }
+                            // is the final location of the piece on a single opposing piece??
+                            if (locPlayer1Final == locPlayer2Init) {
+                                player1.setLocation(numPlayer1, locPlayer1Final);
+                                player2.initLocation(i);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                if (myAction instanceof ParRollAction) {
+
+                }
+                return true;
+            }
+        }
         return false;
     }
 

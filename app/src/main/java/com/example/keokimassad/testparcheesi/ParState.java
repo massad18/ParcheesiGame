@@ -10,11 +10,6 @@ import game.infoMsg.GameState;
 
 public class ParState extends GameState {
 
-    ParPlayer player0 = new ParPlayer();
-    ParPlayer player1 = new ParPlayer();
-    ParPlayer player2 = new ParPlayer();
-    ParPlayer player3 = new ParPlayer();
-    protected ParPlayer[] players = {player0, player1, player2, player3};
     private int dieVals[];
 
 
@@ -28,6 +23,10 @@ public class ParState extends GameState {
     private Hashtable<Integer, Rect> boardPieces = new Hashtable<>();
     private Hashtable<String, Rect> homebasePieces = new Hashtable<>();
     private Hashtable<Integer, Rect> safezonePieces = new Hashtable<>();
+
+    private int selectedLocation;
+    private String selectedLocationColor;
+    private String selectedLocationType;
 
     public ParState() {super();}
 
@@ -177,7 +176,9 @@ public class ParState extends GameState {
             Rect rect = boardPieces.get(i);
             if (rect != null) {
                 if (rect.contains(x, y)) {
-                    return "Normal " + i;
+                    selectedLocation = i;
+                    selectedLocationType = "Normal";
+                    return selectedLocationType + " " + selectedLocation;
                 }
             }
         }
@@ -186,7 +187,9 @@ public class ParState extends GameState {
             Rect rect = homebasePieces.get(colors[j]);
             if (rect != null) {
                 if (rect.contains(x,y)) {
-                    return "Home Base " + colors[j];
+                    selectedLocationColor = colors[j];
+                    selectedLocationType = "HomeBase";
+                    return selectedLocationType + " " + selectedLocationColor;
                 }
             }
         }
@@ -195,7 +198,9 @@ public class ParState extends GameState {
             Rect rect = safezonePieces.get(k);
             if (rect != null) {
                 if (rect.contains(x,y)) {
-                    return "Safe Zone " + k;
+                    selectedLocation = k;
+                    selectedLocationType = "SafeZone";
+                    return selectedLocationType + " " + selectedLocation;
                 }
             }
         }
@@ -208,9 +213,32 @@ public class ParState extends GameState {
         return dieVals;
     }
 
-    public void setDieVals(int player, int dieVal1, int dieVal2)
-    {
+    public void setDieVals(int player, int dieVal1, int dieVal2) {
         dieVals[0] = dieVal1;
         dieVals[1] = dieVal2;
+    }
+
+    public int getSelectedLocation () {
+        return selectedLocation;
+    }
+
+    public String getSelectedLocationType () {
+        return selectedLocationType;
+    }
+
+    public String getSelectedLocationColor () {
+        return selectedLocationColor;
+    }
+
+    public int getLocation(int playerIdx, int index) {
+
+    }
+
+    public void setLocation(int playerIdx, int index, String type) {
+
+    }
+
+    public void setHomeBaseLocation(int playerIdx, String color, String type) {
+
     }
 }
