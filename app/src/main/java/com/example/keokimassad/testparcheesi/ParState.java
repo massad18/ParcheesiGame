@@ -21,10 +21,11 @@ public class ParState extends GameState {
     private int numOfDoubles; //holds number of doubles current player has had in the turn
     private int playerTurn; //holds who's turn it currently is
 
-    private Location[] player1Locations = new Location[4];
-    private Location[] player2Locations = new Location[4];
-    private Location[] player3Locations = new Location[4];
-    private Location[] player4Locations = new Location[4];
+    //4 location arrays to hold locations of each players' pawns
+    private int[] player1Locations = new int[4];
+    private int[] player2Locations = new int[4];
+    private int[] player3Locations = new int[4];
+    private int[] player4Locations = new int[4];
 
     // up to down
     private int[] hori = {0, 81, 150, 217, 284, 358, 424, 491, 558, 626, 694, 763, 833, 898, 967, 1036, 1102, 1165, 1235, 1300, 1366};
@@ -236,7 +237,7 @@ public class ParState extends GameState {
         return selectedLocationColor;
     }
 
-    public Location[] getPawnLocationsForPlayer(int playerIdx)
+    public int[] getPawnLocationsForPlayer(int playerIdx)
     {
         switch (playerIdx)
         {
@@ -254,38 +255,26 @@ public class ParState extends GameState {
         }
     }
 
-    public void setPawnLocationsForPlayer(int playerIdx, int pawnIndex, LocationType locationType, int locationIndex)
+    public void setPawnLocationsForPlayer(int playerIdx, int pawnIndex, int location)
     {
         switch (playerIdx)
         {
             case 1:
-                player1Locations[pawnIndex].locationType = locationType;
-                player1Locations[pawnIndex].locationIndex = locationIndex;
+                player1Locations[pawnIndex] = location;
                 break;
             case 2:
-                player2Locations[pawnIndex].locationType = locationType;
-                player2Locations[pawnIndex].locationIndex = locationIndex;
+                player2Locations[pawnIndex] = location;
                 break;
             case 3:
-                player3Locations[pawnIndex].locationType = locationType;
-                player3Locations[pawnIndex].locationIndex = locationIndex;
+                player3Locations[pawnIndex] = location;
                 break;
             case 4:
-                player4Locations[pawnIndex].locationType = locationType;
-                player4Locations[pawnIndex].locationIndex = locationIndex;
+                player4Locations[pawnIndex] = location;
                 break;
         }
     }
 
-    public int getLocation(int playerIdx, int index) {
-        return -1;
-    }
-
-    public void setLocation(int playerIdx, int index, String type) {
-
-    }
-
     public void setHomeBaseLocation(int playerIdx, String color, String type) {
-
+        //ToDo: can player's change
     }
 }

@@ -99,12 +99,12 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         if(button == diceButtons[0])
         {
             //ToDo: Decide which action is needed (rolling or moving piece)
-
+            diceButtons[0].setEnabled(false);
 
         }
         else if(button == diceButtons[1])
         {
-
+            diceButtons[1].setEnabled(false);
         }
     }
 
