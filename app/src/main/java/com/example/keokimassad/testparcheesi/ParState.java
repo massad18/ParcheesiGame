@@ -249,21 +249,21 @@ public class ParState extends GameState {
         return selectedLocationColor;
     }
 
-    public int getPawnLocationsForPlayer(int playerIdx, int pawnIdx)
+    public int[] getPawnLocationsForPlayer(int playerIdx)
     {
         switch (playerIdx)
         {
             case 1:
-                return player1Locations[pawnIdx];
+                return player1Locations;
             case 2:
-                return player2Locations[pawnIdx];
+                return player2Locations;
             case 3:
-                return player3Locations[pawnIdx];
+                return player3Locations;
             case 4:
-                return player4Locations[pawnIdx];
+                return player4Locations;
             default:
                 //throws an error if a valid pawn or player index isn't provided
-                throw new IllegalArgumentException("Error: The player or pawn index passed in is not a valid player ID");
+                throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
         }
     }
 

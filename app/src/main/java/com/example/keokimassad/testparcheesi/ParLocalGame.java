@@ -18,6 +18,7 @@ public class ParLocalGame extends LocalGame {
     }
 
     @Override
+    //Method that returns true or false based on if it's the player's turn
     protected boolean canMove(int playerIdx) {
         if (parState.getPlayerTurn() == playerIdx) {
             return true;
@@ -28,19 +29,50 @@ public class ParLocalGame extends LocalGame {
 
     @Override
     protected String checkIfGameOver() {
-        return null;
+        //Checks every player for winning condition
+        for(int playerIdx = 0; playerIdx < players.length; playerIdx++)
+        {
+            //holds number of pawns at center for given player
+            int totalPawnsAtGoalForPlayer = 0;
+            //integer array to hold locations of pawns for given player
+            int pawnLocations[] = parState.getPawnLocationsForPlayer(playerIdx);
+
+            //Checks every pawn that player has
+            for(int pawnIdx = 0; pawnIdx < 4; pawnIdx++)
+            {
+                //Checks if given pawn has reached the end goal
+                //ToDo: Change value to reflect true indexes for winning (91 temp value)
+                if(pawnLocations[0] == 91)
+                {
+                    totalPawnsAtGoalForPlayer++;
+                }
+            }
+            //Checks if player has 4 pawns at goal
+            if(totalPawnsAtGoalForPlayer == 4)
+            {
+                //If so, the player has won the game
+                return "Player " + playerIdx + " has won!";
+            }
+        }
+        return null; //returns null if no player has 4 pawns at goal
     }
 
     @Override
     protected boolean makeMove(GameAction action) {
-
+        //Instance Variables
+        int[] player1Locations = parState.getPawnLocationsForPlayer(0);
+        int[] player2Locations = parState.getPawnLocationsForPlayer(1);
+        int[] player3Locations = parState.getPawnLocationsForPlayer(2);
+        int[] player4Locations = parState.getPawnLocationsForPlayer(3);
         int locPlayer1Init;
         int locPlayer2Init;
         ParPlayer currentPlayer;
         ParPlayer targetPlayer;
         myAction = action;
 
+        //Loops through each player in the game
         for (int m = 0; m < players.length; m ++) {
+            //Checks if it's the player's turn
             if (canMove(m)) {
                 // need an array of the players
                 currentPlayer = players[m];
@@ -48,8 +80,7 @@ public class ParLocalGame extends LocalGame {
                     // need a method to get the selected pawn piece to move
                     int pawn = ...something.getSelectedPiece();
                     // need a method within the par human player to get the location of the selected pawn piece
-                    locPlayer1Init = parState.getPawnLocationsForPlayer(0,pawn);
-                    //locPlayer1Init = currentPlayer.getLocationPlayer(pawn);
+                    locPlayer1Init = currentPlayer.getLocationPlayer(pawn);
 
                     if (currentPlayer.)
 
@@ -58,8 +89,7 @@ public class ParLocalGame extends LocalGame {
 
                         outerloop:
                         for (int i = 0; i < 4; i++) {
-                            //locPlayer2Init = targetPlayer.getLocationPlayer(i);
-                            locPlayer2Init = parState.getPawnLocationsForPlayer(1,pawn);
+                            locPlayer2Init = targetPlayer.getLocationPlayer(i);
 
                             // determine if there is a block ahead
                             for (int j = 0; j < i; j++) {
