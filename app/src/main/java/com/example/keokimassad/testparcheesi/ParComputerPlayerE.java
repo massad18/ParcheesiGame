@@ -30,7 +30,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                         @Override
                         public void run() {
                             //have one dice be three and one dice be 2
-                            //bring one piece out
+                            //bring one piece out.
                         }
                     }, 2000);
 
