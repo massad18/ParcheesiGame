@@ -11,10 +11,10 @@ import game.infoMsg.GameState;
 public class ParState extends GameState {
 
     //Defined integer constants for different substages of game
-    private static final int Roll = 0;
-    private static final int Begin_Move = 1;
-    private static final int Mid_Move = 2;
-    private static final int Game_Over = 3;
+    public static final int Roll = 0;
+    public static final int Begin_Move = 1;
+    public static final int Mid_Move = 2;
+    public static final int Game_Over = 3;
 
     private int currentSubstage; //integer to hold current substage of the game
     private int dieVals[]; //array to hold current dice values
@@ -232,6 +232,11 @@ public class ParState extends GameState {
     //Getter to return current substage
     public int getCurrentSubstage() { return currentSubstage; }
 
+    public void setCurrentSubstage(int newSubstage)
+    {
+        currentSubstage = newSubstage;
+    }
+
     public int getSelectedLocation () {
         return selectedLocation;
     }
@@ -257,8 +262,7 @@ public class ParState extends GameState {
             case 4:
                 return player4Locations;
             default:
-                System.out.println("Error: The player index passed in is not a valid player ID");
-                return player1Locations;
+                throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
         }
     }
 
