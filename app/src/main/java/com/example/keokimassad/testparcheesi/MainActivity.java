@@ -36,29 +36,29 @@ public class MainActivity extends GameMainActivity{
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        // Red Start - index 0
-        playerTypes.add(new GamePlayerType("Local Human Player (Red)") {
+        // Index 0
+        playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
         });
 
-        // Blue Start - index 1
-        playerTypes.add(new GamePlayerType("Local Human Player (Blue)") {
+        // Index 1
+        playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
         });
 
-        // Yellow Start - index 2
-        playerTypes.add(new GamePlayerType("Local Human Player (Yellow)") {
+        // Index 2
+        playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
         });
 
-        // Green Start - index 3
-        playerTypes.add(new GamePlayerType("Local Human Player (Green)") {
+        // Index 3
+        playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
@@ -75,12 +75,11 @@ public class MainActivity extends GameMainActivity{
         GameConfig defaultConfig = new GameConfig(playerTypes, 2,4, "Tic-Tac-Toe", PORT_NUMBER);
 
         // Add the default players
-        defaultConfig.addPlayer("Human", 0); //Red
+        defaultConfig.addPlayer("Human", 0);
         defaultConfig.addPlayer("Computer", 4); //Easy Computer
 
         // Set the initial information for the remote player
-        defaultConfig.setRemoteData("Remote Player", "", 1); //Blue
-
+        defaultConfig.setRemoteData("Remote Player", "", 1);
         //done!
         return defaultConfig;
     }
