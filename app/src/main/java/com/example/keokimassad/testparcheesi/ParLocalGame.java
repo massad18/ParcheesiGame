@@ -40,14 +40,15 @@ public class ParLocalGame extends LocalGame {
             //holds number of pawns at center for given player
             int totalPawnsAtGoalForPlayer = 0;
             //integer array to hold locations of pawns for given player
-            int pawnLocations[] = parState.getPawnLocationsForPlayer(playerIdx);
+            int pawnXLocations[] = parState.getPawnLocationsXForPlayer(playerIdx);
+            int pawnYLocations[] = parState.getPawnLocationsXForPlayer(playerIdx);
 
             //Checks every pawn that player has
             for(int pawnIdx = 0; pawnIdx < 4; pawnIdx++)
             {
                 //Checks if given pawn has reached the end goal
                 //ToDo: Change value to reflect true indexes for winning (91 temp value)
-                if(pawnLocations[0] == 91)
+                if((pawnXLocations[0] == 91) && (pawnYLocations[0] == 91))
                 {
                     totalPawnsAtGoalForPlayer++;
                 }
