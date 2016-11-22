@@ -162,7 +162,43 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     //Initializes players' pawn locations
     private void initLocations(int locationIdx) {
-        //((MainActivity)myActivity).parState.set
+        //Goes through every player in the game
+        for(int playerIdx = 0; playerIdx < parLocalGame.getPlayerArray().length; playerIdx++)
+        {
+            switch (playerIdx)
+            {
+                //ToDo: change last value in setPawnLocationsForPlayer calls to correct indexes
+                //setPawnLocationsForPlayer(player,pawn,location)
+                //If player 1
+                case 0:
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(0,0,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(0,1,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(0,2,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(0,3,0);
+                    break;
+                //If player 2
+                case 1:
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(1,0,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(1,1,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(1,2,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(1,3,0);
+                    break;
+                //If player 3
+                case 2:
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(2,0,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(2,1,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(2,2,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(2,3,0);
+                    break;
+                //If player 4
+                case 3:
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(3,0,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(3,1,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(3,2,0);
+                    ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(3,3,0);
+                    break;
+            }
+        }
         //ToDo: initialize starting pawn locations
     }
 }

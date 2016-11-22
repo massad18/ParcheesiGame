@@ -17,6 +17,11 @@ public class ParLocalGame extends LocalGame {
         parState = new ParState(); //initializes an instance of parState
     }
 
+    public GamePlayer[] getPlayerArray()
+    {
+        return players;
+    }
+
     @Override
     //Method that returns true or false based on if it's the player's turn
     protected boolean canMove(int playerIdx) {
@@ -59,7 +64,8 @@ public class ParLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
-        //Instance Variables
+        /*Instance Variables*/
+        //integer arrays to hold each player's current pawn locations
         int[] player1Locations = parState.getPawnLocationsForPlayer(0);
         int[] player2Locations = parState.getPawnLocationsForPlayer(1);
         int[] player3Locations = parState.getPawnLocationsForPlayer(2);
