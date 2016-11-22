@@ -25,5 +25,30 @@ public class Pawn {
     }
 
 
+    public void drawOn(float xCor, float yCor, float size, Canvas canvas, int playerIndex)
+    {
+        if(playerIndex == 0)
+        {
+            paint.setColor(Color.YELLOW);
+            canvas.drawCircle(xCor, yCor, size, paint);
+        }
+        else if(playerIndex == 1)
+        {
+            paint.setColor(Color.GREEN);
+            canvas.drawCircle(xCor, yCor, size, paint);
+        }
+        else if(playerIndex == 2)
+        {
+            paint.setColor(Color.RED);
+            canvas.drawCircle(xCor, yCor, size, paint);
+        }
+        else
+        {
+            paint.setColor(Color.BLUE);
+            canvas.drawCircle(xCor, yCor, size, paint);
+        }
+
+    }
+
 
 }
