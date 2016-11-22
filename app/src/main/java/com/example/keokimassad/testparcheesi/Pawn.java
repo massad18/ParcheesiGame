@@ -29,23 +29,31 @@ public class Pawn {
     {
         if(playerIndex == 0)
         {
-            paint.setColor(Color.YELLOW);
+            paint.setColor(Color.BLACK);
             canvas.drawCircle(xCor, yCor, size, paint);
+            paint.setColor(Color.YELLOW);
+            canvas.drawCircle(xCor, yCor, size-2, paint);
         }
         else if(playerIndex == 1)
         {
-            paint.setColor(Color.GREEN);
+            paint.setColor(Color.BLACK);
             canvas.drawCircle(xCor, yCor, size, paint);
+            paint.setColor(Color.GREEN);
+            canvas.drawCircle(xCor, yCor, size-2, paint);
         }
         else if(playerIndex == 2)
         {
-            paint.setColor(Color.RED);
+            paint.setColor(Color.BLACK);
             canvas.drawCircle(xCor, yCor, size, paint);
+            paint.setColor(Color.RED);
+            canvas.drawCircle(xCor, yCor, size-2, paint);
         }
         else
         {
-            paint.setColor(Color.BLUE);
+            paint.setColor(Color.BLACK);
             canvas.drawCircle(xCor, yCor, size, paint);
+            paint.setColor(Color.BLUE);
+            canvas.drawCircle(xCor, yCor, size-2, paint);
         }
 
     }
