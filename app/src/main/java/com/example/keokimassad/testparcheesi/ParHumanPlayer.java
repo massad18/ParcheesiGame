@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import game.GameHumanPlayer;
@@ -40,6 +41,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     @Override
     public void receiveInfo(GameInfo info)
     {
+        //Checks to make sure the game info being sent in is an instance of the state class
         if(info instanceof ParState)
         {
             //Changes the image of die 1 based on the current die 1 value
