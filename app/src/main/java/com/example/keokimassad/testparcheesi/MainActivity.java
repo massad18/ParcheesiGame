@@ -1,10 +1,6 @@
 package com.example.keokimassad.testparcheesi;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -13,21 +9,33 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import game.config.GameConfig;
 
-public class MainActivity extends AppCompatActivity {
+import game.GameMainActivity;
+import game.LocalGame;
+import game.config.GameConfig;
+import game.config.GamePlayerType;
+
+public class MainActivity extends GameMainActivity{
 
     private RelativeLayout rl_Main;
     private ParState parState;
 
-    GameConfig config  = null;
+    /* Avaya is currently modifying
+    @Override
+    public GameConfig createDefaultConfig() {}
+
+    @Override
+    public LocalGame createLocalGame()
+    {
+        return new ParLocalGame();
+    }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.config = createDefaultConfig();
 
         parState = new ParState();
         parState.initBoardPieces();
