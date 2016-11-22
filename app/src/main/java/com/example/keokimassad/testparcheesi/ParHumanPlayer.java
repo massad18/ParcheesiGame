@@ -101,15 +101,45 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //If the first die is pressed
         if(button == diceButtons[0])
         {
-            //ToDo: Decide which action is needed (rolling or moving piece)
-
-            diceButtons[0].setEnabled(false);
-
+            //ToDo:Not sure if actions called correctly (may want to check that)
+            switch (((MainActivity)myActivity).parState.getCurrentSubstage())
+            {
+                //Player has yet to roll the dice
+                case ParState.Roll:
+                    //ParRollAction is called to roll the dice
+                    ParRollAction actRoll = new ParRollAction(this);
+                    game.sendAction(actRoll);
+                    break;
+                //Player has rolled and has to move pawns
+                case ParState.Begin_Move:
+                case ParState.Mid_Move:
+                    //ParMoveAction is called to move a pawn
+                    ParMoveAction actMove = new ParMoveAction(this);
+                    game.sendAction(actMove);
+                    diceButtons[0].setEnabled(false); //sets die to no longer be pressed
+                    break;
+            }
         }
         //If the second die is pressed
         else if(button == diceButtons[1])
         {
-            diceButtons[1].setEnabled(false);
+            switch (((MainActivity)myActivity).parState.getCurrentSubstage())
+            {
+                //Player has yet to roll the dice
+                case ParState.Roll:
+                    //ParRollAction is called to roll the dice
+                    ParRollAction actRoll = new ParRollAction(this);
+                    game.sendAction(actRoll);
+                    break;
+                //Player has rolled and has to move pawns
+                case ParState.Begin_Move:
+                case ParState.Mid_Move:
+                    //ParMoveAction is called to move a pawn
+                    ParMoveAction actMove = new ParMoveAction(this);
+                    game.sendAction(actMove);
+                    diceButtons[1].setEnabled(false); //sets die to no longer be pressed
+                    break;
+            }
         }
     }
 
@@ -125,23 +155,14 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         this.diceButtons[0] = (ImageButton) activity.findViewById(R.id.die1);
         this.diceButtons[1] = (ImageButton) activity.findViewById(R.id.die2);
 
-        //Listeners for buttons
+        //Listeners for dice  buttons
         diceButtons[0].setOnClickListener(this);
         diceButtons[1].setOnClickListener(this);
     }
 
     //Initializes players' pawn locations
     private void initLocations(int locationIdx) {
-
+        //((MainActivity)myActivity).parState.set
         //ToDo: initialize starting pawn locations
-    }
-
-    private void setLocations(int locationIdx) {
-        //ToDo: change pawn locations when player wants to move
-    }
-
-    public int getLocationPlayer(int locationIdx) {
-        //ToDo: get current location of pawn?
-        return -1;
     }
 }

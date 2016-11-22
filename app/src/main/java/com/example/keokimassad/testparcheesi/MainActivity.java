@@ -24,7 +24,7 @@ import game.config.GamePlayerType;
 public class MainActivity extends GameMainActivity{
 
     private RelativeLayout rl_Main;
-    private ParState parState;
+    public ParState parState;
     public static final int PORT_NUMBER = 5213;
 
 
