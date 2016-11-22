@@ -66,10 +66,16 @@ public class ParLocalGame extends LocalGame {
     protected boolean makeMove(GameAction action) {
         /*Instance Variables*/
         //integer arrays to hold each player's current pawn locations
-        int[] player1Locations = parState.getPawnLocationsForPlayer(0);
-        int[] player2Locations = parState.getPawnLocationsForPlayer(1);
-        int[] player3Locations = parState.getPawnLocationsForPlayer(2);
-        int[] player4Locations = parState.getPawnLocationsForPlayer(3);
+        int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
+        int[] player2LocationsX = parState.getPawnLocationsXForPlayer(1);
+        int[] player3LocationsX = parState.getPawnLocationsXForPlayer(2);
+        int[] player4LocationsX = parState.getPawnLocationsXForPlayer(3);
+
+        int[] player1LocationsY = parState.getPawnLocationsYForPlayer(0);
+        int[] player2LocationsY = parState.getPawnLocationsYForPlayer(1);
+        int[] player3LocationsY = parState.getPawnLocationsYForPlayer(2);
+        int[] player4LocationsY = parState.getPawnLocationsYForPlayer(3);
+
         int locPlayer1Init;
         int locPlayer2Init;
         ParPlayer currentPlayer;

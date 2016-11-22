@@ -12,7 +12,7 @@ public class Pawn {
 
     public float xCor;
     public float yCor;
-    public float size;
+    public float size = 10;
     public Paint paint;
 
 

@@ -22,10 +22,15 @@ public class ParState extends GameState {
     private int playerTurn; //holds who's turn it currently is
 
     //4 location arrays to hold locations of each players' pawns
-    private int[] player1Locations = new int[4];
-    private int[] player2Locations = new int[4];
-    private int[] player3Locations = new int[4];
-    private int[] player4Locations = new int[4];
+    private int[] player1LocationsX = new int[4];
+    private int[] player2LocationsX = new int[4];
+    private int[] player3LocationsX = new int[4];
+    private int[] player4LocationsX = new int[4];
+
+    private int[] player1LocationsY = new int[4];
+    private int[] player2LocationsY = new int[4];
+    private int[] player3LocationsY = new int[4];
+    private int[] player4LocationsY = new int[4];
 
     // up to down
     private int[] hori = {0, 81, 150, 217, 284, 358, 424, 491, 558, 626, 694, 763, 833, 898, 967, 1036, 1102, 1165, 1235, 1300, 1366};
@@ -249,39 +254,61 @@ public class ParState extends GameState {
         return selectedLocationColor;
     }
 
-    public int[] getPawnLocationsForPlayer(int playerIdx)
+    public int[] getPawnLocationsXForPlayer(int playerIdx)
     {
         switch (playerIdx)
         {
             case 1:
-                return player1Locations;
+                return player1LocationsX;
             case 2:
-                return player2Locations;
+                return player2LocationsX;
             case 3:
-                return player3Locations;
+                return player3LocationsX;
             case 4:
-                return player4Locations;
+                return player4LocationsX;
             default:
                 //throws an error if a valid pawn or player index isn't provided
                 throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
         }
     }
 
-    public void setPawnLocationsForPlayer(int playerIdx, int pawnIndex, int location)
+    public int[] getPawnLocationsYForPlayer(int playerIdx)
     {
         switch (playerIdx)
         {
             case 1:
-                player1Locations[pawnIndex] = location;
+                return player1LocationsY;
+            case 2:
+                return player2LocationsY;
+            case 3:
+                return player3LocationsY;
+            case 4:
+                return player4LocationsY;
+            default:
+                //throws an error if a valid pawn or player index isn't provided
+                throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
+        }
+    }
+
+    public void setPawnLocationsForPlayer(int playerIdx, int pawnIndex, int locationX, int locationY)
+    {
+        switch (playerIdx)
+        {
+            case 1:
+                player1LocationsX[pawnIndex] = locationX;
+                player1LocationsY[pawnIndex] = locationY;
                 break;
             case 2:
-                player2Locations[pawnIndex] = location;
+                player2LocationsX[pawnIndex] = locationX;
+                player2LocationsY[pawnIndex] = locationY;
                 break;
             case 3:
-                player3Locations[pawnIndex] = location;
+                player3LocationsX[pawnIndex] = locationX;
+                player3LocationsY[pawnIndex] = locationY;
                 break;
             case 4:
-                player4Locations[pawnIndex] = location;
+                player4LocationsX[pawnIndex] = locationX;
+                player4LocationsY[pawnIndex] = locationY;
                 break;
         }
     }
