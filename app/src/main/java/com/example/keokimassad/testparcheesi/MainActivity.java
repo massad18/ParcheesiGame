@@ -19,11 +19,14 @@ import game.config.GameConfig;
 import game.config.GamePlayerType;
 
 
+
+//CHECK OVERRIDE OF ONCLICK
 public class MainActivity extends GameMainActivity{
 
     private RelativeLayout rl_Main;
     private ParState parState;
     public static final int PORT_NUMBER = 5213;
+
 
 
 
