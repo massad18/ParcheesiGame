@@ -48,44 +48,45 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             switch(((ParState)info).getDice1Val())
             {
                 case 1:
-                    diceButtons[0].setImageResource(R.mipmap.die_val_1);
+                    //diceButtons[0].setImageResource(R.mipmap.die_val_1);
+                    diceButtons[0].setImageResource(R.drawable.die1);
                     break;
                 case 2:
-                    diceButtons[0].setImageResource(R.mipmap.die_val_2);
+                    diceButtons[0].setImageResource(R.drawable.die2);
                     break;
                 case 3:
-                    diceButtons[0].setImageResource(R.mipmap.die_val_3);
+                    diceButtons[0].setImageResource(R.drawable.die3);
                     break;
                 case 4:
-                    diceButtons[0].setImageResource(R.mipmap.die_val_4);
+                    diceButtons[0].setImageResource(R.drawable.die4);
                     break;
                 case 5:
-                    diceButtons[0].setImageResource(R.mipmap.die_val_5);
+                    diceButtons[0].setImageResource(R.drawable.die5);
                     break;
                 case 6:
-                    diceButtons[0].setImageResource(R.mipmap.die_val_6);
+                    diceButtons[0].setImageResource(R.drawable.die6);
                     break;
             }
             //Changes the image of die 2 based on the current die 2 value
             switch(((ParState)info).getDice2Val())
             {
                 case 1:
-                    diceButtons[1].setImageResource(R.mipmap.die_val_1);
+                    diceButtons[1].setImageResource(R.drawable.die1);
                     break;
                 case 2:
-                    diceButtons[1].setImageResource(R.mipmap.die_val_2);
+                    diceButtons[1].setImageResource(R.drawable.die2);
                     break;
                 case 3:
-                    diceButtons[1].setImageResource(R.mipmap.die_val_3);
+                    diceButtons[1].setImageResource(R.drawable.die3);
                     break;
                 case 4:
-                    diceButtons[1].setImageResource(R.mipmap.die_val_4);
+                    diceButtons[1].setImageResource(R.drawable.die4);
                     break;
                 case 5:
-                    diceButtons[1].setImageResource(R.mipmap.die_val_5);
+                    diceButtons[1].setImageResource(R.drawable.die5);
                     break;
                 case 6:
-                    diceButtons[1].setImageResource(R.mipmap.die_val_6);
+                    diceButtons[1].setImageResource(R.drawable.die6);
                     break;
             }
         }
@@ -162,13 +163,13 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     //Initializes players' pawn locations
     private void initLocations() {
-        //Goes through every player in the game
+        //Goes through every player in the game (in case there are less than four players)
         for(int playerIdx = 0; playerIdx < parLocalGame.getPlayerArray().length; playerIdx++)
         {
             switch (playerIdx)
             {
                 //ToDo: change last value in setPawnLocationsForPlayer calls to correct indexes
-                //setPawnLocationsForPlayer(player,pawn,location)
+                //arguments for setPawnLocationsForPlayer as follows: player, pawn, location index
                 //If player 1
                 case 0:
                     ((MainActivity)myActivity).parState.setPawnLocationsForPlayer(0,0,0);
