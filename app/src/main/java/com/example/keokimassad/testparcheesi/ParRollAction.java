@@ -10,4 +10,5 @@ import game.actionMsg.GameAction;
 public class ParRollAction extends GameAction {
 
     public ParRollAction (GamePlayer player) {super(player);}
+
 }
