@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Parcheesi.iml" filepath="$PROJECT_DIR$/Parcheesi.iml" />
       <module fileurl="file://$PROJECT_DIR$/ParcheesiGame.iml" filepath="$PROJECT_DIR$/ParcheesiGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
