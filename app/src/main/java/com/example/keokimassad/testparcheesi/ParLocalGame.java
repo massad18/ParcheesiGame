@@ -14,7 +14,7 @@ public class ParLocalGame extends LocalGame {
     GameAction myAction;
 
     public ParLocalGame () {
-        parState = new ParState();
+        parState = new ParState(); //initializes an instance of parState
     }
 
     @Override
@@ -48,7 +48,8 @@ public class ParLocalGame extends LocalGame {
                     // need a method to get the selected pawn piece to move
                     int pawn = ...something.getSelectedPiece();
                     // need a method within the par human player to get the location of the selected pawn piece
-                    locPlayer1Init = currentPlayer.getLocationPlayer(pawn);
+                    locPlayer1Init = parState.getPawnLocationsForPlayer(0,pawn);
+                    //locPlayer1Init = currentPlayer.getLocationPlayer(pawn);
 
                     if (currentPlayer.)
 
@@ -57,7 +58,8 @@ public class ParLocalGame extends LocalGame {
 
                         outerloop:
                         for (int i = 0; i < 4; i++) {
-                            locPlayer2Init = targetPlayer.getLocationPlayer(i);
+                            //locPlayer2Init = targetPlayer.getLocationPlayer(i);
+                            locPlayer2Init = parState.getPawnLocationsForPlayer(1,pawn);
 
                             // determine if there is a block ahead
                             for (int j = 0; j < i; j++) {

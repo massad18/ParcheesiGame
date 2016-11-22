@@ -101,6 +101,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //If the first die is pressed
         if(button == diceButtons[0])
         {
+            //ToDo:Not sure if actions called correctly (may want to check that)
             switch (((MainActivity)myActivity).parState.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
@@ -161,7 +162,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     //Initializes players' pawn locations
     private void initLocations(int locationIdx) {
-
+        //((MainActivity)myActivity).parState.set
         //ToDo: initialize starting pawn locations
     }
 }
