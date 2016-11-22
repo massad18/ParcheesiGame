@@ -17,7 +17,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     private GameMainActivity myActivity; //the android activity that we are running
     ParLocalGame parLocalGame = new ParLocalGame();
     private int playerIdx;
-
+    
     private ImageButton[] diceButtons = null; //array to hold dice button variables
 
     /**
@@ -98,12 +98,15 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     public void onClick (View button) {
         //Peforms actions when dice pressed
+        //If the first die is pressed
         if(button == diceButtons[0])
         {
             //ToDo: Decide which action is needed (rolling or moving piece)
+
             diceButtons[0].setEnabled(false);
 
         }
+        //If the second die is pressed
         else if(button == diceButtons[1])
         {
             diceButtons[1].setEnabled(false);
