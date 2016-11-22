@@ -18,6 +18,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
+        if(parLocalGame)
 
     }
 }

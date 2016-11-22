@@ -184,6 +184,7 @@ public class ParState extends GameState {
         board[96] = (new Rect(hori[14], hori[15], vert[9], vert[11], "safeZ", 4));
         board[97] = (new Rect(hori[13], hori[14], vert[9], vert[11], "safeZ", 4));
         board[98] = (new Rect(hori[12], hori[13], vert[9], vert[11], "safeZ", 4));
+        playerTurn = 0;
     }
 
     protected String containsInRect (float x, float y) {
@@ -203,6 +204,12 @@ public class ParState extends GameState {
 
     //Getter to return who's turn it currently is
     public int getPlayerTurn() { return playerTurn; }
+
+    //setter to set whose move it is
+    public void setPlayerTurn(int player)
+    {
+        playerTurn = player;
+    }
 
     //Getter to return integer array of both dice values
     public int[] getDiceVals()
