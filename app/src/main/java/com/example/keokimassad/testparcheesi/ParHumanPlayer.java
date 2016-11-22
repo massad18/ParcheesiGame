@@ -25,7 +25,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
      */
     public ParHumanPlayer(String name) {
         super(name);
-        //initLocations();
+        initLocations();
     }
 
     /**
@@ -161,7 +161,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     }
 
     //Initializes players' pawn locations
-    private void initLocations(int locationIdx) {
+    private void initLocations() {
         //Goes through every player in the game
         for(int playerIdx = 0; playerIdx < parLocalGame.getPlayerArray().length; playerIdx++)
         {
@@ -199,6 +199,5 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     break;
             }
         }
-        //ToDo: initialize starting pawn locations
     }
 }
