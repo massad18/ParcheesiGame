@@ -33,7 +33,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     private TextView textView;
     private TextView textView1;
     // this is the view on which you will listen for touch events
-    private View touchView;
 
     private ParSurfaceView parSurfaceView;
 
@@ -156,20 +155,20 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             flash(Color.BLACK, 5);
         }*/
 
-//        if (surfaceView == null) return;
-//
-//        /* if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
-//            // if the move was out of turn or otherwise illegal, flash the screen
-//            surfaceView.flash(Color.RED, 50);
-//        } */
-//       /* else */ if (!(info instanceof ParState))
-//            // if we do not have a TTTState, ignore
-//            return;
-//        else {
-//            surfaceView.setState((ParState)info);
-//            surfaceView.invalidate();
-//            Log.i("human player", "receiving");
-//        }
+        if (parSurfaceView == null) return;
+
+        /* if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+            // if the move was out of turn or otherwise illegal, flash the screen
+            surfaceView.flash(Color.RED, 50);
+        } */
+       /* else */ if (!(info instanceof ParState))
+            // if we do not have a TTTState, ignore
+            return;
+        else {
+            parSurfaceView.setState((ParState)info);
+            parSurfaceView.invalidate();
+            Log.i("human player", "receiving");
+        }
     }
 
     public void onCheckedChanged(RadioGroup group, int checkedId)
@@ -285,7 +284,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         textView = (TextView) activity.findViewById(R.id.textView);
         textView1 = (TextView) activity.findViewById(R.id.textView1);
         // this is the view on which you will listen for touch events
-        touchView = activity.findViewById(R.id.surfaceView);
+        parSurfaceView = (ParSurfaceView) activity.findViewById(R.id.surfaceView);
 
         //Listeners for dice  buttons
         diceButtons[0].setOnClickListener(this);
@@ -297,7 +296,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         selectPawnButtons = (RadioGroup) activity.findViewById(R.id.selectPawn);
         selectPawnButtons.setOnCheckedChangeListener(this);
 
-        touchView.setOnTouchListener(this);
+        parSurfaceView.setOnTouchListener(this);
 
         parState.initBoardPieces();
 

@@ -41,7 +41,7 @@ public class ParSurfaceView extends SurfaceView {
 	 */
 
         // the game's state
-        protected ParState state;
+        protected ParState parState = new ParState();
 
         // the offset from the left and top to the beginning of our "middle square"; one
         // of these will always be zero
@@ -83,7 +83,7 @@ public class ParSurfaceView extends SurfaceView {
 
 
         public void setState(ParState state) {
-            this.state = state;
+            this.parState = state;
         }
 
         /**
@@ -118,7 +118,7 @@ public class ParSurfaceView extends SurfaceView {
             setBackgroundResource(R.drawable.parcheesiboard);
 
             // if we don't have any state, there's nothing more to draw, so return
-            if (state == null) {
+            if (parState == null) {
                 return;
             }
 
@@ -126,8 +126,8 @@ public class ParSurfaceView extends SurfaceView {
             // place on the canvas
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    playerXCor = state.getPawnLocationsXForPlayer(i)[j];
-                    playerYCor = state.getPawnLocationsYForPlayer(i)[j];
+                    playerXCor = parState.getPawnLocationsXForPlayer(i)[j];
+                    playerYCor = parState.getPawnLocationsYForPlayer(i)[j];
                     Pawn currLoc = new Pawn(playerXCor, playerYCor, 10, Color.BLUE);
                     currLoc.drawOn(playerXCor, playerYCor, g, i);
                 }
