@@ -105,14 +105,14 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             switch (((MainActivity)myActivity).parState.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
-                case ParState.Roll:
+                case 0:
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
                     break;
                 //Player has rolled and has to move pawns
-                case ParState.Begin_Move:
-                case ParState.Mid_Move:
+                case 1:
+                case 2:
                     //ParMoveAction is called to move a pawn
                     ParMoveAction actMove = new ParMoveAction(this);
                     game.sendAction(actMove);
@@ -126,14 +126,14 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             switch (((MainActivity)myActivity).parState.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
-                case ParState.Roll:
+                case 0:
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
                     break;
                 //Player has rolled and has to move pawns
-                case ParState.Begin_Move:
-                case ParState.Mid_Move:
+                case 1:
+                case 2:
                     //ParMoveAction is called to move a pawn
                     ParMoveAction actMove = new ParMoveAction(this);
                     game.sendAction(actMove);
