@@ -231,6 +231,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         diceButtons[1].setOnClickListener(this);
         touchView.setOnTouchListener(this);
 
+        parState.initBoardPieces();
+
         //ToDo:Not sure if temp
         parState.setCurrentSubstage(0);
     }

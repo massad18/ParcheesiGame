@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -44,7 +45,7 @@ import com.example.keokimassad.testparcheesi.R;
  * @author Steven R. Vegdahl
  * @date Version 2013
  */
-public abstract class GameMainActivity extends Activity implements
+public abstract class GameMainActivity extends ActionBarActivity implements
         View.OnClickListener {
 
     ParState parState = new ParState();
@@ -178,8 +179,6 @@ public abstract class GameMainActivity extends Activity implements
                 MessageBox.popUpMessage(msg, this);
             }
         }
-
-        parState.initBoardPieces();
     }// onCreate
 
     /**

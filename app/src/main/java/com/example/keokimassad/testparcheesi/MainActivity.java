@@ -72,7 +72,7 @@ public class MainActivity extends GameMainActivity{
         });
 
         // Create a game configuration class for Tic-tac-toe
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2,4, "Tic-Tac-Toe", PORT_NUMBER);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 2,4, "Parcheesi", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
