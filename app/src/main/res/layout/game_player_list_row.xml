@@ -28,7 +28,8 @@
             android:layout_height="35dp"
             android:background="@android:color/transparent"
             android:contentDescription="Remove Player"
-            android:scaleType="centerInside" />
+            android:scaleType="centerInside"
+            android:src="@drawable/purple_delete_button" />
     </FrameLayout>
 
 </TableRow>

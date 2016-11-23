@@ -55,7 +55,7 @@
         android:id="@+id/serverIPCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Server's IP Code"
+        android:text="Server's IP Code:"
         android:textStyle="bold|italic" />
 
     <EditText
