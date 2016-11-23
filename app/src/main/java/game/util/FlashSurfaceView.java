@@ -127,7 +127,7 @@ public class FlashSurfaceView extends SurfaceView {
                 public void run() {
                     if (flashDraw != null) {
                         // effect the flash by setting the background and invalidating
-                        FlashSurfaceView.this.setBackground(flashDraw);
+
                         FlashSurfaceView.this.invalidate();
                     }
                 }
@@ -136,7 +136,7 @@ public class FlashSurfaceView extends SurfaceView {
                 public void run() {
                     if (restoreDraw != null) {
                         // effect the flash by resetting the background and invalidating
-                        FlashSurfaceView.this.setBackground(restoreDraw);
+
                         FlashSurfaceView.this.invalidate();
                         // let outer thread know we are done
                     }
