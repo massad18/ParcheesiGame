@@ -229,7 +229,7 @@ public class ParState extends GameState {
     public int getDice2Val() { return dieVals[1]; }
 
     //Setter to set values of both dice
-    public void setDieVals(int player, int dieVal1, int dieVal2) {
+    public void setDieVals(int dieVal1, int dieVal2) {
         dieVals[0] = dieVal1;
         dieVals[1] = dieVal2;
     }

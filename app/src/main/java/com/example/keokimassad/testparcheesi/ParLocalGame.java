@@ -65,8 +65,9 @@ public class ParLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
+
         /*Instance Variables*/
-        //integer arrays to hold each player's current pawn locations
+        //integer arrays to hold each player's current pawn locations (x and y coordinates)
         int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
         int[] player2LocationsX = parState.getPawnLocationsXForPlayer(1);
         int[] player3LocationsX = parState.getPawnLocationsXForPlayer(2);
@@ -90,9 +91,9 @@ public class ParLocalGame extends LocalGame {
                 // need an array of the players
                 currentPlayer = players[m];
                 if (myAction instanceof ParMoveAction) {
-                    // need a method to get the selected pawn piece to move
+                    // ToDo:need a method to get the selected pawn piece to move
                     int pawn = ...something.getSelectedPiece();
-                    // need a method within the par human player to get the location of the selected pawn piece
+                    // ToDo:need a method within the par human player to get the location of the selected pawn piece
                     locPlayer1Init = currentPlayer.getLocationPlayer(pawn);
 
                     if (currentPlayer.)

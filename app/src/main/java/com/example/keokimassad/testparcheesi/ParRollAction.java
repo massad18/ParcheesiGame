@@ -17,7 +17,6 @@ public class ParRollAction extends GameAction {
         super(player);
         int rndDieVal1 = (int)(Math.random() * 6) + 1;
         int rndDieVal2 = (int)(Math.random() * 6) + 1;
-        //ToDo: set dice vals and see if Justin is doing this correctly or going crazy
-        //((MainActivity)myActivity).parState.setDieVals(player,rndDieVal1,rndDieVal2);
+        ((MainActivity)myActivity).parState.setDieVals(rndDieVal1,rndDieVal2);
     }
 }
