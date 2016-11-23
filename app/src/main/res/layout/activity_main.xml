@@ -94,7 +94,7 @@
                 android:layout_weight="1">
 
                 <RadioGroup
-                    android:id="@+id/selectDieOptions"
+                    android:id="@+id/selectPawn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">

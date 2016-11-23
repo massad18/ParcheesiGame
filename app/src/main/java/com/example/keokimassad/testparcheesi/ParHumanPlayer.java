@@ -15,14 +15,9 @@ import java.util.Hashtable;
 import game.GameHumanPlayer;
 import game.GameMainActivity;
 import game.infoMsg.GameInfo;
-
-<<<<<<< Updated upstream
-public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener, RadioGroup.OnCheckedChangeListener{
-=======
 import static com.example.keokimassad.testparcheesi.R.id.surfaceView;
 
-public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener {
->>>>>>> Stashed changes
+public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener, RadioGroup.OnCheckedChangeListener{
 
     //Instance Variables
     private GameMainActivity myActivity; //the android activity that we are running
@@ -161,20 +156,20 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             flash(Color.BLACK, 5);
         }*/
 
-        if (surfaceView == null) return;
-
-        /* if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
-            // if the move was out of turn or otherwise illegal, flash the screen
-            surfaceView.flash(Color.RED, 50);
-        } */
-       /* else */ if (!(info instanceof ParState))
-            // if we do not have a TTTState, ignore
-            return;
-        else {
-            surfaceView.setState((ParState)info);
-            surfaceView.invalidate();
-            Log.i("human player", "receiving");
-        }
+//        if (surfaceView == null) return;
+//
+//        /* if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
+//            // if the move was out of turn or otherwise illegal, flash the screen
+//            surfaceView.flash(Color.RED, 50);
+//        } */
+//       /* else */ if (!(info instanceof ParState))
+//            // if we do not have a TTTState, ignore
+//            return;
+//        else {
+//            surfaceView.setState((ParState)info);
+//            surfaceView.invalidate();
+//            Log.i("human player", "receiving");
+//        }
     }
 
     public void onCheckedChanged(RadioGroup group, int checkedId)
@@ -298,6 +293,9 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         useDieButtons[0].setOnClickListener(this);
         useDieButtons[1].setOnClickListener(this);
         useDieButtons[2].setOnClickListener(this);
+
+        selectPawnButtons = (RadioGroup) activity.findViewById(R.id.selectPawn);
+        selectPawnButtons.setOnCheckedChangeListener(this);
 
         touchView.setOnTouchListener(this);
 
