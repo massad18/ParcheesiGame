@@ -13,15 +13,12 @@ public class Pawn {
     public float xCor;
     public float yCor;
     public float size = 10;
-    public Paint paint;
+    public Paint paint = new Paint();
 
 
-    public Pawn(float xCor, float yCor, float size, int color) {
+    public Pawn(float xCor, float yCor) {
         this.xCor = xCor;
         this.yCor = yCor;
-        this.size = size;
-        paint = new Paint();
-        paint.setColor(color);
     }
 
 

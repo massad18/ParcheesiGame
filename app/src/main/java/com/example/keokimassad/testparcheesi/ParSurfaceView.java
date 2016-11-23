@@ -125,7 +125,7 @@ public class ParSurfaceView extends SurfaceView {
             for (int j = 0; j < 4; j++) {
                 playerXCor = parState.getPawnLocationsXForPlayer(i)[j];
                 playerYCor = parState.getPawnLocationsYForPlayer(i)[j];
-                Pawn currLoc = new Pawn(playerXCor, playerYCor, 10, Color.BLUE);
+                Pawn currLoc = new Pawn(playerXCor, playerYCor);
                 currLoc.drawOn(playerXCor, playerYCor, g, i);
             }
         }
