@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     ParState parState = new ParState();
     
     private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
+    private Button[] selectPawnButtons = new Button[4]; //array to hold buttons to select which pawn to move
 
     private TextView textView;
     private TextView textView1;
@@ -169,6 +171,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 //Player has rolled and has to move pawns
                 case 1:
                 case 2:
+                    selectPawnButtons[0].setEnabled(true);
+                    selectPawnButtons[1].setEnabled(true);
+                    selectPawnButtons[2].setEnabled(true);
+                    selectPawnButtons[3].setEnabled(true);
                     die1 = (int)(Math.random()*6) + 1;
                     die2 = (int)(Math.random()*6) + 1;
                     parState.setDieVals(die1,die2);
@@ -197,7 +203,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 //Player has rolled and has to move pawns
                 case 1:
                 case 2:
-                    System.out.println("Entering case 0");
+                    selectPawnButtons[0].setEnabled(true);
+                    selectPawnButtons[1].setEnabled(true);
+                    selectPawnButtons[2].setEnabled(true);
+                    selectPawnButtons[3].setEnabled(true);
                     die1 = (int)(Math.random()*6) + 1;
                     die2 = (int)(Math.random()*6) + 1;
                     parState.setDieVals(die1,die2);
@@ -207,6 +216,22 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     //diceButtons[1].setEnabled(false); //sets die to no longer be pressed
                     break;
             }
+        }
+        else if(button == selectPawnButtons[0])
+        {
+            System.out.println("0 pressed");
+        }
+        else if(button == selectPawnButtons[1])
+        {
+            System.out.println("1 pressed");
+        }
+        else if(button == selectPawnButtons[2])
+        {
+            System.out.println("2 pressed");
+        }
+        else if(button == selectPawnButtons[3])
+        {
+            System.out.println("3 pressed");
         }
     }
 
@@ -221,6 +246,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //assigns variables to widgets on screen
         this.diceButtons[0] = (ImageButton) activity.findViewById(R.id.die1);
         this.diceButtons[1] = (ImageButton) activity.findViewById(R.id.die2);
+        this.selectPawnButtons[0] = (Button) activity.findViewById(R.id.pawn1);
+        this.selectPawnButtons[1] = (Button) activity.findViewById(R.id.pawn2);
+        this.selectPawnButtons[2] = (Button) activity.findViewById(R.id.pawn3);
+        this.selectPawnButtons[3] = (Button) activity.findViewById(R.id.pawn4);
         textView = (TextView) activity.findViewById(R.id.textView);
         textView1 = (TextView) activity.findViewById(R.id.textView1);
         // this is the view on which you will listen for touch events
@@ -229,6 +258,11 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //Listeners for dice  buttons
         diceButtons[0].setOnClickListener(this);
         diceButtons[1].setOnClickListener(this);
+        selectPawnButtons[0].setOnClickListener(this);
+        selectPawnButtons[1].setOnClickListener(this);
+        selectPawnButtons[2].setOnClickListener(this);
+        selectPawnButtons[3].setOnClickListener(this);
+
         touchView.setOnTouchListener(this);
 
         parState.initBoardPieces();
