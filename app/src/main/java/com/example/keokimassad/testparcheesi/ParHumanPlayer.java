@@ -285,7 +285,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         textView = (TextView) activity.findViewById(R.id.textView);
         textView1 = (TextView) activity.findViewById(R.id.textView1);
         // this is the view on which you will listen for touch events
-        touchView = activity.findViewById(R.id.imageView);
+        touchView = activity.findViewById(R.id.surfaceView);
 
         //Listeners for dice  buttons
         diceButtons[0].setOnClickListener(this);
