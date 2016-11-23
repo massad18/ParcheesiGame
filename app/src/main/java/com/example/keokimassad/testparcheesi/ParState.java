@@ -32,17 +32,12 @@ public class ParState extends GameState {
     private int[] player3LocationsY = new int[4];
     private int[] player4LocationsY = new int[4];
 
-    // up to down
+    // up to down coordinates for the edges of the board pieces
     private int[] hori = {0, 81, 150, 217, 284, 358, 424, 491, 558, 626, 694, 763, 833, 898, 967, 1036, 1102, 1165, 1235, 1300, 1366};
-    // left to right
+    // left to right coordinates for the edges of the board pieces
     private int[] vert = {0, 82, 144, 205, 271, 337, 398, 464, 519, 578, 637, 696, 761, 820, 877, 939, 1003, 1066, 1133, 1191, 1261};
 
-    private String[] colors = {"red", "blue", "yellow", "green"};
-
     private Rect[] board = new Rect[100];
-    private Hashtable<Integer, Rect> boardPieces = new Hashtable<>();
-    private Hashtable<String, Rect> homebasePieces = new Hashtable<>();
-    private Hashtable<Integer, Rect> safezonePieces = new Hashtable<>();
 
     private int selectedLocation;
     private String selectedLocationColor;

@@ -13,6 +13,8 @@ public class ParLocalGame extends LocalGame {
     ParState parState;
     GameAction myAction;
 
+    PawnLocation pawnLocation = new PawnLocation();
+
     public ParLocalGame () {
         parState = new ParState(); //initializes an instance of parState
     }
@@ -35,8 +37,7 @@ public class ParLocalGame extends LocalGame {
     @Override
     protected String checkIfGameOver() {
         //Checks every player for winning condition
-        for(int playerIdx = 0; playerIdx < players.length; playerIdx++)
-        {
+        for (int playerIdx = 0; playerIdx < players.length; playerIdx++) {
             //holds number of pawns at center for given player
             int totalPawnsAtGoalForPlayer = 0;
             //integer array to hold locations of pawns for given player
@@ -44,23 +45,37 @@ public class ParLocalGame extends LocalGame {
             int pawnYLocations[] = parState.getPawnLocationsXForPlayer(playerIdx);
 
             //Checks every pawn that player has
-            for(int pawnIdx = 0; pawnIdx < 4; pawnIdx++)
-            {
-                //Checks if given pawn has reached the end goal
-                //ToDo: Change value to reflect true indexes for winning (91 temp value)
-                if((pawnXLocations[0] == 91) && (pawnYLocations[0] == 91))
-                {
-                    totalPawnsAtGoalForPlayer++;
+            for (int pawnIdx = 0; pawnIdx < 4; pawnIdx++) {
+                switch (playerIdx) {
+                    case 0:
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[100+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[100+pawnIdx]) {
+                            totalPawnsAtGoalForPlayer++;
+                        }
+                        break;
+                    case 1:
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[104+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[104+pawnIdx]) {
+                            totalPawnsAtGoalForPlayer++;
+                        }
+                        break;
+                    case 2:
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[108+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[108+pawnIdx]) {
+                            totalPawnsAtGoalForPlayer++;
+                        }
+                        break;
+                    case 3:
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[112+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[112+pawnIdx]) {
+                            totalPawnsAtGoalForPlayer++;
+                        }
+                        break;
+                }
+                //Checks if player has 4 pawns at goal
+                if (totalPawnsAtGoalForPlayer == 4) {
+                    //If so, the player has won the game
+                    return "Player " + playerIdx + " has won!";
                 }
             }
-            //Checks if player has 4 pawns at goal
-            if(totalPawnsAtGoalForPlayer == 4)
-            {
-                //If so, the player has won the game
-                return "Player " + playerIdx + " has won!";
-            }
+            return null; //returns null if no player has 4 pawns at goal
         }
-        return null; //returns null if no player has 4 pawns at goal
     }
 
     @Override
@@ -80,8 +95,8 @@ public class ParLocalGame extends LocalGame {
 
         int locPlayer1Init;
         int locPlayer2Init;
-        ParPlayer currentPlayer;
-        ParPlayer targetPlayer;
+        GamePlayer currentPlayer;
+        GamePlayer targetPlayer;
         myAction = action;
 
         //Loops through each player in the game
@@ -98,38 +113,38 @@ public class ParLocalGame extends LocalGame {
 
                     if (currentPlayer.)
 
-                    for (int k = 0; k < m; k++) {
-                        targetPlayer = players[k];
+                        for (int k = 0; k < m; k++) {
+                            targetPlayer = players[k];
 
-                        outerloop:
-                        for (int i = 0; i < 4; i++) {
-                            locPlayer2Init = targetPlayer.getLocationPlayer(i);
+                            outerloop:
+                            for (int i = 0; i < 4; i++) {
+                                locPlayer2Init = targetPlayer.getLocationPlayer(i);
 
-                            // determine if there is a block ahead
-                            for (int j = 0; j < i; j++) {
-                                if (locPlayer2Init == targetPlayer.getLocation(j)) {
-                                    // is the block between the initial position and the final position??
-                                    if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
-                                        break outerloop;
+                                // determine if there is a block ahead
+                                for (int j = 0; j < i; j++) {
+                                    if (locPlayer2Init == targetPlayer.getLocation(j)) {
+                                        // is the block between the initial position and the final position??
+                                        if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
+                                            break outerloop;
+                                        }
                                     }
                                 }
-                            }
-                            for (int j = i + 1; j < 4; j++) {
-                                if (locPlayer2Init == targetPlayer.getLocation(j)) {
-                                    // is the block between the initial position and the final position??
-                                    if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
-                                        break outerloop;
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (locPlayer2Init == targetPlayer.getLocation(j)) {
+                                        // is the block between the initial position and the final position??
+                                        if (locPlayer1Init < locPlayer2Init && locPlayer2Init < locPlayer1Final || locPlayer1Final == locPlayer2Init) {
+                                            break outerloop;
+                                        }
                                     }
                                 }
-                            }
-                            // is the final location of the piece on a single opposing piece??
-                            if (locPlayer1Final == locPlayer2Init) {
-                                player1.setLocation(numPlayer1, locPlayer1Final);
-                                player2.initLocation(i);
-                                return true;
+                                // is the final location of the piece on a single opposing piece??
+                                if (locPlayer1Final == locPlayer2Init) {
+                                    player1.setLocation(numPlayer1, locPlayer1Final);
+                                    player2.initLocation(i);
+                                    return true;
+                                }
                             }
                         }
-                    }
                 }
                 if (myAction instanceof ParRollAction) {
 
