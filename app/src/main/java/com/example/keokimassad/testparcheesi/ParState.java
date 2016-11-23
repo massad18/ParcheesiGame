@@ -254,7 +254,7 @@ public class ParState extends GameState {
             case 4:
                 return player4LocationsX;
             default:
-                //throws an error if a valid pawn or player index isn't provided
+                //throws an error if a valid pawn or player index isn't providedd
                 throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
         }
     }
