@@ -27,7 +27,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
-        if(parLocalGame.canMove(player1))
+        /*if(parLocalGame.canMove(player1))
         {
             if(info instanceof ParState)
             {
@@ -148,7 +148,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
         else
         {
             return;
-        }
+        }*/
     }
 
 }

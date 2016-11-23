@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import game.GameHumanPlayer;
 import game.GameMainActivity;
 import game.infoMsg.GameInfo;
 
-public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener {
+public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener, RadioGroup.OnCheckedChangeListener{
 
     //Instance Variables
     private GameMainActivity myActivity; //the android activity that we are running
@@ -24,7 +25,9 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     ParState parState = new ParState();
     
     private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
-    private Button[] selectPawnButtons = new Button[4]; //array to hold buttons to select which pawn to move
+    private Button[] useDieButtons = new Button[3]; //array to hold buttons to select specific dice values to use
+    private Button makeMoveButton;
+    private RadioGroup selectPawnButtons;
 
     private TextView textView;
     private TextView textView1;
@@ -151,6 +154,26 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         }*/
     }
 
+    public void onCheckedChanged(RadioGroup group, int checkedId)
+    {
+        //Decides how objects of same type interact with each other
+        //Uses an enum, SameObjectCollisionType to tell what action to take
+        switch(checkedId) {
+            //Will bounce off each other
+            case R.id.radioPawn1:
+                break;
+            //Will merge into one larger object
+            case R.id.radioPawn2:
+                break;
+            //Will destroy slower of two objects
+            case R.id.radioPawn3:
+                break;
+            //Will destroy smaller of two objects
+            case R.id.radioPawn4:
+                break;
+        }
+    }
+
     public void onClick (View button) {
         //Peforms actions when dice pressed
         //If the first die is pressed
@@ -171,10 +194,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 //Player has rolled and has to move pawns
                 case 1:
                 case 2:
-                    selectPawnButtons[0].setEnabled(true);
-                    selectPawnButtons[1].setEnabled(true);
-                    selectPawnButtons[2].setEnabled(true);
-                    selectPawnButtons[3].setEnabled(true);
                     die1 = (int)(Math.random()*6) + 1;
                     die2 = (int)(Math.random()*6) + 1;
                     parState.setDieVals(die1,die2);
@@ -203,10 +222,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 //Player has rolled and has to move pawns
                 case 1:
                 case 2:
-                    selectPawnButtons[0].setEnabled(true);
-                    selectPawnButtons[1].setEnabled(true);
-                    selectPawnButtons[2].setEnabled(true);
-                    selectPawnButtons[3].setEnabled(true);
                     die1 = (int)(Math.random()*6) + 1;
                     die2 = (int)(Math.random()*6) + 1;
                     parState.setDieVals(die1,die2);
@@ -217,19 +232,19 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     break;
             }
         }
-        else if(button == selectPawnButtons[0])
+        else if(button == useDieButtons[0])
         {
             System.out.println("0 pressed");
         }
-        else if(button == selectPawnButtons[1])
+        else if(button == useDieButtons[1])
         {
             System.out.println("1 pressed");
         }
-        else if(button == selectPawnButtons[2])
+        else if(button == useDieButtons[2])
         {
             System.out.println("2 pressed");
         }
-        else if(button == selectPawnButtons[3])
+        else if(button == makeMoveButton)
         {
             System.out.println("3 pressed");
         }
@@ -246,10 +261,9 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //assigns variables to widgets on screen
         this.diceButtons[0] = (ImageButton) activity.findViewById(R.id.die1);
         this.diceButtons[1] = (ImageButton) activity.findViewById(R.id.die2);
-        this.selectPawnButtons[0] = (Button) activity.findViewById(R.id.pawn1);
-        this.selectPawnButtons[1] = (Button) activity.findViewById(R.id.pawn2);
-        this.selectPawnButtons[2] = (Button) activity.findViewById(R.id.pawn3);
-        this.selectPawnButtons[3] = (Button) activity.findViewById(R.id.pawn4);
+        this.useDieButtons[0] = (Button) activity.findViewById(R.id.useDie1);
+        this.useDieButtons[1] = (Button) activity.findViewById(R.id.useDie2);
+        this.useDieButtons[2] = (Button) activity.findViewById(R.id.useBothDice);
         textView = (TextView) activity.findViewById(R.id.textView);
         textView1 = (TextView) activity.findViewById(R.id.textView1);
         // this is the view on which you will listen for touch events
@@ -258,10 +272,9 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //Listeners for dice  buttons
         diceButtons[0].setOnClickListener(this);
         diceButtons[1].setOnClickListener(this);
-        selectPawnButtons[0].setOnClickListener(this);
-        selectPawnButtons[1].setOnClickListener(this);
-        selectPawnButtons[2].setOnClickListener(this);
-        selectPawnButtons[3].setOnClickListener(this);
+        useDieButtons[0].setOnClickListener(this);
+        useDieButtons[1].setOnClickListener(this);
+        useDieButtons[2].setOnClickListener(this);
 
         touchView.setOnTouchListener(this);
 

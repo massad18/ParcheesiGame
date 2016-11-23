@@ -100,29 +100,102 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
 
-                <Button
-                    android:text="1"
+                <RadioGroup
+                    android:id="@+id/selectDieOptions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pawn1"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/radioPawn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Move Pawn 1"
+                        android:textSize="18dp"/>
+                    <RadioButton
+                        android:id="@+id/radioPawn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Move Pawn 2"
+                        android:textSize="18dp"/>
+                    <RadioButton
+                        android:id="@+id/radioPawn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Move Pawn 3"
+                        android:textSize="18dp"/>
+                    <RadioButton
+                        android:id="@+id/radioPawn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Move Pawn 4"
+                        android:textSize="18dp"/>
+
+                </RadioGroup>
+
+                <!--<Button-->
+                    <!--android:text="Pawn 1"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/pawn1"-->
+                    <!--android:layout_weight="2"/>-->
+                <!--<Button-->
+                    <!--android:text="Pawn 2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/pawn2"-->
+                    <!--android:layout_weight="2"/>-->
+                <!--<Button-->
+                    <!--android:text="Pawn 3"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/pawn3"-->
+                    <!--android:layout_weight="2"/>-->
+                <!--<Button-->
+                    <!--android:text="Pawn 4"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/pawn4"-->
+                    <!--android:layout_weight="2"/>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="33dp">
+
+                <Button
+                    android:text="Use die 1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/useDie1"
                     android:layout_weight="2"/>
                 <Button
-                    android:text="2"
+                    android:text="Use die 2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pawn2"
+                    android:id="@+id/useDie2"
                     android:layout_weight="2"/>
                 <Button
-                    android:text="3"
+                    android:text="Use both dice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pawn3"
+                    android:id="@+id/useBothDice"
                     android:layout_weight="2"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
                 <Button
-                    android:text="4"
+                    android:text="Confirm Move"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pawn4"
+                    android:layout_height="72dp"
+                    android:id="@+id/makeMoveButton"
                     android:layout_weight="2"/>
 
             </LinearLayout>
