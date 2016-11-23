@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -29,6 +30,8 @@ import game.config.GameConfig;
 import game.config.GamePlayerType;
 import game.util.IPCoder;
 import game.util.MessageBox;
+
+import com.example.keokimassad.testparcheesi.ParState;
 import com.example.keokimassad.testparcheesi.R;
 
 /**
@@ -43,6 +46,8 @@ import com.example.keokimassad.testparcheesi.R;
  */
 public abstract class GameMainActivity extends Activity implements
         View.OnClickListener {
+
+    public ParState parState;
 
 	/*
 	 * ====================================================================
@@ -173,6 +178,26 @@ public abstract class GameMainActivity extends Activity implements
                 MessageBox.popUpMessage(msg, this);
             }
         }
+
+
+
+        parState = new ParState();
+        parState.initBoardPieces();
+
+        final TextView textView = (TextView)findViewById(R.id.textView);
+        final TextView textView1 = (TextView)findViewById(R.id.textView1);
+        // this is the view on which you will listen for touch events
+        final View touchView = findViewById(R.id.imageView);
+
+        touchView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                textView.setText("Touch coordinates : " +
+                        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+                textView1.setText(parState.containsInRect(event.getX(), event.getY()));
+                return true;
+            }
+        });
 
     }// onCreate
 
@@ -806,5 +831,9 @@ public abstract class GameMainActivity extends Activity implements
     public void doFinish(View v) {
         finish();
     }
+
+
+
+
 }
 

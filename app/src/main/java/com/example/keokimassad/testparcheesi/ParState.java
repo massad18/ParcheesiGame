@@ -45,7 +45,7 @@ public class ParState extends GameState {
 
     public ParState() {super();}
 
-    protected void initBoardPieces() {
+    public void initBoardPieces() {
         // normal rectangular board pieces
         board[0] = (new Rect(hori[11], hori[13], vert[15], vert[16], "rect", 1));
         board[1] = (new Rect(hori[11], hori[13], vert[14], vert[15], "rect", 1));
@@ -187,7 +187,7 @@ public class ParState extends GameState {
         playerTurn = 0;
     }
 
-    protected String containsInRect (float x, float y) {
+    public String containsInRect (float x, float y) {
         for (int i = 0; i < board.length; i++) {
             Rect rect = board[i];
             String type = rect.type;
