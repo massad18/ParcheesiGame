@@ -241,14 +241,6 @@ public class ParState extends GameState {
         return selectedLocation;
     }
 
-    public String getSelectedLocationType () {
-        return selectedLocationType;
-    }
-
-    public String getSelectedLocationColor () {
-        return selectedLocationColor;
-    }
-
     public int[] getPawnLocationsXForPlayer(int playerIdx)
     {
         switch (playerIdx)
@@ -306,9 +298,5 @@ public class ParState extends GameState {
                 player4LocationsY[pawnIndex] = locationY;
                 break;
         }
-    }
-
-    public void setHomeBaseLocation(int playerIdx, String color, String type) {
-        //ToDo: can player's change
     }
 }
