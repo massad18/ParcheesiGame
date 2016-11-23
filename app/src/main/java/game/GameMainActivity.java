@@ -47,7 +47,7 @@ import com.example.keokimassad.testparcheesi.R;
 public abstract class GameMainActivity extends Activity implements
         View.OnClickListener {
 
-    public ParState parState;
+    ParState parState = new ParState();
 
 	/*
 	 * ====================================================================
@@ -179,26 +179,7 @@ public abstract class GameMainActivity extends Activity implements
             }
         }
 
-
-
-        parState = new ParState();
         parState.initBoardPieces();
-
-        final TextView textView = (TextView)findViewById(R.id.textView);
-        final TextView textView1 = (TextView)findViewById(R.id.textView1);
-        // this is the view on which you will listen for touch events
-        final View touchView = findViewById(R.id.imageView);
-
-        touchView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                textView.setText("Touch coordinates : " +
-                        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                textView1.setText(parState.containsInRect(event.getX(), event.getY()));
-                return true;
-            }
-        });
-
     }// onCreate
 
     /**

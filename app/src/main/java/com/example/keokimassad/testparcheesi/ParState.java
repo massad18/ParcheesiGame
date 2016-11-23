@@ -18,7 +18,7 @@ public class ParState extends GameState {
     protected static int Game_Over = 3;
 
     private int currentSubstage; //integer to hold current substage of the game
-    private int dieVals[]; //array to hold current dice values
+    private int [] dieVals = new int[2]; //array to hold current dice values
     private int numOfDoubles; //holds number of doubles current player has had in the turn
     private int playerTurn; //holds who's turn it currently is
 
@@ -42,10 +42,10 @@ public class ParState extends GameState {
 
     private int selectedLocation;
 
-    ParState() {super();}
+    public ParState() {super();}
 
     // creates a template ParState that will be sent to the other players within the game
-    ParState(ParState p) {
+    public ParState(ParState p) {
         super();
         Roll = 0;
         Begin_Move = 1;

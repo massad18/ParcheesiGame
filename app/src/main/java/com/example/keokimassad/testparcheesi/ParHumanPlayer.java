@@ -1,8 +1,10 @@
 package com.example.keokimassad.testparcheesi;
 
 import android.graphics.Color;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -11,14 +13,20 @@ import game.GameHumanPlayer;
 import game.GameMainActivity;
 import game.infoMsg.GameInfo;
 
-public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener {
+public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener {
 
     //Instance Variables
     private GameMainActivity myActivity; //the android activity that we are running
     ParLocalGame parLocalGame = new ParLocalGame();
     private int playerIdx;
+    ParState parState = new ParState();
     
-    private ImageButton[] diceButtons = null; //array to hold dice button variables
+    private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
+
+    private TextView textView;
+    private TextView textView1;
+    // this is the view on which you will listen for touch events
+    private View touchView;
 
     /**
      * constructor does nothing extra
@@ -102,7 +110,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         if(button == diceButtons[0])
         {
             //ToDo:Not sure if actions called correctly (may want to check that)
-            switch (((MainActivity)myActivity).parState.getCurrentSubstage())
+            switch (parState.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
                 case 0:
@@ -123,7 +131,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //If the second die is pressed
         else if(button == diceButtons[1])
         {
-            switch (((MainActivity)myActivity).parState.getCurrentSubstage())
+            switch (parState.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
                 case 0:
@@ -154,9 +162,22 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //assigns variables to widgets on screen
         this.diceButtons[0] = (ImageButton) activity.findViewById(R.id.die1);
         this.diceButtons[1] = (ImageButton) activity.findViewById(R.id.die2);
+        textView = (TextView) activity.findViewById(R.id.textView);
+        textView1 = (TextView) activity.findViewById(R.id.textView1);
+        // this is the view on which you will listen for touch events
+        touchView = activity.findViewById(R.id.imageView);
 
         //Listeners for dice  buttons
         diceButtons[0].setOnClickListener(this);
         diceButtons[1].setOnClickListener(this);
+        touchView.setOnTouchListener(this);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        textView.setText("Touch coordinates : " +
+                String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+        textView1.setText(parState.containsInRect(event.getX(), event.getY()));
+        return true;
     }
 }

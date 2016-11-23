@@ -10,7 +10,7 @@ import game.infoMsg.GameInfo;
 public class ParComputerPlayerE extends GameComputerPlayer {
 
     ParLocalGame parLocalGame = new ParLocalGame();
-    int player1 = playerTurn;
+    //int player1 = playerTurn;
     private int[] location = new int[4];
 
     public ParComputerPlayerE (String name) {
@@ -19,6 +19,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
+        /*
         if(parLocalGame.canMove(player1))
         {
             if(info instanceof ParGameState)
@@ -53,5 +54,5 @@ public class ParComputerPlayerE extends GameComputerPlayer {
     else
     {
         return;
-    }
-}
+    }*/
+}}
