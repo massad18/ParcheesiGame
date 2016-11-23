@@ -24,8 +24,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" />
+                android:layout_height="39dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -156,7 +155,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="33dp">
+                android:layout_height="50dp">
 
                 <Button
                     android:text="Use die 1"
@@ -181,8 +180,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1">
+                android:layout_height="81dp">
 
                 <Button
                     android:text="Confirm Move"
