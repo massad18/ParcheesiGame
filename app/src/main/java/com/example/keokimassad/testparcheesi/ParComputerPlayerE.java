@@ -21,7 +21,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
     int player1 = playerNum;
     private int[] location = new int[4];
 
-    public ParComputerPlayerE (String name) {
+    public ParComputerPlayerE(String name) {
         super(name);
     }
 
@@ -31,7 +31,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
         {
             if(info instanceof ParState)
             {
-                if (//4 objects are at home)
+               if (//4 objects are at home)
                         )
                 {
                     final Handler handler = new Handler();
