@@ -15,8 +15,5 @@ public class ParRollAction extends GameAction {
     public ParRollAction (GamePlayer player)
     {
         super(player);
-        int rndDieVal1 = (int)(Math.random() * 6) + 1;
-        int rndDieVal2 = (int)(Math.random() * 6) + 1;
-        ((MainActivity)myActivity).parState.setDieVals(rndDieVal1,rndDieVal2);
     }
 }
