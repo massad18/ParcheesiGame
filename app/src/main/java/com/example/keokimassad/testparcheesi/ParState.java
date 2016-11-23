@@ -20,7 +20,7 @@ public class ParState extends GameState {
     private int currentSubstage; //integer to hold current substage of the game
     private int [] dieVals = new int[2]; //array to hold current dice values
     private int numOfDoubles; //holds number of doubles current player has had in the turn
-    private int playerTurn; //holds who's turn it currently is
+    int playerTurn; //holds who's turn it currently is
 
     //4 location arrays to hold locations of each players' pawns
     private int[] player0LocationsX = new int[4];
