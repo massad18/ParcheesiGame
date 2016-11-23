@@ -37,28 +37,28 @@ public class MainActivity extends GameMainActivity{
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
         // Index 0
-        playerTypes.add(new GamePlayerType("Local Human Player") {
+        playerTypes.add(new GamePlayerType("Local Human Player 1") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
         });
 
         // Index 1
-        playerTypes.add(new GamePlayerType("Local Human Player") {
+        playerTypes.add(new GamePlayerType("Local Human Player 2") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
         });
 
         // Index 2
-        playerTypes.add(new GamePlayerType("Local Human Player") {
+        playerTypes.add(new GamePlayerType("Local Human Player 3") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
         });
 
         // Index 3
-        playerTypes.add(new GamePlayerType("Local Human Player") {
+        playerTypes.add(new GamePlayerType("Local Human Player 4") {
             public GamePlayer createPlayer(String name) {
                 return new ParHumanPlayer(name);
             }
