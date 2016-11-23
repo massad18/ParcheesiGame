@@ -20,7 +20,7 @@ public class PawnLocation {
             456, 0, 694, 694, 694, 694, 694, 694, 694, 0, 933, 1002, 1070, 1134, 1200, 1268, 0, 967,
             967, 967, 967, 81, 150, 217, 284, 424, 424, 424, 424, 1102, 1165, 1235, 1300,
             660, 660, 694, 729, 660, 626, 592, 592, 729, 729, 694, 660, 729, 763, 798, 798};
-    private int[] getPawnLocationBlockade1x = {};
+    private int[] pawnLocationBlockade1x = {};
     private int[] pawnLocationBlockade2x = {};
 
     // the initial positions are #100-115
@@ -33,7 +33,7 @@ public class PawnLocation {
             113, 175, 238, 304, 368, 431, 492, 0, 637, 637, 637, 637, 637, 637, 637, 0, 1191, 1133, 1066,
             1003, 877, 877, 877, 877, 82, 144, 205, 271, 398, 398, 398, 398, 667, 696, 729, 729,
             608, 608, 637, 667, 608, 578, 549, 549, 667, 667, 637, 608};
-    private int[] getPawnLocationBlockade1y = {};
+    private int[] pawnLocationBlockade1y = {};
     private int[] pawnLocationBlockade2y = {};
 
     public PawnLocation() {}
