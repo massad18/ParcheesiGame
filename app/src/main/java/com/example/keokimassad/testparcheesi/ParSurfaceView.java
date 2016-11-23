@@ -121,7 +121,7 @@ public class ParSurfaceView extends SurfaceView {
 
         // for each square that has an X or O, draw it on the appropriate
         // place on the canvas
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4 /* number of players */; i++) {
             for (int j = 0; j < 4; j++) {
                 playerXCor = parState.getPawnLocationsXForPlayer(i)[j];
                 playerYCor = parState.getPawnLocationsYForPlayer(i)[j];
