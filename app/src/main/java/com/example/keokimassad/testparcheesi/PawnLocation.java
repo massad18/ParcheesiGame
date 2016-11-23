@@ -72,17 +72,17 @@ public class PawnLocation {
         }
     }
 
-    public void setPawnLocation(int playerIdx, int pawnIdx, boolean createBlockade) {
-        // uses the locations array that can fit two pawns within one given location
-        if (createBlockade) {
-
-        }
+    public void setPawnLocation(int playerIdx, int pawnIdx, int locationIdx) {
         // uses the normal locations array list that centers the single pawn in
         // the given location
-        else {
 
-        }
     }
+
+    public void setPawnLocation (int playerIdx, int pawnIdx1, int pawnIdx2, int locationIdx) {
+        // uses the locations array that can fit two pawns within one given location
+
+    }
+
 
     public void resetPawnLocation(int playerIdx, int pawnIdx) {
         switch (playerIdx) {

@@ -101,7 +101,7 @@ public class ParLocalGame extends LocalGame {
         myAction = action;
 
         //Loops through each player in the game
-        for (int m = 0; m < players.length; m ++) {
+        for (int m = 0; m < players.length; m++) {
             //Checks if it's the player's turn
             if (canMove(m)) {
                 // need an array of the players
@@ -158,7 +158,8 @@ public class ParLocalGame extends LocalGame {
 
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
-
+        ParState temp = new ParState(parState);
+        p.sendInfo(temp);
     }
 
 

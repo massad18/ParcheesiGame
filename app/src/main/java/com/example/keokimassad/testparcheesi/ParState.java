@@ -2,6 +2,7 @@ package com.example.keokimassad.testparcheesi;
 
 import java.util.Hashtable;
 
+import game.Game;
 import game.infoMsg.GameState;
 
 /**
@@ -11,10 +12,10 @@ import game.infoMsg.GameState;
 public class ParState extends GameState {
 
     //Defined integer constants for different substages of game
-    public static final int Roll = 0;
-    public static final int Begin_Move = 1;
-    public static final int Mid_Move = 2;
-    public static final int Game_Over = 3;
+    protected static int Roll = 0;
+    protected static int Begin_Move = 1;
+    protected static int Mid_Move = 2;
+    protected static int Game_Over = 3;
 
     private int currentSubstage; //integer to hold current substage of the game
     private int dieVals[]; //array to hold current dice values
@@ -22,15 +23,15 @@ public class ParState extends GameState {
     private int playerTurn; //holds who's turn it currently is
 
     //4 location arrays to hold locations of each players' pawns
+    private int[] player0LocationsX = new int[4];
     private int[] player1LocationsX = new int[4];
     private int[] player2LocationsX = new int[4];
     private int[] player3LocationsX = new int[4];
-    private int[] player4LocationsX = new int[4];
 
+    private int[] player0LocationsY = new int[4];
     private int[] player1LocationsY = new int[4];
     private int[] player2LocationsY = new int[4];
     private int[] player3LocationsY = new int[4];
-    private int[] player4LocationsY = new int[4];
 
     // up to down coordinates for the edges of the board pieces
     private int[] hori = {0, 81, 150, 217, 284, 358, 424, 491, 558, 626, 694, 763, 833, 898, 967, 1036, 1102, 1165, 1235, 1300, 1366};
@@ -40,10 +41,30 @@ public class ParState extends GameState {
     private Rect[] board = new Rect[100];
 
     private int selectedLocation;
-    private String selectedLocationColor;
-    private String selectedLocationType;
 
-    public ParState() {super();}
+    ParState() {super();}
+
+    // creates a template ParState that will be sent to the other players within the game
+    ParState(ParState p) {
+        super();
+        Roll = 0;
+        Begin_Move = 1;
+        Mid_Move = 2;
+        Game_Over = 3;
+        currentSubstage = getCurrentSubstage();
+        dieVals = getDiceVals();
+        numOfDoubles = getNumOfDoubles();
+        playerTurn = getPlayerTurn();
+        player0LocationsX = getPawnLocationsXForPlayer(0);
+        player1LocationsX = getPawnLocationsXForPlayer(1);
+        player2LocationsX = getPawnLocationsXForPlayer(2);
+        player3LocationsX = getPawnLocationsXForPlayer(3);
+        player0LocationsY = getPawnLocationsYForPlayer(0);
+        player1LocationsY = getPawnLocationsYForPlayer(1);
+        player2LocationsY = getPawnLocationsYForPlayer(2);
+        player3LocationsY = getPawnLocationsYForPlayer(3);
+        board = getBoard();
+    }
 
     public void initBoardPieces() {
         // normal rectangular board pieces
@@ -206,9 +227,13 @@ public class ParState extends GameState {
     public int getPlayerTurn() { return playerTurn; }
 
     //setter to set whose move it is
-    public void setPlayerTurn(int player)
-    {
-        playerTurn = player;
+    // called when the players turn is completed
+    public void setPlayerTurn() {
+        playerTurn++;
+        if (playerTurn > 3) {
+            playerTurn = 0;
+        }
+        currentSubstage = Roll;
     }
 
     //Getter to return integer array of both dice values
@@ -241,18 +266,22 @@ public class ParState extends GameState {
         return selectedLocation;
     }
 
+    public Rect[] getBoard() {
+        return board;
+    }
+
     public int[] getPawnLocationsXForPlayer(int playerIdx)
     {
         switch (playerIdx)
         {
+            case 0:
+                return player0LocationsX;
             case 1:
                 return player1LocationsX;
             case 2:
                 return player2LocationsX;
             case 3:
                 return player3LocationsX;
-            case 4:
-                return player4LocationsX;
             default:
                 //throws an error if a valid pawn or player index isn't providedd
                 throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
@@ -263,14 +292,14 @@ public class ParState extends GameState {
     {
         switch (playerIdx)
         {
+            case 0:
+                return player0LocationsY;
             case 1:
                 return player1LocationsY;
             case 2:
                 return player2LocationsY;
             case 3:
                 return player3LocationsY;
-            case 4:
-                return player4LocationsY;
             default:
                 //throws an error if a valid pawn or player index isn't provided
                 throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
@@ -281,6 +310,10 @@ public class ParState extends GameState {
     {
         switch (playerIdx)
         {
+            case 0:
+                player0LocationsX[pawnIndex] = locationX;
+                player0LocationsY[pawnIndex] = locationY;
+                break;
             case 1:
                 player1LocationsX[pawnIndex] = locationX;
                 player1LocationsY[pawnIndex] = locationY;
@@ -292,10 +325,6 @@ public class ParState extends GameState {
             case 3:
                 player3LocationsX[pawnIndex] = locationX;
                 player3LocationsY[pawnIndex] = locationY;
-                break;
-            case 4:
-                player4LocationsX[pawnIndex] = locationX;
-                player4LocationsY[pawnIndex] = locationY;
                 break;
         }
     }
