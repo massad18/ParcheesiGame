@@ -85,11 +85,10 @@ public class ParLocalGame extends LocalGame {
 
         /*Instance Variables*/
         //integer arrays to hold each player's current pawn locations (x and y coordinates)
-        int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
+        /*int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
         int[] player2LocationsX = parState.getPawnLocationsXForPlayer(1);
         int[] player3LocationsX = parState.getPawnLocationsXForPlayer(2);
         int[] player4LocationsX = parState.getPawnLocationsXForPlayer(3);
-return false;
         int[] player1LocationsY = parState.getPawnLocationsYForPlayer(0);
         int[] player2LocationsY = parState.getPawnLocationsYForPlayer(1);
         int[] player3LocationsY = parState.getPawnLocationsYForPlayer(2);
@@ -157,7 +156,7 @@ return false;
                 }
                 return true;
             }
-        }
+        }*/
         return false;
     }
 
