@@ -40,8 +40,6 @@ public class PawnLocation {
 
     public void initPawnLocation(int playerIdx) {
         // initialize the locations of the pawns
-
-        //ToDo Add in the locations of the given player and initialize their location to their given starting locations
         switch (playerIdx) {
             //red
             case 0:
@@ -87,7 +85,6 @@ public class PawnLocation {
     }
 
     public void resetPawnLocation(int playerIdx, int pawnIdx) {
-        //ToDo Add in the locations of the given player and reset the pawn that was eaten
         switch (playerIdx) {
             //red
             case 0:
