@@ -24,6 +24,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     ParLocalGame parLocalGame = new ParLocalGame();
     private int playerIdx;
     ParState parState = new ParState();
+    private ParState state;
     
     private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
     private Button[] useDieButtons = new Button[3]; //array to hold buttons to select specific dice values to use
@@ -57,47 +58,52 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     @Override
     public void receiveInfo(GameInfo info)
     {
-        switch(parState.getDice1Val())
+        if(info instanceof ParState)
         {
-            case 1:
-                diceButtons[0].setBackgroundResource(R.drawable.die1);
-                break;
-            case 2:
-                diceButtons[0].setBackgroundResource(R.drawable.die2);
-                break;
-            case 3:
-                diceButtons[0].setBackgroundResource(R.drawable.die3);
-                break;
-            case 4:
-                diceButtons[0].setBackgroundResource(R.drawable.die4);
-                break;
-            case 5:
-                diceButtons[0].setBackgroundResource(R.drawable.die5);
-                break;
-            case 6:
-                diceButtons[0].setBackgroundResource(R.drawable.die6);
-                break;
-        }
-        switch(parState.getDice2Val())
-        {
-            case 1:
-                diceButtons[1].setBackgroundResource(R.drawable.die1);
-                break;
-            case 2:
-                diceButtons[1].setBackgroundResource(R.drawable.die2);
-                break;
-            case 3:
-                diceButtons[1].setBackgroundResource(R.drawable.die3);
-                break;
-            case 4:
-                diceButtons[1].setBackgroundResource(R.drawable.die4);
-                break;
-            case 5:
-                diceButtons[1].setBackgroundResource(R.drawable.die5);
-                break;
-            case 6:
-                diceButtons[1].setBackgroundResource(R.drawable.die6);
-                break;
+            state = (ParState)info;
+
+            switch(state.getDice1Val())
+            {
+                case 1:
+                    diceButtons[0].setBackgroundResource(R.drawable.die1);
+                    break;
+                case 2:
+                    diceButtons[0].setBackgroundResource(R.drawable.die2);
+                    break;
+                case 3:
+                    diceButtons[0].setBackgroundResource(R.drawable.die3);
+                    break;
+                case 4:
+                    diceButtons[0].setBackgroundResource(R.drawable.die4);
+                    break;
+                case 5:
+                    diceButtons[0].setBackgroundResource(R.drawable.die5);
+                    break;
+                case 6:
+                    diceButtons[0].setBackgroundResource(R.drawable.die6);
+                    break;
+            }
+            switch(state.getDice2Val())
+            {
+                case 1:
+                    diceButtons[1].setBackgroundResource(R.drawable.die1);
+                    break;
+                case 2:
+                    diceButtons[1].setBackgroundResource(R.drawable.die2);
+                    break;
+                case 3:
+                    diceButtons[1].setBackgroundResource(R.drawable.die3);
+                    break;
+                case 4:
+                    diceButtons[1].setBackgroundResource(R.drawable.die4);
+                    break;
+                case 5:
+                    diceButtons[1].setBackgroundResource(R.drawable.die5);
+                    break;
+                case 6:
+                    diceButtons[1].setBackgroundResource(R.drawable.die6);
+                    break;
+            }
         }
 
         if (parSurfaceView == null) return;
@@ -142,13 +148,14 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         if(button == diceButtons[0])
         {
             //ToDo:Not sure if actions called correctly (may want to check that)
-            switch (parState.getCurrentSubstage())
+            //ToDo:Move the setDieVals to makeMove in ParLocalGame
+            switch (state.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
                 case 0:
-                    int die1 = (int)(Math.random()*6) + 1;
-                    int die2 = (int)(Math.random()*6) + 1;
-                    parState.setDieVals(die1,die2);
+                    //int die1 = (int)(Math.random()*6) + 1;
+                    //int die2 = (int)(Math.random()*6) + 1;
+                    //parState.setDieVals(die1,die2);
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
@@ -166,14 +173,13 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //If the second die is pressed
         else if(button == diceButtons[1])
         {
-            switch (parState.getCurrentSubstage())
+            switch (state.getCurrentSubstage())
             {
                 //Player has yet to roll the dice
                 case 0:
-                    System.out.println("Entering case 0");
-                    int die1 = (int)(Math.random()*6) + 1;
-                    int die2 = (int)(Math.random()*6) + 1;
-                    parState.setDieVals(die1,die2);
+                    //int die1 = (int)(Math.random()*6) + 1;
+                    //int die2 = (int)(Math.random()*6) + 1;
+                    //parState.setDieVals(die1,die2);
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
