@@ -60,45 +60,43 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         switch(parState.getDice1Val())
         {
             case 1:
-                //diceButtons[0].setImageResource(R.mipmap.die_val_1);
-                diceButtons[0].setImageResource(R.drawable.die1);
+                diceButtons[0].setBackgroundResource(R.drawable.die1);
                 break;
             case 2:
-                diceButtons[0].setImageResource(R.drawable.die2);
+                diceButtons[0].setBackgroundResource(R.drawable.die2);
                 break;
             case 3:
-                diceButtons[0].setImageResource(R.drawable.die3);
+                diceButtons[0].setBackgroundResource(R.drawable.die3);
                 break;
             case 4:
-                diceButtons[0].setImageResource(R.drawable.die4);
+                diceButtons[0].setBackgroundResource(R.drawable.die4);
                 break;
             case 5:
-                diceButtons[0].setImageResource(R.drawable.die5);
+                diceButtons[0].setBackgroundResource(R.drawable.die5);
                 break;
             case 6:
-                diceButtons[0].setImageResource(R.drawable.die6);
+                diceButtons[0].setBackgroundResource(R.drawable.die6);
                 break;
         }
         switch(parState.getDice2Val())
         {
             case 1:
-                //diceButtons[0].setImageResource(R.mipmap.die_val_1);
-                diceButtons[1].setImageResource(R.drawable.die1);
+                diceButtons[1].setBackgroundResource(R.drawable.die1);
                 break;
             case 2:
-                diceButtons[1].setImageResource(R.drawable.die2);
+                diceButtons[1].setBackgroundResource(R.drawable.die2);
                 break;
             case 3:
-                diceButtons[1].setImageResource(R.drawable.die3);
+                diceButtons[1].setBackgroundResource(R.drawable.die3);
                 break;
             case 4:
-                diceButtons[1].setImageResource(R.drawable.die4);
+                diceButtons[1].setBackgroundResource(R.drawable.die4);
                 break;
             case 5:
-                diceButtons[1].setImageResource(R.drawable.die5);
+                diceButtons[1].setBackgroundResource(R.drawable.die5);
                 break;
             case 6:
-                diceButtons[1].setImageResource(R.drawable.die6);
+                diceButtons[1].setBackgroundResource(R.drawable.die6);
                 break;
         }
         //Checks to make sure the game info being sent in is an instance of the state class
