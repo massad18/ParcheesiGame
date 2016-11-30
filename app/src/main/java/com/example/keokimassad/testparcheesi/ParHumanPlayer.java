@@ -36,7 +36,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     // this is the view on which you will listen for touch events
 
     private ParSurfaceView parSurfaceView;
-    private PawnLocation pawnLocation = new PawnLocation();
 
     /**
      * constructor does nothing extra
@@ -242,11 +241,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         selectPawnButtons.setOnCheckedChangeListener(this);
 
         parSurfaceView.setOnTouchListener(this);
-
-        parState.initBoardPieces();
-        for (int i = 0; i < 4 /*number of players*/; i++) {
-            pawnLocation.initPawnLocation(i);
-        }
 
         //Initializes the current substage to Roll (0)
         parState.setCurrentSubstage(0);

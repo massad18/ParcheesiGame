@@ -42,7 +42,16 @@ public class ParState extends GameState {
 
     private int selectedLocation;
 
-    public ParState() {super();}
+    private PawnLocation pawnLocation = new PawnLocation();
+
+    public ParState() {
+        super();
+        initBoardPieces();
+        for (int i = 0; i < 4 /*number of players*/; i++) {
+            initPawnLocation(i);
+        }
+        int x;
+    }
 
     // creates a template ParState that will be sent to the other players within the game
     public ParState(ParState p) {
@@ -326,6 +335,109 @@ public class ParState extends GameState {
                 player3LocationsX[pawnIndex] = locationX;
                 player3LocationsY[pawnIndex] = locationY;
                 break;
+        }
+    }
+
+    public void initPawnLocation(int playerIdx) {
+        // initialize the locations of the pawns
+        switch (playerIdx) {
+            //red
+            case 0:
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
+                break;
+            //blue
+            case 1:
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[104], pawnLocation.pawnLocationY[104]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[105], pawnLocation.pawnLocationY[105]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[106], pawnLocation.pawnLocationY[106]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[107], pawnLocation.pawnLocationY[107]);
+                break;
+            //yellow
+            case 2:
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[108], pawnLocation.pawnLocationY[108]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[109], pawnLocation.pawnLocationY[109]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[110], pawnLocation.pawnLocationY[110]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[111], pawnLocation.pawnLocationY[111]);
+                break;
+            //green
+            case 3:
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[112], pawnLocation.pawnLocationY[112]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[113], pawnLocation.pawnLocationY[113]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[114], pawnLocation.pawnLocationY[114]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[115], pawnLocation.pawnLocationY[115]);
+                break;
+        }
+    }
+
+    public void resetPawnLocation(int playerIdx, int pawnIdx) {
+        switch (playerIdx) {
+            //red
+            case 0:
+                switch (pawnIdx) {
+                    case 0:
+                        setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
+                        break;
+                    case 1:
+                        setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
+                        break;
+                    case 2:
+                        setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
+                        break;
+                    case 3:
+                        setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
+                        break;
+                }
+                //blue
+            case 1:
+                switch (pawnIdx) {
+                    case 0:
+                        setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[104], pawnLocation.pawnLocationY[104]);
+                        break;
+                    case 1:
+                        setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[105], pawnLocation.pawnLocationY[105]);
+                        break;
+                    case 2:
+                        setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[106], pawnLocation.pawnLocationY[106]);
+                        break;
+                    case 3:
+                        setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[107], pawnLocation.pawnLocationY[107]);
+                        break;
+                }
+                //yellow
+            case 2:
+                switch (pawnIdx) {
+                    case 0:
+                        setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[108], pawnLocation.pawnLocationY[108]);
+                        break;
+                    case 1:
+                        setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[109], pawnLocation.pawnLocationY[109]);
+                        break;
+                    case 2:
+                        setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[110], pawnLocation.pawnLocationY[110]);
+                        break;
+                    case 3:
+                        setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[111], pawnLocation.pawnLocationY[111]);
+                        break;
+                }
+                //green
+            case 3:
+                switch (pawnIdx) {
+                    case 0:
+                        setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[112], pawnLocation.pawnLocationY[112]);
+                        break;
+                    case 1:
+                        setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[113], pawnLocation.pawnLocationY[113]);
+                        break;
+                    case 2:
+                        setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[114], pawnLocation.pawnLocationY[114]);
+                        break;
+                    case 3:
+                        setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[115], pawnLocation.pawnLocationY[115]);
+                        break;
+                }
         }
     }
 }

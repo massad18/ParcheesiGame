@@ -8,7 +8,6 @@ public class PawnLocation {
 
     private int xPos;
     private int yPos;
-    ParState parState = new ParState();
 
     // the initial positions are #100-115
     // the homebase coordinates are #116 - 131
@@ -38,40 +37,6 @@ public class PawnLocation {
 
     public PawnLocation() {}
 
-    public void initPawnLocation(int playerIdx) {
-        // initialize the locations of the pawns
-        switch (playerIdx) {
-            //red
-            case 0:
-                parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[100], pawnLocationY[100]);
-                parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[101], pawnLocationY[101]);
-                parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[102], pawnLocationY[102]);
-                parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[103], pawnLocationY[103]);
-                break;
-            //blue
-            case 1:
-                parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[104], pawnLocationY[104]);
-                parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[105], pawnLocationY[105]);
-                parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[106], pawnLocationY[106]);
-                parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[107], pawnLocationY[107]);
-                break;
-            //yellow
-            case 2:
-                parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[108], pawnLocationY[108]);
-                parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[109], pawnLocationY[109]);
-                parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[110], pawnLocationY[110]);
-                parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[111], pawnLocationY[111]);
-                break;
-            //green
-            case 3:
-                parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[112], pawnLocationY[112]);
-                parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[113], pawnLocationY[113]);
-                parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[114], pawnLocationY[114]);
-                parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[115], pawnLocationY[115]);
-                break;
-        }
-    }
-
     public void setPawnLocation(int playerIdx, int pawnIdx, int locationIdx) {
         // uses the normal locations array list that centers the single pawn in
         // the given location
@@ -81,75 +46,5 @@ public class PawnLocation {
     public void setPawnLocation (int playerIdx, int pawnIdx1, int pawnIdx2, int locationIdx) {
         // uses the locations array that can fit two pawns within one given location
 
-    }
-
-
-    public void resetPawnLocation(int playerIdx, int pawnIdx) {
-        switch (playerIdx) {
-            //red
-            case 0:
-                switch (pawnIdx) {
-                    case 0:
-                        parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[100], pawnLocationY[100]);
-                        break;
-                    case 1:
-                        parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[101], pawnLocationY[101]);
-                        break;
-                    case 2:
-                        parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[102], pawnLocationY[102]);
-                        break;
-                    case 3:
-                        parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[103], pawnLocationY[103]);
-                        break;
-                }
-            //blue
-            case 1:
-                switch (pawnIdx) {
-                    case 0:
-                        parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[104], pawnLocationY[104]);
-                        break;
-                    case 1:
-                        parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[105], pawnLocationY[105]);
-                        break;
-                    case 2:
-                        parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[106], pawnLocationY[106]);
-                        break;
-                    case 3:
-                        parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[107], pawnLocationY[107]);
-                        break;
-                }
-            //yellow
-            case 2:
-                switch (pawnIdx) {
-                    case 0:
-                        parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[108], pawnLocationY[108]);
-                        break;
-                    case 1:
-                        parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[109], pawnLocationY[109]);
-                        break;
-                    case 2:
-                        parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[110], pawnLocationY[110]);
-                        break;
-                    case 3:
-                        parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[111], pawnLocationY[111]);
-                        break;
-                }
-            //green
-            case 3:
-                switch (pawnIdx) {
-                    case 0:
-                        parState.setPawnLocationsForPlayer(playerIdx, 0, pawnLocationX[112], pawnLocationY[112]);
-                        break;
-                    case 1:
-                        parState.setPawnLocationsForPlayer(playerIdx, 1, pawnLocationX[113], pawnLocationY[113]);
-                        break;
-                    case 2:
-                        parState.setPawnLocationsForPlayer(playerIdx, 2, pawnLocationX[114], pawnLocationY[114]);
-                        break;
-                    case 3:
-                        parState.setPawnLocationsForPlayer(playerIdx, 3, pawnLocationX[115], pawnLocationY[115]);
-                        break;
-                }
-        }
     }
 }
