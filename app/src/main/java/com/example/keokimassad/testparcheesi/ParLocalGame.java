@@ -11,7 +11,7 @@ import game.actionMsg.GameAction;
 
 public class ParLocalGame extends LocalGame {
 
-    ParState parState = new ParState();
+    ParState parState;
     //GameAction myAction;
 
     PawnLocation pawnLocation = new PawnLocation();
@@ -41,8 +41,14 @@ public class ParLocalGame extends LocalGame {
             //holds number of pawns at center for given player
             int totalPawnsAtGoalForPlayer = 0;
             //integer array to hold locations of pawns for given player
-            int pawnXLocations[] = parState.getPawnLocationsXForPlayer(playerIdx);
-            int pawnYLocations[] = parState.getPawnLocationsXForPlayer(playerIdx);
+            int[] pawnXLocations = new int[4];
+            for (int i = 0; i < 4; i++) {
+                pawnXLocations[i] = parState.getPawnLocationsXForPlayer(playerIdx, i);
+            }
+            int[] pawnYLocations = new int[4];
+            for (int i = 0; i < 4; i++) {
+                pawnYLocations[i] = parState.getPawnLocationsYForPlayer(playerIdx, i);
+            }
 
             //Checks every pawn that player has
             for (int pawnIdx = 0; pawnIdx < 4; pawnIdx++) {

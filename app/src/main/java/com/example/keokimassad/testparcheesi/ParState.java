@@ -50,29 +50,43 @@ public class ParState extends GameState {
         for (int i = 0; i < 4 /*number of players*/; i++) {
             initPawnLocation(i);
         }
-        int x;
     }
 
     // creates a template ParState that will be sent to the other players within the game
     public ParState(ParState p) {
-        super();
         Roll = 0;
         Begin_Move = 1;
         Mid_Move = 2;
         Game_Over = 3;
-        currentSubstage = getCurrentSubstage();
-        dieVals = getDiceVals();
-        numOfDoubles = getNumOfDoubles();
-        playerTurn = getPlayerTurn();
-        player0LocationsX = getPawnLocationsXForPlayer(0);
-        player1LocationsX = getPawnLocationsXForPlayer(1);
-        player2LocationsX = getPawnLocationsXForPlayer(2);
-        player3LocationsX = getPawnLocationsXForPlayer(3);
-        player0LocationsY = getPawnLocationsYForPlayer(0);
-        player1LocationsY = getPawnLocationsYForPlayer(1);
-        player2LocationsY = getPawnLocationsYForPlayer(2);
-        player3LocationsY = getPawnLocationsYForPlayer(3);
-        board = getBoard();
+        currentSubstage = p.getCurrentSubstage();
+        dieVals = p.getDiceVals();
+        numOfDoubles = p.getNumOfDoubles();
+        playerTurn = p.getPlayerTurn();
+        for (int i = 0; i < 4; i++) {
+            player0LocationsX[i] = p.getPawnLocationsXForPlayer(0, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player1LocationsX[i] = p.getPawnLocationsXForPlayer(1, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player2LocationsX[i] = p.getPawnLocationsXForPlayer(2, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player3LocationsX[i] = p.getPawnLocationsXForPlayer(3, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player0LocationsY[i] = p.getPawnLocationsYForPlayer(0, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player1LocationsY[i] = p.getPawnLocationsYForPlayer(1, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player2LocationsY[i] = p.getPawnLocationsYForPlayer(2, i);
+        }
+        for (int i = 0; i < 4; i++) {
+            player3LocationsY[i] = p.getPawnLocationsYForPlayer(3, i);
+        }
+        board = p.getBoard();
     }
 
     public void initBoardPieces() {
@@ -301,36 +315,36 @@ public class ParState extends GameState {
         return board;
     }
 
-    public int[] getPawnLocationsXForPlayer(int playerIdx)
+    public int getPawnLocationsXForPlayer(int playerIdx, int pawnIdx)
     {
         switch (playerIdx)
         {
             case 0:
-                return player0LocationsX;
+                return player0LocationsX[pawnIdx];
             case 1:
-                return player1LocationsX;
+                return player1LocationsX[pawnIdx];
             case 2:
-                return player2LocationsX;
+                return player2LocationsX[pawnIdx];
             case 3:
-                return player3LocationsX;
+                return player3LocationsX[pawnIdx];
             default:
                 //throws an error if a valid pawn or player index isn't providedd
                 throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
         }
     }
 
-    public int[] getPawnLocationsYForPlayer(int playerIdx)
+    public int getPawnLocationsYForPlayer(int playerIdx, int pawnIdx)
     {
         switch (playerIdx)
         {
             case 0:
-                return player0LocationsY;
+                return player0LocationsY[pawnIdx];
             case 1:
-                return player1LocationsY;
+                return player1LocationsY[pawnIdx];
             case 2:
-                return player2LocationsY;
+                return player2LocationsY[pawnIdx];
             case 3:
-                return player3LocationsY;
+                return player3LocationsY[pawnIdx];
             default:
                 //throws an error if a valid pawn or player index isn't provided
                 throw new IllegalArgumentException("Error: The player index passed in is not a valid player ID");
