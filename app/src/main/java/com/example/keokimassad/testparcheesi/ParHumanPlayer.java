@@ -1,6 +1,7 @@
 package com.example.keokimassad.testparcheesi;
 
 import android.graphics.Color;
+import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -163,8 +164,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 case 1:
                 case 2:
                     //ParMoveAction is called to move a pawn
-                    ParMoveAction actMove = new ParMoveAction(this);
-                    game.sendAction(actMove);
+                    //ParMoveAction actMove = new ParMoveAction(this); //ToDo: REDO THIS STUFF, AVAYA STILL MESSING AROUND
+                    //game.sendAction(actMove); //ToDo: Look above
                     //diceButtons[0].setEnabled(false); //sets die to no longer be pressed
                     break;
             }
@@ -187,8 +188,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 case 1:
                 case 2:
                     //ParMoveAction is called to move a pawn
-                    ParMoveAction actMove = new ParMoveAction(this);
-                    game.sendAction(actMove);
+                    //ParMoveAction actMove = new ParMoveAction(this); //ToDo: REDO THIS STUFF, AVAYA STILL MESSING AROUND
+                    //game.sendAction(actMove); //ToDo: Look above
                     //diceButtons[1].setEnabled(false); //sets die to no longer be pressed
                     break;
             }
@@ -251,6 +252,20 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         textView.setText("Touch coordinates : " +
                 String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
         textView1.setText(parState.containsInRect(event.getX(), event.getY()));
+
+
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        int rectNum = parState.giveRectTouch(x, y);
+        if( rectNum >= 0)
+        {
+            ParMoveAction action  = new ParMoveAction(this, rectNum);
+            //surfaceView.invalidate();
+        }
+
+
+
+
         return true;
     }
 }

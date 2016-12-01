@@ -83,26 +83,24 @@ public class ParLocalGame extends LocalGame {
     protected boolean makeMove(GameAction action) {
         /*Justin trying random stuff here */
         System.out.println("Entering makeMove");
-        if(this.players[parState.getPlayerTurn()] == action.getPlayer())
-        {
+        if (this.players[parState.getPlayerTurn()] == action.getPlayer()) {
             System.out.println("player turn is true");
-            if (action instanceof ParRollAction)
-            {
+            if (action instanceof ParRollAction) {
                 System.out.println("roll Action called");
-                int randomDieVal1 = (int)(Math.random()*6) + 1;
-                int randomDieVal2 = (int)(Math.random()*6) + 1;
-                parState.setDieVals(randomDieVal1,randomDieVal2);
-                System.out.println("die1 Val: "+parState.getDice1Val());
-                System.out.println("die2 Val: "+parState.getDice2Val());
+                int randomDieVal1 = (int) (Math.random() * 6) + 1;
+                int randomDieVal2 = (int) (Math.random() * 6) + 1;
+                parState.setDieVals(randomDieVal1, randomDieVal2);
+                System.out.println("die1 Val: " + parState.getDice1Val());
+                System.out.println("die2 Val: " + parState.getDice2Val());
                 return true;
             }
         }
-        return false;
+        //return false;
 
 
         /*Instance Variables*/
         //integer arrays to hold each player's current pawn locations (x and y coordinates)
-        /*int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
+        int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
         int[] player2LocationsX = parState.getPawnLocationsXForPlayer(1);
         int[] player3LocationsX = parState.getPawnLocationsXForPlayer(2);
         int[] player4LocationsX = parState.getPawnLocationsXForPlayer(3);
@@ -115,7 +113,20 @@ public class ParLocalGame extends LocalGame {
         int locPlayer1InitY;
         int locPlayer2InitX;
         int locPlayer2InitY;
-        myAction = action;
+
+        for(int i = 0; i<players.length; i++)
+        {
+            if(canMove(i))
+            {
+                if(action instanceof ParMoveAction)
+                {
+
+                }
+            }
+        }
+
+
+        /*
 
         //Loops through each player in the game
         for (int m = 0; m < players.length; m++) {
@@ -174,6 +185,7 @@ public class ParLocalGame extends LocalGame {
                 return true;
             }
         }*/
+        return false;
     }
 
     @Override

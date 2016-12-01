@@ -43,20 +43,7 @@ public class ParSurfaceView extends SurfaceView {
     // the game's state
     protected ParState parState = new ParState();
 
-    // the offset from the left and top to the beginning of our "middle square"; one
-    // of these will always be zero
-    protected float hBase;
-    protected float vBase;
 
-    // the size of one edge of our "middle square", or -1 if we have not determined
-    // size
-    protected float fullSquare;
-
-    /**
-     * Constructor for the TTTSurfaceView class.
-     *
-     * @param context - a reference to the activity this animation is run under
-     */
     public ParSurfaceView(Context context) {
         super(context);
         init();
@@ -130,6 +117,8 @@ public class ParSurfaceView extends SurfaceView {
             }
         }
     }
+
+
 
 
 }

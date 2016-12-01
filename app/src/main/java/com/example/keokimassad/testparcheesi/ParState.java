@@ -229,6 +229,28 @@ public class ParState extends GameState {
         return "Error " + -1;
     }
 
+    //TEMPORARY METHOD FOR AVAYA
+
+    public int giveRectTouch (float x, float y) {
+        for (int i = 0; i < board.length; i++) {
+            Rect rect = board[i];
+            if (rect.contains(x, y)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+
+
+
+
+
+
+
+
+
     //Getter to return the number of doubles the current player has had in the turn
     public int getNumOfDoubles() { return numOfDoubles; }
 
