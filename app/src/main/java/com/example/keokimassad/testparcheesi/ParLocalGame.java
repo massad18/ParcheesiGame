@@ -120,17 +120,6 @@ public class ParLocalGame extends LocalGame {
         int locPlayer2InitX;
         int locPlayer2InitY;
 
-        for(int i = 0; i<players.length; i++)
-        {
-            if(canMove(i))
-            {
-                if(action instanceof ParMoveAction)
-                {
-
-                }
-            }
-        }
-
 
         /*
 

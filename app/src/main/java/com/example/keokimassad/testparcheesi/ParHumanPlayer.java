@@ -1,7 +1,6 @@
 package com.example.keokimassad.testparcheesi;
 
-import android.graphics.Color;
-import android.graphics.Point;
+
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,14 +8,10 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
-
 import game.GameHumanPlayer;
 import game.GameMainActivity;
 import game.infoMsg.GameInfo;
-import static com.example.keokimassad.testparcheesi.R.id.surfaceView;
+
 
 public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListener, View.OnTouchListener, RadioGroup.OnCheckedChangeListener{
 
@@ -122,21 +117,23 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         }
     }
 
+
+
+
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
-        //Decides how objects of same type interact with each other
-        //Uses an enum, SameObjectCollisionType to tell what action to take
+
         switch(checkedId) {
-            //Will bounce off each other
+
             case R.id.radioPawn1:
                 break;
-            //Will merge into one larger object
+
             case R.id.radioPawn2:
                 break;
-            //Will destroy slower of two objects
+
             case R.id.radioPawn3:
                 break;
-            //Will destroy smaller of two objects
+
             case R.id.radioPawn4:
                 break;
         }
@@ -240,6 +237,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
         selectPawnButtons = (RadioGroup) activity.findViewById(R.id.selectPawn);
         selectPawnButtons.setOnCheckedChangeListener(this);
+        selectPawnButtons.clearCheck();
 
         parSurfaceView.setOnTouchListener(this);
 
@@ -268,4 +266,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
         return true;
     }
+
+
+
+
 }
