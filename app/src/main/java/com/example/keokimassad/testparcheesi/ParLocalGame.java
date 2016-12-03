@@ -135,6 +135,7 @@ public class ParLocalGame extends LocalGame {
                     //Player has rolled doubles more than 3 times, furthest piece on board has to move back
                     else
                     {
+                        parState.setNumOfDoubles(0); //resets number of doubles to 0
                         //ToDo: Add code to have player's piece furthest on board move back to home
                     }
                 }
