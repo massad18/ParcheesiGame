@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import game.GameHumanPlayer;
 import game.GameMainActivity;
+import game.LocalGame;
 import game.infoMsg.GameInfo;
 
 
@@ -21,7 +22,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     private int playerIdx;
     ParState parState = new ParState();
     private ParState state;
-    
+
     private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
     private Button[] useDieButtons = new Button[3]; //array to hold buttons to select specific dice values to use
     private Button makeMoveButton;
@@ -126,15 +127,23 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         switch(checkedId) {
 
             case R.id.radioPawn1:
+                ParSelectAction parSelectAction0 = new ParSelectAction(this, 0);
+                game.sendAction(parSelectAction0);
                 break;
 
             case R.id.radioPawn2:
+                ParSelectAction parSelectAction1 = new ParSelectAction(this, 1);
+                game.sendAction(parSelectAction1);
                 break;
 
             case R.id.radioPawn3:
+                ParSelectAction parSelectAction2 = new ParSelectAction(this, 2);
+                game.sendAction(parSelectAction2);
                 break;
 
             case R.id.radioPawn4:
+                ParSelectAction parSelectAction3 = new ParSelectAction(this, 3);
+                game.sendAction(parSelectAction3);
                 break;
         }
     }
@@ -245,6 +254,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         parState.setCurrentSubstage(0);
     }
 
+
+    // displays the rectangle in which the human is touching on the board (surface view)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         textView.setText("Touch coordinates : " +

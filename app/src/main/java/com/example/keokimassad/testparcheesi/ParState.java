@@ -22,6 +22,9 @@ public class ParState extends GameState {
     private int numOfDoubles; //holds number of doubles current player has had in the turn
     int playerTurn; //holds who's turn it currently is
 
+    // initialize the radio button that is checked
+    int radioButtonChecked;
+
     //4 location arrays to hold locations of each players' pawns
     private int[] player0LocationsX = new int[4];
     private int[] player1LocationsX = new int[4];
@@ -58,6 +61,7 @@ public class ParState extends GameState {
         Begin_Move = 1;
         Mid_Move = 2;
         Game_Over = 3;
+        radioButtonChecked = p.getRadioButtonChecked();
         currentSubstage = p.getCurrentSubstage();
         dieVals = p.getDiceVals();
         numOfDoubles = p.getNumOfDoubles();
@@ -297,6 +301,14 @@ public class ParState extends GameState {
     public void setDieVals(int dieVal1, int dieVal2) {
         dieVals[0] = dieVal1;
         dieVals[1] = dieVal2;
+    }
+
+    public void setRadioButtonChecked(int x) {
+        radioButtonChecked = x;
+    }
+
+    public int getRadioButtonChecked() {
+        return radioButtonChecked;
     }
 
     //Getter to return current substage

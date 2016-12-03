@@ -41,8 +41,7 @@ public class ParSurfaceView extends SurfaceView {
 	 */
 
     // the game's state
-    protected ParState parState = new ParState();
-
+    protected ParState parState;
 
     public ParSurfaceView(Context context) {
         super(context);
@@ -84,7 +83,7 @@ public class ParSurfaceView extends SurfaceView {
      * @return the color to paint the tic-tac-toe lines, and the X's and O's
      */
     public int backgroundColor() {
-        return Color.BLUE;
+        return Color.TRANSPARENT;
     }
 
     /**
@@ -94,6 +93,8 @@ public class ParSurfaceView extends SurfaceView {
      * @param g the canvas to draw on
      */
     public void onDraw(Canvas g) {
+
+        boolean selected;
 
         // update the variables that relate
         // to the dimensions of the animation surface
@@ -113,7 +114,14 @@ public class ParSurfaceView extends SurfaceView {
                 playerXCor = parState.getPawnLocationsXForPlayer(i, j);
                 playerYCor = parState.getPawnLocationsYForPlayer(i, j);
                 Pawn currLoc = new Pawn(playerXCor, playerYCor);
-                currLoc.drawOn(playerXCor, playerYCor, g, i);
+                // change the background color of the selected pawn for the player whos turn it is
+                if (i == parState.getPlayerTurn() && j == parState.getRadioButtonChecked()) {
+                    selected = true;
+                }
+                else {
+                    selected = false;
+                }
+                currLoc.drawOn(playerXCor, playerYCor, g, i, selected);
             }
         }
     }

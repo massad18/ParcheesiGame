@@ -32,7 +32,7 @@ public class PawnLocation {
             /*RedSafeZone*/ 706, 706, 706, 706, 706, 706, 706, /*RedHomeBase OMIT*/ 0,
             /*BlueSafeZone*/ 116, 184, 251, 321, 391, 458, 525, /*BlueHomeBase OMIT*/ 0,
             /*YellowSafeZone*/ 706, 706, 706, 706, 706, 706, 706, /*YellowHomeBase OMIT*/ 0,
-            /*GreenSafeZone*/ 1268, 1200, 1134, 1069, 1002, 933, 866, /*GreenHomeBase OMIT*/ 0}; 
+            /*GreenSafeZone*/ 1268, 1200, 1134, 1069, 1002, 933, 866, /*GreenHomeBase OMIT*/ 0};
     private int[] pawnLocationBlockade2x = {/*0*/ 888, 888, 888, 888, 866, 933, 1002, 1069, 1134,
             1200, /*10*/ 1268, 1333, 1333, 1333, 1268, 1200, 1134, 1069, 1002, 933, /*20*/ 866, 888,
             888, 888, 888, 888, 888, 888, 888, 752, /*30*/ 615, 615, 615, 615, 615, 615, 615, 615,

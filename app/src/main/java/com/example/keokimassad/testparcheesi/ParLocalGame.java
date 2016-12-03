@@ -16,6 +16,22 @@ public class ParLocalGame extends LocalGame {
 
     PawnLocation pawnLocation = new PawnLocation();
 
+    private int[] player0LocationsX = new int[4];
+    private int[] player1LocationsX = new int[4];
+    private int[] player2LocationsX = new int[4];
+    private int[] player3LocationsX = new int[4];
+
+    private int[] player0LocationsY = new int[4];
+    private int[] player1LocationsY = new int[4];
+    private int[] player2LocationsY = new int[4];
+    private int[] player3LocationsY = new int[4];
+
+    private int movingLocationX;
+    private int movingLocationY;
+
+    private int[] checkingLocationX = new int[4];
+    private int[] checkingLocaitonY = new int[4];
+
     public ParLocalGame () {
         parState = new ParState(); //initializes an instance of parState
     }
@@ -27,6 +43,7 @@ public class ParLocalGame extends LocalGame {
 
     @Override
     //Method that returns true or false based on if it's the player's turn
+    // Calls before makeMove method
     protected boolean canMove(int playerIdx) {
         if (parState.getPlayerTurn() == playerIdx) {
             return true;
@@ -53,23 +70,27 @@ public class ParLocalGame extends LocalGame {
             //Checks every pawn that player has
             for (int pawnIdx = 0; pawnIdx < 4; pawnIdx++) {
                 switch (playerIdx) {
+                    // red player
                     case 0:
-                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[100+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[100+pawnIdx]) {
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[116+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[116+pawnIdx]) {
                             totalPawnsAtGoalForPlayer++;
                         }
                         break;
+                    // blue player
                     case 1:
-                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[104+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[104+pawnIdx]) {
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[120+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[120+pawnIdx]) {
                             totalPawnsAtGoalForPlayer++;
                         }
                         break;
+                    // yellow player
                     case 2:
-                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[108+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[108+pawnIdx]) {
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[124+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[124+pawnIdx]) {
                             totalPawnsAtGoalForPlayer++;
                         }
                         break;
+                    // green player
                     case 3:
-                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[112+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[112+pawnIdx]) {
+                        if (pawnXLocations[pawnIdx] == pawnLocation.pawnLocationX[128+pawnIdx] & pawnYLocations[pawnIdx] == pawnLocation.pawnLocationX[128+pawnIdx]) {
                             totalPawnsAtGoalForPlayer++;
                         }
                         break;
@@ -85,12 +106,14 @@ public class ParLocalGame extends LocalGame {
         return null;
     }
 
+    // canMove method is called before the makeMove method
     @Override
     protected boolean makeMove(GameAction action) {
         /*Justin trying random stuff here */
         System.out.println("Entering makeMove");
         if (this.players[parState.getPlayerTurn()] == action.getPlayer()) {
             System.out.println("player turn is true");
+            // Roll Action
             if (action instanceof ParRollAction) {
                 System.out.println("roll Action called");
                 int randomDieVal1 = (int) (Math.random() * 6) + 1;
@@ -100,20 +123,35 @@ public class ParLocalGame extends LocalGame {
                 System.out.println("die2 Val: " + parState.getDice2Val());
                 return true;
             }
+            // Move Action
+            else if (action instanceof ParMoveAction) {
+
+                // set the initial x and y locations of the pawn that is selected to move
+                movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
+                movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
+                return true;
+            }
+            // Select Pawn Action
+            else if (action instanceof ParSelectAction) {
+                parState.setRadioButtonChecked(((ParSelectAction) action).getPawnIdx());
+                return true;
+            }
         }
         //return false;
 
 
         /*Instance Variables*/
         //integer arrays to hold each player's current pawn locations (x and y coordinates)
-        int[] player1LocationsX = parState.getPawnLocationsXForPlayer(0);
-        int[] player2LocationsX = parState.getPawnLocationsXForPlayer(1);
-        int[] player3LocationsX = parState.getPawnLocationsXForPlayer(2);
-        int[] player4LocationsX = parState.getPawnLocationsXForPlayer(3);
-        int[] player1LocationsY = parState.getPawnLocationsYForPlayer(0);
-        int[] player2LocationsY = parState.getPawnLocationsYForPlayer(1);
-        int[] player3LocationsY = parState.getPawnLocationsYForPlayer(2);
-        int[] player4LocationsY = parState.getPawnLocationsYForPlayer(3);
+        for (int i = 0; i < 4; i++) {
+            player0LocationsX[i] = parState.getPawnLocationsXForPlayer(0,i);
+            player1LocationsX[i] = parState.getPawnLocationsXForPlayer(1,i);
+            player2LocationsX[i] = parState.getPawnLocationsXForPlayer(2,i);
+            player3LocationsX[i] = parState.getPawnLocationsXForPlayer(3,i);
+            player0LocationsY[i] = parState.getPawnLocationsYForPlayer(0,i);
+            player1LocationsY[i] = parState.getPawnLocationsYForPlayer(1,i);
+            player2LocationsY[i] = parState.getPawnLocationsYForPlayer(2,i);
+            player3LocationsY[i] = parState.getPawnLocationsYForPlayer(3,i);
+        }
 
         int locPlayer1InitX;
         int locPlayer1InitY;
