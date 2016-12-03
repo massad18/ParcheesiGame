@@ -148,7 +148,7 @@ public class ParLocalGame extends LocalGame {
                     //substage is changed to Begin_Move (1)
                     parState.setCurrentSubstage(parState.Begin_Move);
                 }
-                // ToDo: find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
+                // ToDo: after all of the die have been used or there are no more legal moves, change player turn (guessing this will be implemented in the "instanceOf MoveAction" section)
                 return true;
             }
             // Move Action (called when confirm move is pressed)
