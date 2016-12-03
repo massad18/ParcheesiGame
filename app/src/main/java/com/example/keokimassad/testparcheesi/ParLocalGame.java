@@ -16,6 +16,7 @@ public class ParLocalGame extends LocalGame {
 
     PawnLocation pawnLocation = new PawnLocation();
 
+    //Arrays to locations of each players' pawn using X and Y coordinates
     private int[] player0LocationsX = new int[4];
     private int[] player1LocationsX = new int[4];
     private int[] player2LocationsX = new int[4];
@@ -26,16 +27,19 @@ public class ParLocalGame extends LocalGame {
     private int[] player2LocationsY = new int[4];
     private int[] player3LocationsY = new int[4];
 
+    //Variables to hold new X and Y coordinates for where the pawn is going to move
     private int movingLocationX;
     private int movingLocationY;
 
     private int[] checkingLocationX = new int[4];
     private int[] checkingLocaitonY = new int[4];
 
+    //Constructor
     public ParLocalGame () {
         parState = new ParState(); //initializes an instance of parState
     }
 
+    //Getter to return array of current player's in the game
     public GamePlayer[] getPlayerArray()
     {
         return players;
@@ -52,6 +56,7 @@ public class ParLocalGame extends LocalGame {
     }
 
     @Override
+    //Method to check if a player has met the winning conditions (returns string of player if yes and NULL if not)
     protected String checkIfGameOver() {
         //Checks every player for winning condition
         for (int playerIdx = 0; playerIdx < players.length; playerIdx++) {
@@ -142,8 +147,6 @@ public class ParLocalGame extends LocalGame {
                 {
                     //substage is changed to Begin_Move (1)
                     parState.setCurrentSubstage(parState.Begin_Move);
-                    //Player can't roll any more in this turn so there's no risk of number of doubles increasing (so it resets here)
-                    parState.setNumOfDoubles(0);
                 }
                 // ToDo: find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
                 return true;
