@@ -113,7 +113,7 @@ public class ParLocalGame extends LocalGame {
         System.out.println("Entering makeMove");
         if (this.players[parState.getPlayerTurn()] == action.getPlayer()) {
             System.out.println("player turn is true");
-            // Roll Action
+            // Roll Action (called when either die is pressed)
             if (action instanceof ParRollAction) {
                 System.out.println("roll Action called");
                 int randomDieVal1 = (int) (Math.random() * 6) + 1;
@@ -121,21 +121,102 @@ public class ParLocalGame extends LocalGame {
                 parState.setDieVals(randomDieVal1, randomDieVal2);
                 System.out.println("die1 Val: " + parState.getDice1Val());
                 System.out.println("die2 Val: " + parState.getDice2Val());
+                // ToDo: determining if there is a double rolled or not and find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
                 return true;
             }
-            // Move Action
+            // Move Action (called when confirm move is pressed)
             else if (action instanceof ParMoveAction) {
 
                 // set the initial x and y locations of the pawn that is selected to move
                 movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
                 movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
+
+                // ToDo: implement moving out of the starting area when a 5 is rolled or the sum of the die equal to 5
+                // if either of the die values = 5 or the sum up to 5
+                if (parState.getDice1Val() == 5 || parState.getDice2Val() == 5 || parState.getDice2Val()+parState.getDice1Val() == 5) {
+                    if (parState.getPlayerTurn() == 0) {
+
+                    }
+                    else if (parState.getPlayerTurn() == 1) {
+
+                    }
+                    else if (parState.getPlayerTurn() == 2) {
+
+                    }
+                    else {
+
+                    }
+                }
+
+                // ToDo: implement moving around the normal board pieces
+                // make a normal move if the piece is on the normal board pieces
+
+
+                // check if the player is trying to move into their safe zone or into the homebase
+                // ToDo: implement moving into safe zone and homebase
+                if (parState.getPlayerTurn() == 0) {
+                    // moving into safe zone
+                    //
+                    // if (initial location is less than 64 and the final location is greater than
+                    // or equaled to 64) the pawn will go into the safe zone.
+                    // Final location will be 67 + [roll - (63-initial location)]
+                    //          i.e. start at 60 and roll 4... 63-60 = 3... 4 - 3 = 1...
+                    //          67 + 1 = 68 (starting location of the safe zone)
+
+                    // moving into home base
+                    //
+                    // if (final location is EQUALED to 75) move is valid...
+                }
+                else if (parState.getPlayerTurn() == 1) {
+                    // moving into safe zone
+                    //
+                    // if (initial location is less than 47 and the final location is greater than
+                    // or equaled to 47) the pawn will go into the safe zone.
+                    // Final location will be 75 + [roll - (46-initial location)]
+                    //          i.e. start at 43 and roll 4... 46-43 = 3... 4 - 3 = 1...
+                    //          75 + 1 = 76 (starting location of the safe zone)
+
+                    // moving into home base
+                    //
+                    // if (final location is EQUALED to 83) move is valid...
+                }
+                else if (parState.getPlayerTurn() == 2) {
+                    // moving into safe zone
+                    //
+                    // if (initial location is less than 30 and the final location is greater than
+                    // or equaled to 30) the pawn will go into the safe zone.
+                    // Final location will be 83 + [roll - (29-initial location)]
+                    //          i.e. start at 26 and roll 4... 29-26 = 3... 4 - 3 = 1...
+                    //          83 + 1 = 84 (starting location of the safe zone)
+
+                    // moving into home base
+                    //
+                    // if (final location is EQUALED to 91) move is valid...
+                }
+                // player 3
+                else {
+                    // moving into safe zone
+                    //
+                    // if (initial location is less than 13 and the final location is greater than
+                    // or equaled to 13) the pawn will go into the safe zone.
+                    // Final location will be 91 + [roll - (12-initial location)]
+                    //          i.e. start at 9 and roll 4... 12-9 = 3... 4 - 3 = 1...
+                    //          91 + 1 = 92 (starting location of the safe zone)
+
+                    // moving into home base
+                    //
+                    // if (final location is EQUALED to 99) move is valid...
+                }
                 return true;
             }
-            // Select Pawn Action
+            // Select Pawn Action (called when a radio button is changed)
             else if (action instanceof ParSelectAction) {
+                // set the radio button variable in the parState class after changing the radio button
                 parState.setRadioButtonChecked(((ParSelectAction) action).getPawnIdx());
                 return true;
             }
+            // ToDo: looking to add another action in choosing the rectangle when the board piece is pressed
+            // ToDo: looking to add another action in choosing the die when the button is pressed
         }
         //return false;
 
