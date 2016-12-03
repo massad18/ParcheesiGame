@@ -272,6 +272,9 @@ public class ParState extends GameState {
     //Getter to return the number of doubles the current player has had in the turn
     public int getNumOfDoubles() { return numOfDoubles; }
 
+    //Setter to set the number of doubles the current player has had in a turn
+    public void setNumOfDoubles(int amountOfDoubles) { numOfDoubles = amountOfDoubles; }
+
     //Getter to return who's turn it currently is
     public int getPlayerTurn() { return playerTurn; }
 

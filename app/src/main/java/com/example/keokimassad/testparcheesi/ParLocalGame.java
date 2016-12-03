@@ -109,18 +109,35 @@ public class ParLocalGame extends LocalGame {
     // canMove method is called before the makeMove method
     @Override
     protected boolean makeMove(GameAction action) {
-        /*Justin trying random stuff here */
-        System.out.println("Entering makeMove");
+        //Checks to see if it's the player's turn
         if (this.players[parState.getPlayerTurn()] == action.getPlayer()) {
-            System.out.println("player turn is true");
-            // Roll Action (called when either die is pressed)
+            // Roll Action (called when either die button is pressed and the player needs to role the dice)
             if (action instanceof ParRollAction) {
-                System.out.println("roll Action called");
+
+                //Creates two random integers between 1 and 6 for the dice values
                 int randomDieVal1 = (int) (Math.random() * 6) + 1;
                 int randomDieVal2 = (int) (Math.random() * 6) + 1;
+                //assigns the die values to the random integers just generated
                 parState.setDieVals(randomDieVal1, randomDieVal2);
-                System.out.println("die1 Val: " + parState.getDice1Val());
-                System.out.println("die2 Val: " + parState.getDice2Val());
+
+                System.out.println("Number of doubles: " + parState.getNumOfDoubles());
+                //Checks to see if the two random die values are equal. If they're equal a double has been rolled
+                if(randomDieVal1 == randomDieVal2)
+                {
+                    //Adds one to the total amount of doubles a player has rolled in the current turn
+                    parState.setNumOfDoubles(parState.getNumOfDoubles() + 1);
+
+                    //Checks to see if player has less or equal to 3 doubles, if so they roll again
+                    if(parState.getNumOfDoubles() <= 3)
+                    {
+
+                    }
+                    //Player has rolled doubles more than 3 times, furthest piece on board has to move back
+                    else
+                    {
+                        //ToDo: Add code to have player's piece furthest on board move back to home
+                    }
+                }
                 // ToDo: determining if there is a double rolled or not and find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
                 return true;
             }

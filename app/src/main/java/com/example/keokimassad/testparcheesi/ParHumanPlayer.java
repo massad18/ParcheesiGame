@@ -149,7 +149,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     }
 
     public void onClick (View button) {
-        //Peforms actions when dice pressed
+        //Performs actions when dice pressed
         //If the first die is pressed
         if(button == diceButtons[0])
         {
