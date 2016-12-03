@@ -130,14 +130,25 @@ public class ParLocalGame extends LocalGame {
                     //Checks to see if player has less or equal to 3 doubles, if so they roll again
                     if(parState.getNumOfDoubles() <= 3)
                     {
-
+                        //ToDo: Stuff
                     }
                     //Player has rolled doubles more than 3 times, furthest piece on board has to move back
                     else
                     {
-                        parState.setNumOfDoubles(0); //resets number of doubles to 0
                         //ToDo: Add code to have player's piece furthest on board move back to home
+                        //resets substage to Roll (0) since the player's turn is over and a new one begins
+                        parState.setCurrentSubstage(parState.Roll);
+                        //resets number of doubles to 0
+                        parState.setNumOfDoubles(0);
                     }
+                }
+                //Player hasn't rolled a double
+                else
+                {
+                    //substage is changed to Begin_Move (1)
+                    parState.setCurrentSubstage(parState.Begin_Move);
+                    //Player can't roll any more in this turn so there's no risk of number of doubles increasing (so it resets here)
+                    parState.setNumOfDoubles(0);
                 }
                 // ToDo: determining if there is a double rolled or not and find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
                 return true;
