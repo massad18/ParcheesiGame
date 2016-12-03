@@ -97,6 +97,8 @@ public class ParLocalGame extends LocalGame {
                 }
                 //Checks if player has 4 pawns at goal
                 if (totalPawnsAtGoalForPlayer == 4) {
+                    //Sets the substate of the game to Game_Over (4)
+                    parState.setCurrentSubstage(parState.Game_Over);
                     //If so, the player has won the game
                     return "Player " + playerIdx + " has won!";
                 }
@@ -145,7 +147,7 @@ public class ParLocalGame extends LocalGame {
                     //Player can't roll any more in this turn so there's no risk of number of doubles increasing (so it resets here)
                     parState.setNumOfDoubles(0);
                 }
-                // ToDo: determining if there is a double rolled or not and find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
+                // ToDo: find a way to change the player turn if a double is not rolled, after all of the die have been used or there are no more legal moves (guessing this will be implemented in the "instanceOf MoveAction" section)
                 return true;
             }
             // Move Action (called when confirm move is pressed)

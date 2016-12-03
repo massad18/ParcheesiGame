@@ -202,9 +202,12 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
             System.out.println("2 pressed");
         }
-        else if(button == makeMoveButton)
+        if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
         {
-            System.out.println("3 pressed");
+            if(button == makeMoveButton)
+            {
+
+            }
         }
     }
 
@@ -241,7 +244,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         parSurfaceView.setOnTouchListener(this);
 
         //Initializes the current substage to Roll (0)
-        parState.setCurrentSubstage(0);
+        parState.setCurrentSubstage(parState.Roll);
     }
 
 

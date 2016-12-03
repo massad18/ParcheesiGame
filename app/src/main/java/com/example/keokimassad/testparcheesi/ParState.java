@@ -267,7 +267,23 @@ public class ParState extends GameState {
 
 
 
+    //Method called to change turns and reset values
+    public void changePlayerTurn()
+    {
+        //Resets values
+        currentSubstage = Roll;
+        numOfDoubles = 0;
 
+        //Changes the player turn based on who's turn it just was
+        if(playerTurn == 3)
+        {
+            playerTurn = 0;
+        }
+        else
+        {
+            playerTurn++;
+        }
+    }
 
     //Getter to return the number of doubles the current player has had in the turn
     public int getNumOfDoubles() { return numOfDoubles; }
