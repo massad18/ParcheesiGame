@@ -153,15 +153,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //If the first die is pressed
         if(button == diceButtons[0])
         {
-            //ToDo:Not sure if actions called correctly (may want to check that)
-            //ToDo:Move the setDieVals to makeMove in ParLocalGame
             switch (state.getCurrentSubstage())
             {
-                //Player has yet to roll the dice
+                //Player needs to role the dice
                 case 0:
-                    //int die1 = (int)(Math.random()*6) + 1;
-                    //int die2 = (int)(Math.random()*6) + 1;
-                    //parState.setDieVals(die1,die2);
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
@@ -172,7 +167,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     //ParMoveAction is called to move a pawn
                     //ParMoveAction actMove = new ParMoveAction(this); //ToDo: REDO THIS STUFF, AVAYA STILL MESSING AROUND
                     //game.sendAction(actMove); //ToDo: Look above
-                    //diceButtons[0].setEnabled(false); //sets die to no longer be pressed
                     break;
             }
         }
@@ -181,11 +175,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
             switch (state.getCurrentSubstage())
             {
-                //Player has yet to roll the dice
+                //Player needs to role the dice
                 case 0:
-                    //int die1 = (int)(Math.random()*6) + 1;
-                    //int die2 = (int)(Math.random()*6) + 1;
-                    //parState.setDieVals(die1,die2);
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
@@ -196,7 +187,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     //ParMoveAction is called to move a pawn
                     //ParMoveAction actMove = new ParMoveAction(this); //ToDo: REDO THIS STUFF, AVAYA STILL MESSING AROUND
                     //game.sendAction(actMove); //ToDo: Look above
-                    //diceButtons[1].setEnabled(false); //sets die to no longer be pressed
                     break;
             }
         }
