@@ -21,6 +21,7 @@ public class ParState extends GameState {
     private int [] dieVals = new int[2]; //array to hold current dice values
     private int numOfDoubles; //holds number of doubles current player has had in the turn
     int playerTurn; //holds who's turn it currently is
+    ParLocalGame myGame = new ParLocalGame();
 
     // initialize the radio button that is checked
     int radioButtonChecked;
@@ -267,23 +268,6 @@ public class ParState extends GameState {
 
 
 
-    //Method called to change turns and reset values
-    public void changePlayerTurn()
-    {
-        //Resets values
-        currentSubstage = Roll;
-        numOfDoubles = 0;
-
-        //Changes the player turn based on who's turn it just was
-        if(playerTurn == 3)
-        {
-            playerTurn = 0;
-        }
-        else
-        {
-            playerTurn++;
-        }
-    }
 
     //Getter to return the number of doubles the current player has had in the turn
     public int getNumOfDoubles() { return numOfDoubles; }
@@ -302,6 +286,7 @@ public class ParState extends GameState {
             playerTurn = 0;
         }
         currentSubstage = Roll;
+        numOfDoubles = 0;
     }
 
     //Getter to return integer array of both dice values

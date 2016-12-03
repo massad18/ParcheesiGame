@@ -122,7 +122,6 @@ public class ParLocalGame extends LocalGame {
                 //assigns the die values to the random integers just generated
                 parState.setDieVals(randomDieVal1, randomDieVal2);
 
-                System.out.println("Number of doubles: " + parState.getNumOfDoubles());
                 //Checks to see if the two random die values are equal. If they're equal a double has been rolled
                 if(randomDieVal1 == randomDieVal2)
                 {
@@ -133,10 +132,9 @@ public class ParLocalGame extends LocalGame {
                     if(parState.getNumOfDoubles() > 3)
                     {
                         //ToDo: Add code to have player's piece furthest on board move back to home
-                        //resets substage to Roll (0) since the player's turn is over and a new one begins
-                        parState.setCurrentSubstage(parState.Roll);
-                        //resets number of doubles to 0
-                        parState.setNumOfDoubles(0);
+                        //Player's turn is over since they rolled to many doubles
+                        //Calls setPlayerTurn() to change player's turn and reset numOfDoubles and the substage
+                        parState.setPlayerTurn();
                     }
                 }
                 //Player hasn't rolled a double
