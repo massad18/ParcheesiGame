@@ -126,14 +126,9 @@ public class ParLocalGame extends LocalGame {
                 {
                     //Adds one to the total amount of doubles a player has rolled in the current turn
                     parState.setNumOfDoubles(parState.getNumOfDoubles() + 1);
-
-                    //Checks to see if player has less or equal to 3 doubles, if so they roll again
-                    if(parState.getNumOfDoubles() <= 3)
-                    {
-                        //ToDo: Stuff
-                    }
+                    
                     //Player has rolled doubles more than 3 times, furthest piece on board has to move back
-                    else
+                    if(parState.getNumOfDoubles() > 3)
                     {
                         //ToDo: Add code to have player's piece furthest on board move back to home
                         //resets substage to Roll (0) since the player's turn is over and a new one begins
