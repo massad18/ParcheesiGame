@@ -136,7 +136,24 @@ public class ParLocalGame extends LocalGame {
                     //Player has rolled doubles more than 3 times, furthest piece on board has to move back
                     if(parState.getNumOfDoubles() > 3)
                     {
-                        //ToDo: Add code to have player's piece furthest on board move back to home
+                        int currentPlayer = parState.getPlayerTurn();
+                        int maxPawnLoc = 0;
+                        int maxPawnNum = 0;
+                        for(int i = 0; i<4; i++) //loops through each pawn
+                        {
+                            int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
+                            int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
+                            int nextPawnLoc = parState.getRect(curPawnX, curPawnY); //finds the rectangle the pawn is currently in
+                            //ToDo: add an if statement to make sure the pawn isn't in the end zone
+                            if(nextPawnLoc>maxPawnLoc) //finds the furthest pawn
+                            {
+
+                                maxPawnLoc = nextPawnLoc;
+                                maxPawnNum = i;
+                            }
+                        }
+                        parState.resetPawnLocation(currentPlayer,maxPawnNum); //resets the location of the furthest pawn
+
                         //Player's turn is over since they rolled to many doubles
                         //Calls setPlayerTurn() to change player's turn and reset numOfDoubles and the substage
                         parState.setPlayerTurn();
@@ -177,6 +194,7 @@ public class ParLocalGame extends LocalGame {
 
                 // ToDo: implement moving around the normal board pieces
                 // make a normal move if the piece is on the normal board pieces
+
 
 
                 // check if the player is trying to move into their safe zone or into the homebase

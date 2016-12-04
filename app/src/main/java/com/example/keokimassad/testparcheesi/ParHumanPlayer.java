@@ -258,7 +258,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
         int x = (int) event.getX();
         int y = (int) event.getY();
-        int rectNum = parState.giveRectTouch(x, y);
+        int rectNum = parState.getRect(x, y);
         if( rectNum >= 0)
         {
             ParMoveAction action  = new ParMoveAction(this, rectNum);

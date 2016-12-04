@@ -249,7 +249,7 @@ public class ParState extends GameState {
 
     //TEMPORARY METHOD FOR AVAYA
 
-    public int giveRectTouch (float x, float y) {
+    public int getRect (float x, float y) {
         for (int i = 0; i < board.length; i++) {
             Rect rect = board[i];
             if (rect.contains(x, y)) {
