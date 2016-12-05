@@ -14,6 +14,7 @@ public class Pawn {
     public float yCor;
     public float size = 10;
     public Paint paint = new Paint();
+    public boolean safe = false;
 
 
     public Pawn(float xCor, float yCor) {
@@ -75,5 +76,14 @@ public class Pawn {
 
     }
 
+    public boolean isSafe()
+    {
+        return safe;
+    }
+
+    public void setSafe(boolean safetyChange)
+    {
+        safe = safetyChange;
+    }
 
 }
