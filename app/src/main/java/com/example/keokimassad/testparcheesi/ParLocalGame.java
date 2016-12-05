@@ -269,14 +269,14 @@ public class ParLocalGame extends LocalGame {
                     else {
                         outerloop:
                         for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                            if (pawnLocation.pawnLocationX[movingRectangle + dieValue1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                            if (pawnLocation.pawnLocationX[movingRectangle+dieValue1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
                                 illegalMove1 = true;
                                 break outerloop;
                             }
                         }
                         outerloop:
                         for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                            if (pawnLocation.pawnLocationX[movingRectangle + dieValue1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                            if (pawnLocation.pawnLocationX[movingRectangle+dieValue1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
                                 illegalMove1 = true;
                                 break outerloop;
                             }
@@ -293,14 +293,14 @@ public class ParLocalGame extends LocalGame {
                     else {
                         outerloop:
                         for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                            if (pawnLocation.pawnLocationX[movingRectangle + dieValue2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                            if (pawnLocation.pawnLocationX[movingRectangle+dieValue2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
                                 illegalMove2 = true;
                                 break outerloop;
                             }
                         }
                         outerloop:
                         for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                            if (pawnLocation.pawnLocationX[movingRectangle + dieValue2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                            if (pawnLocation.pawnLocationX[movingRectangle+dieValue2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
                                 illegalMove2 = true;
                                 break outerloop;
                             }
@@ -317,14 +317,14 @@ public class ParLocalGame extends LocalGame {
                     else {
                         outerloop:
                         for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                            if (pawnLocation.pawnLocationX[movingRectangle + dieValueTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                            if (pawnLocation.pawnLocationX[movingRectangle+dieValueTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
                                 illegalMoveTotal = true;
                                 break outerloop;
                             }
                         }
                         outerloop:
                         for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                            if (pawnLocation.pawnLocationX[movingRectangle + dieValueTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                            if (pawnLocation.pawnLocationX[movingRectangle+dieValueTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
                                 illegalMoveTotal = true;
                                 break outerloop;
                             }
