@@ -144,8 +144,7 @@ public class ParLocalGame extends LocalGame {
                             int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
                             int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
                             int nextPawnLoc = parState.getRect(curPawnX, curPawnY); //finds the rectangle the pawn is currently in
-                            //ToDo: add an if statement to make sure the pawn isn't in the end zone
-                            if(nextPawnLoc>maxPawnLoc) //finds the furthest pawn
+                            if(nextPawnLoc>maxPawnLoc && nextPawnLoc>67) //finds the furthest pawn
                             {
 
                                 maxPawnLoc = nextPawnLoc;

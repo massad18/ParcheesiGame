@@ -28,19 +28,19 @@ public class Pawn {
         if(playerIndex == 0)
         {
             if (selected) {
-                paint.setColor(Color.MAGENTA);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
             }
             canvas.drawCircle(xCor, yCor, size, paint);
-            paint.setColor(Color.RED);
+            paint.setColor(0xFF9F1515);
             canvas.drawCircle(xCor, yCor, size-2, paint);
         }
         else if(playerIndex == 1)
         {
             if (selected) {
-                paint.setColor(Color.MAGENTA);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
@@ -52,19 +52,19 @@ public class Pawn {
         else if(playerIndex == 2)
         {
             if (selected) {
-                paint.setColor(Color.MAGENTA);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
             }
             canvas.drawCircle(xCor, yCor, size, paint);
-            paint.setColor(Color.YELLOW);
+            paint.setColor(0XFFe5d31d);
             canvas.drawCircle(xCor, yCor, size-2, paint);
         }
         else
         {
             if (selected) {
-                paint.setColor(Color.MAGENTA);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
