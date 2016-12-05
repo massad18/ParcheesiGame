@@ -193,14 +193,23 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         else if(button == useDieButtons[0])
         {
             System.out.println("0 pressed");
+            // calls ParUseDieAction and sets the current die value selected to die 1
+            ParUseDieAction parUseDieAction = new ParUseDieAction(this, parState.getDice1Val());
+            game.sendAction(parUseDieAction);
         }
         else if(button == useDieButtons[1])
         {
             System.out.println("1 pressed");
+            // calls ParUseDieAction and sets the current die value selected to die 2
+            ParUseDieAction parUseDieAction = new ParUseDieAction(this, parState.getDice2Val());
+            game.sendAction(parUseDieAction);
         }
         else if(button == useDieButtons[2])
         {
             System.out.println("2 pressed");
+            // calls ParUseDieAction and sets the current die value selected to die 1 & 2
+            ParUseDieAction parUseDieAction = new ParUseDieAction(this, parState.getDice1Val() + parState.getDice2Val());
+            game.sendAction(parUseDieAction);
         }
         if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
         {

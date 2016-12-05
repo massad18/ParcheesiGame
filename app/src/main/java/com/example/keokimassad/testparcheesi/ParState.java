@@ -24,6 +24,10 @@ public class ParState extends GameState {
 
     // initialize the radio button that is checked
     int radioButtonChecked;
+    // initialize the die value button selected
+    int dieValueSelected;
+    // initialize the legal move array
+    Hashtable<String, Integer> legalMoves = new Hashtable<>();
 
     //4 location arrays to hold locations of each players' pawns
     private int[] player0LocationsX = new int[4];
@@ -62,6 +66,7 @@ public class ParState extends GameState {
         Mid_Move = 2;
         Game_Over = 3;
         radioButtonChecked = p.getRadioButtonChecked();
+        dieValueSelected = p.
         currentSubstage = p.getCurrentSubstage();
         dieVals = p.getDiceVals();
         numOfDoubles = p.getNumOfDoubles();
@@ -314,6 +319,21 @@ public class ParState extends GameState {
         return radioButtonChecked;
     }
 
+    public void setDieValueSelected (int x) { dieValueSelected = x;}
+
+    public int getDieValueSelected() {return dieValueSelected;}
+
+    public void setLegalMoves(String die, int rectNumber) {
+        legalMoves.put(die, rectNumber);
+    }
+
+    public int getLegalMoves(String die) {
+        return legalMoves.get(die);
+    }
+    public void removeLegalMoves(String die) {
+        legalMoves.remove(die);
+    }
+
     //Getter to return current substage
     public int getCurrentSubstage() { return currentSubstage; }
 
@@ -394,6 +414,7 @@ public class ParState extends GameState {
         switch (playerIdx) {
             //red
             case 0:
+                // ToDo: CHANGE BACK TO 100!!!!!!! ONLY USED TO TEST THE CHECK LEGAL MOVE PORTION
                 setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
                 setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
                 setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
