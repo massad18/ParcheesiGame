@@ -171,7 +171,6 @@ public class ParLocalGame extends LocalGame {
                     //substage is changed to Begin_Move (1)
                     parState.setCurrentSubstage(parState.Begin_Move);
                 }
-                // ToDo: after all of the die have been used or there are no more legal moves, change player turn (guessing this will be implemented in the "instanceOf MoveAction" section)
 
                 return true;
             }
@@ -188,6 +187,7 @@ public class ParLocalGame extends LocalGame {
                 // ToDo: need to disable the die value that was used after making the move so that players cannot use the same die more than once and the board does not use that die value as a legal move when highlighting the board
                 // when a move is called, set the value of the die that was used to a value of -1
 
+                // ToDo: check if there are no more legal moves, change player turn (check if the legalMoves Hashmap in the ParState is empty)
 
                 return true;
             }

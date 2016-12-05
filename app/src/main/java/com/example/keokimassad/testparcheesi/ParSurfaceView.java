@@ -121,6 +121,8 @@ public class ParSurfaceView extends SurfaceView {
                 else {
                     selected = false;
                 }
+                // ToDo: add the ability to draw the outline of a rectangle around the legal moves on the board (if want to)
+                // ToDo: additional to above... add somewhere that gets the die value that is selected from the ParState and changes the color of the rectangle for the legal move that corresponds to that die value
                 currLoc.drawOn(playerXCor, playerYCor, g, i, selected);
             }
         }

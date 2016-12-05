@@ -146,6 +146,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 game.sendAction(parSelectAction3);
                 break;
         }
+        ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(this);
+        game.sendAction(parCheckLegalMoveAction);
     }
 
     public void onClick (View button) {
@@ -160,6 +162,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
+                    ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(this);
+                    game.sendAction(parCheckLegalMoveAction);
                     break;
                 //Player has rolled and has to move pawns
                 case 1:
@@ -180,6 +184,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                     //ParRollAction is called to roll the dice
                     ParRollAction actRoll = new ParRollAction(this);
                     game.sendAction(actRoll);
+                    ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(this);
+                    game.sendAction(parCheckLegalMoveAction);
                     break;
                 //Player has rolled and has to move pawns
                 case 1:
@@ -215,7 +221,11 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
             if(button == makeMoveButton)
             {
-
+                // create a MoveAction and send the action...
+                // Keoki: I believe that we do not need the rectangle number in the MoveAction
+                // because everything should have already been decided and taken into consideration
+                // within the CheckLegalMoveAction... this is just to confirm the current move that
+                // is selected
             }
         }
     }
