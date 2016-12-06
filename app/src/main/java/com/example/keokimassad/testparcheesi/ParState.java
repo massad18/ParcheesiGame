@@ -26,6 +26,8 @@ public class ParState extends GameState {
     int radioButtonChecked = -1;
     // initialize the die value button selected
     int dieValueSelected = -1;
+    // initialize the die that was selected
+    int dieSelected = -1;
     // initialize the legal move array
     Hashtable<String, Integer> legalMoves0 = new Hashtable<>();
     Hashtable<String, Integer> legalMoves1 = new Hashtable<>();
@@ -70,8 +72,11 @@ public class ParState extends GameState {
         Game_Over = 3;
         radioButtonChecked = p.getRadioButtonChecked();
         dieValueSelected = p.getDieValueSelected();
+        dieSelected = p.getDieSelected();
         currentSubstage = p.getCurrentSubstage();
-        dieVals = p.getDiceVals();
+        for (int i = 0; i < 2; i++) {
+            dieVals[i] = p.getDiceVals(i);
+        }
         numOfDoubles = p.getNumOfDoubles();
         playerTurn = p.getPlayerTurn();
         for (int i = 0; i < 4; i++) {
@@ -99,6 +104,11 @@ public class ParState extends GameState {
             player3LocationsY[i] = p.getPawnLocationsYForPlayer(3, i);
         }
         board = p.getBoard();
+
+        legalMoves0 = p.legalMoves0;
+        legalMoves1 = p.legalMoves1;
+        legalMoves2 = p.legalMoves2;
+        legalMoves3 = p.legalMoves3;
     }
 
     public void initBoardPieces() {
@@ -301,9 +311,9 @@ public class ParState extends GameState {
     }
 
     //Getter to return integer array of both dice values
-    public int[] getDiceVals()
+    public int getDiceVals(int index)
     {
-        return dieVals;
+        return dieVals[index];
     }
 
     //Getter to return integer value of first die value
@@ -329,6 +339,10 @@ public class ParState extends GameState {
     public void setDieValueSelected (int x) { dieValueSelected = x;}
 
     public int getDieValueSelected() {return dieValueSelected;}
+
+    public void setDieSelected (int x) { dieSelected = x;}
+
+    public int getDieSelected() {return dieSelected;}
 
     public void setLegalMoves(String die, int index, int rectNumber) {
         switch (index) {
@@ -474,7 +488,7 @@ public class ParState extends GameState {
                 // ToDo: CHANGE BACK TO 100!!!!!!! ONLY USED TO TEST THE CHECK LEGAL MOVE PORTION
                 setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[0], pawnLocation.pawnLocationY[0]);
                 setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[2], pawnLocation.pawnLocationY[2]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[5], pawnLocation.pawnLocationY[5]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[6], pawnLocation.pawnLocationY[6]);
                 setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
                 break;
             //blue

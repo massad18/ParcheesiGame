@@ -12,14 +12,19 @@ public class ParUseDieAction extends GameAction {
 
     private GameMainActivity myActivity;
     private int totalDieValue;
+    private int dieIndex;
 
-    public ParUseDieAction (GamePlayer player, int dieValue)
+    public ParUseDieAction (GamePlayer player, int dieValue, int dieIndex)
     {
         super(player);
         this.totalDieValue = dieValue;
+        this.dieIndex = dieIndex;
     }
 
     public int getTotalDieValue() {
         return totalDieValue;
+    }
+    public int getDieIndex() {
+        return dieIndex;
     }
 }
