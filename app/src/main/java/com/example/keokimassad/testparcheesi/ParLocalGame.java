@@ -132,8 +132,8 @@ public class ParLocalGame extends LocalGame {
             if (action instanceof ParRollAction) {
 
                 //Creates two random integers between 1 and 6 for the dice values
-                int randomDieVal1 = /*(int) (Math.random() * 6) + 1*/ 4;
-                int randomDieVal2 = /*(int) (Math.random() * 6) + 1*/ 1;
+                int randomDieVal1 = (int) (Math.random() * 6) + 1;
+                int randomDieVal2 = (int) (Math.random() * 6) + 1;
 
                 //assigns the die values to the random integers just generated
                 parState.setDieVals(randomDieVal1, randomDieVal2);
