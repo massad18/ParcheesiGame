@@ -9,16 +9,8 @@ import game.actionMsg.GameAction;
 
 public class ParMoveAction extends GameAction {
 
-    private int rectangle;
-
-    public ParMoveAction(GamePlayer player, int rectNum)
+    public ParMoveAction(GamePlayer player)
     {
         super(player);
-        this.rectangle = rectNum;
-    }
-
-    public int getRectangle()
-    {
-        return rectangle;
     }
 }

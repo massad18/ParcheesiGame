@@ -23,9 +23,9 @@ public class ParState extends GameState {
     int playerTurn; //holds who's turn it currently is
 
     // initialize the radio button that is checked
-    int radioButtonChecked;
+    int radioButtonChecked = -1;
     // initialize the die value button selected
-    int dieValueSelected;
+    int dieValueSelected = -1;
     // initialize the legal move array
     Hashtable<String, Integer> legalMoves0 = new Hashtable<>();
     Hashtable<String, Integer> legalMoves1 = new Hashtable<>();
@@ -376,6 +376,19 @@ public class ParState extends GameState {
                 legalMoves3.remove(die);
             break;
         }
+    }
+    public boolean containsLegalMoves(String die, int index) {
+        switch (index) {
+            case 0:
+                return legalMoves0.containsKey(die);
+            case 1:
+                return legalMoves1.containsKey(die);
+            case 2:
+                return legalMoves2.containsKey(die);
+            case 3:
+                return legalMoves3.containsKey(die);
+        }
+        return false;
     }
 
     //Getter to return current substage

@@ -216,13 +216,14 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
 
         }
-        if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
-        {
-            if(button == makeMoveButton)
+//        if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
+//        {
+            else if(button == makeMoveButton)
             {
-
+                ParMoveAction parMoveAction = new ParMoveAction(this);
+                game.sendAction(parMoveAction);
             }
-        }
+//        }
     }
 
     @Override
@@ -239,6 +240,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         this.useDieButtons[0] = (Button) activity.findViewById(R.id.useDie1);
         this.useDieButtons[1] = (Button) activity.findViewById(R.id.useDie2);
         this.useDieButtons[2] = (Button) activity.findViewById(R.id.useBothDice);
+        this.makeMoveButton = (Button) activity.findViewById(R.id.makeMoveButton);
         this.endTurnButton = (Button) activity.findViewById(R.id.endTurnButton);
         textView = (TextView) activity.findViewById(R.id.textView);
         textView1 = (TextView) activity.findViewById(R.id.textView1);
@@ -255,6 +257,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         selectPawnButtons = (RadioGroup) activity.findViewById(R.id.selectPawn);
         selectPawnButtons.setOnCheckedChangeListener(this);
         selectPawnButtons.clearCheck();
+
+        makeMoveButton.setOnClickListener(this);
 
         endTurnButton.setOnClickListener(this);
 
@@ -278,7 +282,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         int rectNum = parState.getRect(x, y);
         if( rectNum >= 0)
         {
-            ParMoveAction action  = new ParMoveAction(this, rectNum);
+            ParMoveAction action  = new ParMoveAction(this);
             //surfaceView.invalidate();
         }
 

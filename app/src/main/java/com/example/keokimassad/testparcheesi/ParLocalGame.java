@@ -129,6 +129,7 @@ public class ParLocalGame extends LocalGame {
                 //Creates two random integers between 1 and 6 for the dice values
 //                int randomDieVal1 = (int) (Math.random() * 6) + 1;
 //                int randomDieVal2 = (int) (Math.random() * 6) + 1;
+                // ToDo: change the die values back
                 int randomDieVal1 = 4;
                 int randomDieVal2 = 3;
                 //assigns the die values to the random integers just generated
@@ -187,6 +188,13 @@ public class ParLocalGame extends LocalGame {
             // Move Action (called when confirm move is pressed)
             else if (action instanceof ParMoveAction) {
 
+                // ToDo: confirm the move upon pressing the confirm move action and the given values for parState.radioButtonChecked, parState.dieValueSelected, etc.
+
+                // ToDo: use the parState.removeLegalMove when a legal move is used... (if one die is used... remove that die and the total die... if the total of the die are used, remove all three of the moves)
+
+                // ToDo: need to disable the die value that was used after making the move so that players cannot use the same die more than once and the board does not use that die value as a legal move when highlighting the board
+                // when a move is called, set the value of the die that was used to a value of -1
+
                 int radioButtonChecked = parState.radioButtonChecked;
                 int dieValueSelected = parState.dieValueSelected;
 
@@ -204,6 +212,8 @@ public class ParLocalGame extends LocalGame {
                         break;
                 }
 
+                // ToDo: check if there are no more legal moves, change player turn (check if the legalMoves Hashmap in the ParState is empty)
+
                 if (parState.legalMoves0.isEmpty() && parState.legalMoves1.isEmpty() && parState.legalMoves2.isEmpty() && parState.legalMoves3.isEmpty()) {
                     // there are no legal moves, there for change the players turn
                     // parState.setPlayerTurn();
@@ -216,7 +226,41 @@ public class ParLocalGame extends LocalGame {
                                 // flash the screen
                             }
                             else {
-
+                                // there is a legal move for the pawn 1
+                                if (parState.containsLegalMoves(dieValue, parState.getRadioButtonChecked())) {
+                                    // make the move
+                                    int locationX = pawnLocation.pawnLocationX[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    int locationY = pawnLocation.pawnLocationY[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    parState.setPawnLocationsForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked(), locationX, locationY);
+                                    // remove the legal move that was made along with any other legal moves that correspond to the die that was used
+                                    if (dieValueSelected == 2) {
+                                        parState.removeLegalMoves("dieValue1", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValue2", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                    }
+                                    else {
+                                        parState.removeLegalMoves(dieValue, parState.getRadioButtonChecked());
+                                        if (parState.containsLegalMoves("dieValueTotal", parState.getRadioButtonChecked())) {
+                                            parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                        }
+                                        if (dieValueSelected == 0) {
+                                            parState.setDieVals(-1, parState.getDice2Val());
+                                        }
+                                        else if (dieValueSelected == 1) {
+                                            parState.setDieVals(parState.getDice1Val(), -1);
+                                        }
+                                        else {
+                                            parState.setDieVals(-1,-1);
+                                        }
+                                    }
+                                    // check to see if a pawn of the other player is being eaten
+                                    //
+                                    //...
+                                    //
+                                }
+                                else {
+                                    // flash the screen
+                                }
                             }
                             break;
                         case 1:
@@ -224,7 +268,41 @@ public class ParLocalGame extends LocalGame {
                                 // flash the screen
                             }
                             else {
-
+                                // there is a legal move for the pawn 2
+                                if (parState.containsLegalMoves(dieValue, parState.getRadioButtonChecked())) {
+                                    // make the move
+                                    int locationX = pawnLocation.pawnLocationX[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    int locationY = pawnLocation.pawnLocationY[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    parState.setPawnLocationsForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked(), locationX, locationY);
+                                    // remove the legal move that was made along with any other legal moves that correspond to the die that was used
+                                    if (dieValueSelected == 2) {
+                                        parState.removeLegalMoves("dieValue1", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValue2", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                    }
+                                    else {
+                                        parState.removeLegalMoves(dieValue, parState.getRadioButtonChecked());
+                                        if (parState.containsLegalMoves("dieValueTotal", parState.getRadioButtonChecked())) {
+                                            parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                        }
+                                        if (dieValueSelected == 0) {
+                                            parState.setDieVals(-1, parState.getDice2Val());
+                                        }
+                                        else if (dieValueSelected == 1) {
+                                            parState.setDieVals(parState.getDice1Val(), -1);
+                                        }
+                                        else {
+                                            parState.setDieVals(-1,-1);
+                                        }
+                                    }
+                                    // check to see if a pawn of the other player is being eaten
+                                    //
+                                    //...
+                                    //
+                                }
+                                else {
+                                    // flash the screen
+                                }
                             }
                             break;
 
@@ -233,7 +311,41 @@ public class ParLocalGame extends LocalGame {
                                 // flash the screen
                             }
                             else {
-
+                                // there is a legal move for the pawn 3
+                                if (parState.containsLegalMoves(dieValue, parState.getRadioButtonChecked())) {
+                                    // make the move
+                                    int locationX = pawnLocation.pawnLocationX[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    int locationY = pawnLocation.pawnLocationY[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    parState.setPawnLocationsForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked(), locationX, locationY);
+                                    // remove the legal move that was made along with any other legal moves that correspond to the die that was used
+                                    if (dieValueSelected == 2) {
+                                        parState.removeLegalMoves("dieValue1", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValue2", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                    }
+                                    else {
+                                        parState.removeLegalMoves(dieValue, parState.getRadioButtonChecked());
+                                        if (parState.containsLegalMoves("dieValueTotal", parState.getRadioButtonChecked())) {
+                                            parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                        }
+                                        if (dieValueSelected == 0) {
+                                            parState.setDieVals(-1, parState.getDice2Val());
+                                        }
+                                        else if (dieValueSelected == 1) {
+                                            parState.setDieVals(parState.getDice1Val(), -1);
+                                        }
+                                        else {
+                                            parState.setDieVals(-1,-1);
+                                        }
+                                    }
+                                    // check to see if a pawn of the other player is being eaten
+                                    //
+                                    //...
+                                    //
+                                }
+                                else {
+                                    // flash the screen
+                                }
                             }
                             break;
                         case 3:
@@ -241,594 +353,616 @@ public class ParLocalGame extends LocalGame {
                                 // flash the screen
                             }
                             else {
-
+                                // there is a legal move for the pawn 4
+                                if (parState.containsLegalMoves(dieValue, parState.getRadioButtonChecked())) {
+                                    // make the move
+                                    int locationX = pawnLocation.pawnLocationX[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    int locationY = pawnLocation.pawnLocationY[parState.getLegalMoves(dieValue, parState.getRadioButtonChecked())];
+                                    parState.setPawnLocationsForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked(), locationX, locationY);
+                                    // remove the legal move that was made along with any other legal moves that correspond to the die that was used
+                                    if (dieValueSelected == 2) {
+                                        parState.removeLegalMoves("dieValue1", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValue2", parState.getRadioButtonChecked());
+                                        parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                    }
+                                    else {
+                                        parState.removeLegalMoves(dieValue, parState.getRadioButtonChecked());
+                                        if (parState.containsLegalMoves("dieValueTotal", parState.getRadioButtonChecked())) {
+                                            parState.removeLegalMoves("dieValueTotal", parState.getRadioButtonChecked());
+                                        }
+                                        if (dieValueSelected == 0) {
+                                            parState.setDieVals(-1, parState.getDice2Val());
+                                        }
+                                        else if (dieValueSelected == 1) {
+                                            parState.setDieVals(parState.getDice1Val(), -1);
+                                        }
+                                        else {
+                                            parState.setDieVals(-1,-1);
+                                        }
+                                    }
+                                    // check to see if a pawn of the other player is being eaten
+                                    //
+                                    //...
+                                    //
+                                }
+                                else {
+                                    // flash the screen
+                                }
                             }
                             break;
                     }
                 }
 
-
-                // ToDo: confirm the move upon pressing the confirm move action and the given values for parState.radioButtonChecked, parState.dieValueSelected, etc.
-
-                // ToDo: use the parState.removeLegalMove when a legal move is used... (if one die is used... remove that die and the total die... if the total of the die are used, remove all three of the moves)
-
                 // ToDo: implement checking if a pawn of a different player is in the possible legal moves, therefore the pawn will be "eaten" (i.e. sent back to their respective starting location through the parState.resetPawnLocation method)
 
-                // ToDo: need to disable the die value that was used after making the move so that players cannot use the same die more than once and the board does not use that die value as a legal move when highlighting the board
-                // when a move is called, set the value of the die that was used to a value of -1
+                // check for the legal moves after the move has been made and the die/dice have been used
+                ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(action.getPlayer());
 
-                // ToDo: check if there are no more legal moves, change player turn (check if the legalMoves Hashmap in the ParState is empty)
+                sendAction(parCheckLegalMoveAction);
 
                 return true;
             }
             else if (action instanceof ParCheckLegalMoveAction) {
                 // ToDo: implement checking for legal moves and then highlighting them given the numbers on the die
 
-                // clears the legalMoves HashMap so that new entries can be entered
-                switch (parState.getRadioButtonChecked()) {
-                    case 0:
-                        parState.legalMoves0.clear();
-                        break;
-                    case 1:
-                        parState.legalMoves1.clear();
-                        break;
-                    case 2:
-                        parState.legalMoves2.clear();
-                        break;
-                    case 3:
-                        parState.legalMoves3.clear();
-                        break;
-                }
-
-                // set the initial x and y locations of the pawn that is selected to move
-                movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
-                movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
-
-                int dieValue1 = parState.getDice1Val();
-                int dieValue2 = parState.getDice2Val();
-                int dieValueTotal = dieValue1 + dieValue2;
-
-
-                outerloop:
-                for (int i = 0 ; i < pawnLocation.pawnLocationX.length; i++) {
-                    for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
-                        if (pawnLocation.pawnLocationX[i] == movingLocationX && pawnLocation.pawnLocationY[j] == movingLocationY && i == j) {
-                            movingRectangle = i;
-                            break outerloop;
-                        }
+                for (int i = 0; i < 4; i++) {
+                    // clears the legalMoves HashMap so that new entries can be entered
+                    switch (i) {
+                        case 0:
+                            parState.legalMoves0.clear();
+                            break;
+                        case 1:
+                            parState.legalMoves1.clear();
+                            break;
+                        case 2:
+                            parState.legalMoves2.clear();
+                            break;
+                        case 3:
+                            parState.legalMoves3.clear();
+                            break;
                     }
-                }
 
-                // if either of the die values = 5 or the sum up to 5
-                // and the pawn is in the homebase
+                    // set the initial x and y locations of the pawn that is selected to move
+                        movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), i);
+                        movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), i);
 
-                if (parState.getPlayerTurn() == 0) {
-                    if (movingRectangle == 100 + parState.getRadioButtonChecked()) {
-                        boolean illegalMoveStart0 = false;
-                        int finalMovingRectangleStart0 = 0;
-                        if (dieValue1 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart0 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart0 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart0 == false) {
-                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 0);
-                            }
-                        }
-                        if (dieValue2 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart0 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart0 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart0 == false) {
-                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 0);
-                            }
-                        }
-                        if (dieValueTotal == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart0 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart0 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart0 == false) {
-                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 0);
+                    int dieValue1 = parState.getDice1Val();
+                    int dieValue2 = parState.getDice2Val();
+                    int dieValueTotal = dieValue1 + dieValue2;
+
+
+                    outerloop:
+                    for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
+                        for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
+                            if (pawnLocation.pawnLocationX[k] == movingLocationX && pawnLocation.pawnLocationY[j] == movingLocationY && k == j) {
+                                movingRectangle = k;
+                                break outerloop;
                             }
                         }
                     }
-                }
-                else if (parState.getPlayerTurn() == 1) {
-                    if (movingRectangle == 104 + parState.getRadioButtonChecked()) {
-                        boolean illegalMoveStart1 = false;
-                        int finalMovingRectangleStart1 = 51;
-                        if (dieValue1 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart1 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart1 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart1 == false) {
-                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 51);
-                            }
-                        }
-                        if (dieValue2 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart1 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart1 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart1 == false) {
-                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 51);
-                            }                        }
-                        if (dieValueTotal == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart1 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart1 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart1 == false) {
-                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 51);
-                            }
-                        }
-                    }
-                }
-                else if (parState.getPlayerTurn() == 2) {
-                    if (movingRectangle == 108 + parState.getRadioButtonChecked()) {
-                        boolean illegalMoveStart2 = false;
-                        int finalMovingRectangleStart2 = 34;
-                        if (dieValue1 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart2 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart2 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart2 == false) {
-                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 34);
-                            }
-                        }
-                        if (dieValue2 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart2 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart2 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart2 == false) {
-                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 34);
-                            }                        }
-                        if (dieValueTotal == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart2 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart2 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart2 == false) {
-                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 34);
-                            }
-                        }
-                    }
-                }
-                else {
-                    if (movingRectangle == 112 + parState.getRadioButtonChecked()) {
-                        boolean illegalMoveStart3 = false;
-                        int finalMovingRectangleStart3 = 17;
-                        if (dieValue1 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart3 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart3 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart3 == false) {
-                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 17);
-                            }
-                        }
-                        if (dieValue2 == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart3 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart3 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart3 == false) {
-                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 17);
-                            }                        }
-                        if (dieValueTotal == 5) {
-                            outerloop:
-                            for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart3 = true;
-                                    break outerloop;
-                                }
-                            }
-                            outerloop:
-                            for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                                if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                    illegalMoveStart3 = true;
-                                    break outerloop;
-                                }
-                            }
-                            if (illegalMoveStart3 == false) {
-                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 17);
-                            }
-                        }
-                    }
-                }
 
-                // make a normal move if the piece is on the normal board pieces
-                // check for other pawns of the same player in the possible legal move locations, therefore cannot make the move (no blockades)
+                    // if either of the die values = 5 or the sum up to 5
+                    // and the pawn is in the homebase
 
-                //
-                // checking legal moves while using die 1
-                //
-
-                boolean illegalMove1 = false;
-                int finalMovingRectangle1 = movingRectangle+dieValue1;
-
-                // check if the die value was already used
-                if (dieValue1 == -1) {
-                    illegalMove1 = true;
-                }
-                else {
-                    // check if the player is trying to move into their safe zone or into the homebase
                     if (parState.getPlayerTurn() == 0) {
-                        // moving into safe zone
-                        //
-                        // if (initial location is less than 64 and the final location is greater than
-                        // or equaled to 64) the pawn will go into the safe zone.
-                        // Final location will be 67 + [roll - (63-initial location)]
-                        //          i.e. start at 60 and roll 4... 63-60 = 3... 4 - 3 = 1...
-                        //          67 + 1 = 68 (starting location of the safe zone)
-
-                        // moving into home base
-                        //
-                        // if (final location is greater than 75) move is invalid...
-
-                        if (movingRectangle < 64 && finalMovingRectangle1 >= 64) {
-                            finalMovingRectangle1 = 67 + (dieValue1 - (63 - movingRectangle));
+                        if (movingRectangle == 100 + i) {
+                            boolean illegalMoveStart0 = false;
+                            int finalMovingRectangleStart0 = 0;
+                            if (dieValue1 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart0 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart0 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart0 == false) {
+                                    parState.setLegalMoves("dieValue1", i, 0);
+                                }
+                            }
+                            if (dieValue2 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart0 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart0 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart0 == false) {
+                                    parState.setLegalMoves("dieValue2", i, 0);
+                                }
+                            }
+                            if (dieValueTotal == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart0 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart0] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart0 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart0 == false) {
+                                    parState.setLegalMoves("dieValueTotal", i, 0);
+                                }
+                            }
                         }
-
-                        if (finalMovingRectangle1 > 75) {
-                            illegalMove1 = true;
+                    } else if (parState.getPlayerTurn() == 1) {
+                        if (movingRectangle == 104 + i) {
+                            boolean illegalMoveStart1 = false;
+                            int finalMovingRectangleStart1 = 51;
+                            if (dieValue1 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart1 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart1 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart1 == false) {
+                                    parState.setLegalMoves("dieValue1", i, 51);
+                                }
+                            }
+                            if (dieValue2 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart1 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart1 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart1 == false) {
+                                    parState.setLegalMoves("dieValue2", i, 51);
+                                }
+                            }
+                            if (dieValueTotal == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart1 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart1 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart1 == false) {
+                                    parState.setLegalMoves("dieValueTotal", i, 51);
+                                }
+                            }
                         }
-
-                    }
-                    else if (parState.getPlayerTurn() == 1) {
-                        // moving into safe zone
-                        //
-                        // if (initial location is less than 47 and the final location is greater than
-                        // or equaled to 47) the pawn will go into the safe zone.
-                        // Final location will be 75 + [roll - (46-initial location)]
-                        //          i.e. start at 43 and roll 4... 46-43 = 3... 4 - 3 = 1...
-                        //          75 + 1 = 76 (starting location of the safe zone)
-
-                        // moving into home base
-                        //
-                        // if (final location is greater than 83) move is invalid...
-
-                        if (movingRectangle < 47 && finalMovingRectangle1 >= 47) {
-                            finalMovingRectangle1 = 75 + (dieValue1 - (46 - movingRectangle));
+                    } else if (parState.getPlayerTurn() == 2) {
+                        if (movingRectangle == 108 + i) {
+                            boolean illegalMoveStart2 = false;
+                            int finalMovingRectangleStart2 = 34;
+                            if (dieValue1 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart2 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart2 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart2 == false) {
+                                    parState.setLegalMoves("dieValue1", i, 34);
+                                }
+                            }
+                            if (dieValue2 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart2 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart2 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart2 == false) {
+                                    parState.setLegalMoves("dieValue2", i, 34);
+                                }
+                            }
+                            if (dieValueTotal == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart2 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart2 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart2 == false) {
+                                    parState.setLegalMoves("dieValueTotal", i, 34);
+                                }
+                            }
                         }
-
-                        if (finalMovingRectangle1 > 83) {
-                            illegalMove1 = true;
-                        }
-                    }
-                    else if (parState.getPlayerTurn() == 2) {
-                        // moving into safe zone
-                        //
-                        // if (initial location is less than 30 and the final location is greater than
-                        // or equaled to 30) the pawn will go into the safe zone.
-                        // Final location will be 83 + [roll - (29-initial location)]
-                        //          i.e. start at 26 and roll 4... 29-26 = 3... 4 - 3 = 1...
-                        //          83 + 1 = 84 (starting location of the safe zone)
-
-                        // moving into home base
-                        //
-                        // if (final location is greater than 91) move is invalid...
-
-                        if (movingRectangle < 30 && finalMovingRectangle1 >= 30) {
-                            finalMovingRectangle1 = 83 + (dieValue1 - (29 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangle1 > 91) {
-                            illegalMove1 = true;
-                        }
-                    }
-                    // player 3
-                    else {
-                        // moving into safe zone
-                        //
-                        // if (initial location is less than 13 and the final location is greater than
-                        // or equaled to 13) the pawn will go into the safe zone.
-                        // Final location will be 91 + [roll - (12-initial location)]
-                        //          i.e. start at 9 and roll 4... 12-9 = 3... 4 - 3 = 1...
-                        //          91 + 1 = 92 (starting location of the safe zone)
-
-                        // moving into home base
-                        //
-                        // if (final location is greater than 99) move is invalid...
-
-                        if (movingRectangle < 13 && finalMovingRectangle1 >= 13) {
-                            finalMovingRectangle1 = 91 + (dieValue1 - (12 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangle1 > 99) {
-                            illegalMove1 = true;
-                        }
-                    }
-
-                    outerloop:
-                    for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                        if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                            illegalMove1 = true;
-                            break outerloop;
-                        }
-                    }
-                    outerloop:
-                    for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                        if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                            illegalMove1 = true;
-                            break outerloop;
-                        }
-                    }
-                }
-
-                // if there are no illegal moves... then set the legal move for that die value
-
-                if (illegalMove1 == false) {
-                    parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), finalMovingRectangle1);
-                }
-
-                //
-                // checking legal moves while using die 2
-                //
-
-                boolean illegalMove2 = false;
-                int finalMovingRectangle2 = movingRectangle+dieValue2;
-
-                if (dieValue2 == -1) {
-                    illegalMove2 = true;
-                }
-                else {
-                    // check if the player is trying to move into their safe zone or into the homebase
-                    if (parState.getPlayerTurn() == 0) {
-
-                        if (movingRectangle < 64 && finalMovingRectangle2 >= 64) {
-                            finalMovingRectangle2 = 67 + (dieValue2 - (63 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangle2 > 75) {
-                            illegalMove2 = true;
-                        }
-
-                    }
-                    else if (parState.getPlayerTurn() == 1) {
-
-                        if (movingRectangle < 47 && finalMovingRectangle2 >= 47) {
-                            finalMovingRectangle2 = 75 + (dieValue2 - (46 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangle2 > 83) {
-                            illegalMove2 = true;
-                        }
-                    }
-                    else if (parState.getPlayerTurn() == 2) {
-
-                        if (movingRectangle < 30 && finalMovingRectangle2 >= 30) {
-                            finalMovingRectangle2 = 83 + (dieValue2 - (29 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangle2 > 91) {
-                            illegalMove2 = true;
-                        }
-                    }
-                    // player 3
-                    else {
-
-                        if (movingRectangle < 13 && finalMovingRectangle2 >= 13) {
-                            finalMovingRectangle2 = 91 + (dieValue2 - (12 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangle2 > 99) {
-                            illegalMove2 = true;
-                        }
-                    }
-
-                    outerloop:
-                    for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                        if (pawnLocation.pawnLocationX[finalMovingRectangle2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                            illegalMove2 = true;
-                            break outerloop;
-                        }
-                    }
-                    outerloop:
-                    for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                        if (pawnLocation.pawnLocationX[finalMovingRectangle2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                            illegalMove2 = true;
-                            break outerloop;
-                        }
-                    }
-                }
-
-                // if there are no illegal moves... then set the legal move for that die value
-
-                if (illegalMove2 == false) {
-                    parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), finalMovingRectangle2);
-                }
-
-                //
-                // checking legal moves while using die 1 and 2
-                //
-
-                boolean illegalMoveTotal = false;
-                int finalMovingRectangleTotal = movingRectangle+dieValueTotal;
-
-                if (dieValue1 == -1 || dieValue2 == -1) {
-                    illegalMoveTotal = true;
-                }
-                else {
-                    // check if the player is trying to move into their safe zone or into the homebase
-                    if (parState.getPlayerTurn() == 0) {
-
-                        if (movingRectangle < 64 && finalMovingRectangleTotal >= 64) {
-                            finalMovingRectangleTotal = 67 + (dieValueTotal - (63 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangleTotal > 75) {
-                            illegalMoveTotal = true;
-                        }
-
-                    }
-                    else if (parState.getPlayerTurn() == 1) {
-
-                        if (movingRectangle < 47 && finalMovingRectangleTotal >= 47) {
-                            finalMovingRectangleTotal = 75 + (dieValueTotal - (46 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangleTotal > 83) {
-                            illegalMoveTotal = true;
-                        }
-                    }
-                    else if (parState.getPlayerTurn() == 2) {
-
-                        if (movingRectangle < 30 && finalMovingRectangleTotal >= 30) {
-                            finalMovingRectangleTotal = 83 + (dieValueTotal - (29 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangleTotal > 91) {
-                            illegalMoveTotal = true;
-                        }
-                    }
-                    // player 3
-                    else {
-
-                        if (movingRectangle < 13 && finalMovingRectangleTotal >= 13) {
-                            finalMovingRectangleTotal = 91 + (dieValueTotal - (12 - movingRectangle));
-                        }
-
-                        if (finalMovingRectangleTotal > 99) {
-                            illegalMoveTotal = true;
-                        }
-                    }
-
-                    outerloop:
-                    for (int j = 0; j < parState.getRadioButtonChecked(); j++) {
-                        if (pawnLocation.pawnLocationX[finalMovingRectangleTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                            illegalMoveTotal = true;
-                            break outerloop;
-                        }
-                    }
-                    outerloop:
-                    for (int j = parState.getRadioButtonChecked() + 1; j < 4; j++) {
-                        if (pawnLocation.pawnLocationX[finalMovingRectangleTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                            illegalMoveTotal = true;
-                            break outerloop;
+                    } else {
+                        if (movingRectangle == 112 + i) {
+                            boolean illegalMoveStart3 = false;
+                            int finalMovingRectangleStart3 = 17;
+                            if (dieValue1 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart3 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart3 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart3 == false) {
+                                    parState.setLegalMoves("dieValue1", i, 17);
+                                }
+                            }
+                            if (dieValue2 == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart3 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart3 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart3 == false) {
+                                    parState.setLegalMoves("dieValue2", i, 17);
+                                }
+                            }
+                            if (dieValueTotal == 5) {
+                                outerloop:
+                                for (int j = 0; j < i; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart3 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                outerloop:
+                                for (int j = i + 1; j < 4; j++) {
+                                    if (pawnLocation.pawnLocationX[finalMovingRectangleStart3] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                        illegalMoveStart3 = true;
+                                        break outerloop;
+                                    }
+                                }
+                                if (illegalMoveStart3 == false) {
+                                    parState.setLegalMoves("dieValueTotal", i, 17);
+                                }
+                            }
                         }
                     }
-                }
 
-                // if there are no illegal moves... then set the legal move for that die value
+                    // make a normal move if the piece is on the normal board pieces
+                    // check for other pawns of the same player in the possible legal move locations, therefore cannot make the move (no blockades)
 
-                if (illegalMoveTotal == false) {
-                    parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), finalMovingRectangleTotal);
+                    //
+                    // checking legal moves while using die 1
+                    //
+
+                    boolean illegalMove1 = false;
+                    int finalMovingRectangle1 = movingRectangle + dieValue1;
+
+                    // check if the die value was already used
+                    if (dieValue1 == -1) {
+                        illegalMove1 = true;
+                    } else {
+                        // check if the player is trying to move into their safe zone or into the homebase
+                        if (parState.getPlayerTurn() == 0) {
+                            // moving into safe zone
+                            //
+                            // if (initial location is less than 64 and the final location is greater than
+                            // or equaled to 64) the pawn will go into the safe zone.
+                            // Final location will be 67 + [roll - (63-initial location)]
+                            //          i.e. start at 60 and roll 4... 63-60 = 3... 4 - 3 = 1...
+                            //          67 + 1 = 68 (starting location of the safe zone)
+
+                            // moving into home base
+                            //
+                            // if (final location is greater than 75) move is invalid...
+
+                            if (movingRectangle < 64 && finalMovingRectangle1 >= 64) {
+                                finalMovingRectangle1 = 67 + (dieValue1 - (63 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle1 > 75) {
+                                illegalMove1 = true;
+                            }
+
+                        } else if (parState.getPlayerTurn() == 1) {
+                            // moving into safe zone
+                            //
+                            // if (initial location is less than 47 and the final location is greater than
+                            // or equaled to 47) the pawn will go into the safe zone.
+                            // Final location will be 75 + [roll - (46-initial location)]
+                            //          i.e. start at 43 and roll 4... 46-43 = 3... 4 - 3 = 1...
+                            //          75 + 1 = 76 (starting location of the safe zone)
+
+                            // moving into home base
+                            //
+                            // if (final location is greater than 83) move is invalid...
+
+                            if (movingRectangle < 47 && finalMovingRectangle1 >= 47) {
+                                finalMovingRectangle1 = 75 + (dieValue1 - (46 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle1 > 83) {
+                                illegalMove1 = true;
+                            }
+                        } else if (parState.getPlayerTurn() == 2) {
+                            // moving into safe zone
+                            //
+                            // if (initial location is less than 30 and the final location is greater than
+                            // or equaled to 30) the pawn will go into the safe zone.
+                            // Final location will be 83 + [roll - (29-initial location)]
+                            //          i.e. start at 26 and roll 4... 29-26 = 3... 4 - 3 = 1...
+                            //          83 + 1 = 84 (starting location of the safe zone)
+
+                            // moving into home base
+                            //
+                            // if (final location is greater than 91) move is invalid...
+
+                            if (movingRectangle < 30 && finalMovingRectangle1 >= 30) {
+                                finalMovingRectangle1 = 83 + (dieValue1 - (29 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle1 > 91) {
+                                illegalMove1 = true;
+                            }
+                        }
+                        // player 3
+                        else {
+                            // moving into safe zone
+                            //
+                            // if (initial location is less than 13 and the final location is greater than
+                            // or equaled to 13) the pawn will go into the safe zone.
+                            // Final location will be 91 + [roll - (12-initial location)]
+                            //          i.e. start at 9 and roll 4... 12-9 = 3... 4 - 3 = 1...
+                            //          91 + 1 = 92 (starting location of the safe zone)
+
+                            // moving into home base
+                            //
+                            // if (final location is greater than 99) move is invalid...
+
+                            if (movingRectangle < 13 && finalMovingRectangle1 >= 13) {
+                                finalMovingRectangle1 = 91 + (dieValue1 - (12 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle1 > 99) {
+                                illegalMove1 = true;
+                            }
+                        }
+
+                        outerloop:
+                        for (int j = 0; j < i; j++) {
+                            if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                illegalMove1 = true;
+                                break outerloop;
+                            }
+                        }
+                        outerloop:
+                        for (int j = i + 1; j < 4; j++) {
+                            if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                illegalMove1 = true;
+                                break outerloop;
+                            }
+                        }
+                    }
+
+                    // if there are no illegal moves... then set the legal move for that die value
+
+                    if (illegalMove1 == false) {
+                        parState.setLegalMoves("dieValue1", i, finalMovingRectangle1);
+                    }
+
+                    //
+                    // checking legal moves while using die 2
+                    //
+
+                    boolean illegalMove2 = false;
+                    int finalMovingRectangle2 = movingRectangle + dieValue2;
+
+                    if (dieValue2 == -1) {
+                        illegalMove2 = true;
+                    } else {
+                        // check if the player is trying to move into their safe zone or into the homebase
+                        if (parState.getPlayerTurn() == 0) {
+
+                            if (movingRectangle < 64 && finalMovingRectangle2 >= 64) {
+                                finalMovingRectangle2 = 67 + (dieValue2 - (63 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle2 > 75) {
+                                illegalMove2 = true;
+                            }
+
+                        } else if (parState.getPlayerTurn() == 1) {
+
+                            if (movingRectangle < 47 && finalMovingRectangle2 >= 47) {
+                                finalMovingRectangle2 = 75 + (dieValue2 - (46 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle2 > 83) {
+                                illegalMove2 = true;
+                            }
+                        } else if (parState.getPlayerTurn() == 2) {
+
+                            if (movingRectangle < 30 && finalMovingRectangle2 >= 30) {
+                                finalMovingRectangle2 = 83 + (dieValue2 - (29 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle2 > 91) {
+                                illegalMove2 = true;
+                            }
+                        }
+                        // player 3
+                        else {
+
+                            if (movingRectangle < 13 && finalMovingRectangle2 >= 13) {
+                                finalMovingRectangle2 = 91 + (dieValue2 - (12 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangle2 > 99) {
+                                illegalMove2 = true;
+                            }
+                        }
+
+                        outerloop:
+                        for (int j = 0; j < i; j++) {
+                            if (pawnLocation.pawnLocationX[finalMovingRectangle2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                illegalMove2 = true;
+                                break outerloop;
+                            }
+                        }
+                        outerloop:
+                        for (int j = i + 1; j < 4; j++) {
+                            if (pawnLocation.pawnLocationX[finalMovingRectangle2] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                illegalMove2 = true;
+                                break outerloop;
+                            }
+                        }
+                    }
+
+                    // if there are no illegal moves... then set the legal move for that die value
+
+                    if (illegalMove2 == false) {
+                        parState.setLegalMoves("dieValue2", i, finalMovingRectangle2);
+                    }
+
+                    //
+                    // checking legal moves while using die 1 and 2
+                    //
+
+                    boolean illegalMoveTotal = false;
+                    int finalMovingRectangleTotal = movingRectangle + dieValueTotal;
+
+                    if (dieValue1 == -1 || dieValue2 == -1) {
+                        illegalMoveTotal = true;
+                    } else {
+                        // check if the player is trying to move into their safe zone or into the homebase
+                        if (parState.getPlayerTurn() == 0) {
+
+                            if (movingRectangle < 64 && finalMovingRectangleTotal >= 64) {
+                                finalMovingRectangleTotal = 67 + (dieValueTotal - (63 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangleTotal > 75) {
+                                illegalMoveTotal = true;
+                            }
+
+                        } else if (parState.getPlayerTurn() == 1) {
+
+                            if (movingRectangle < 47 && finalMovingRectangleTotal >= 47) {
+                                finalMovingRectangleTotal = 75 + (dieValueTotal - (46 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangleTotal > 83) {
+                                illegalMoveTotal = true;
+                            }
+                        } else if (parState.getPlayerTurn() == 2) {
+
+                            if (movingRectangle < 30 && finalMovingRectangleTotal >= 30) {
+                                finalMovingRectangleTotal = 83 + (dieValueTotal - (29 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangleTotal > 91) {
+                                illegalMoveTotal = true;
+                            }
+                        }
+                        // player 3
+                        else {
+
+                            if (movingRectangle < 13 && finalMovingRectangleTotal >= 13) {
+                                finalMovingRectangleTotal = 91 + (dieValueTotal - (12 - movingRectangle));
+                            }
+
+                            if (finalMovingRectangleTotal > 99) {
+                                illegalMoveTotal = true;
+                            }
+                        }
+
+                        outerloop:
+                        for (int j = 0; j < i; j++) {
+                            if (pawnLocation.pawnLocationX[finalMovingRectangleTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                illegalMoveTotal = true;
+                                break outerloop;
+                            }
+                        }
+                        outerloop:
+                        for (int j = i + 1; j < 4; j++) {
+                            if (pawnLocation.pawnLocationX[finalMovingRectangleTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                                illegalMoveTotal = true;
+                                break outerloop;
+                            }
+                        }
+                    }
+
+                    // if there are no illegal moves... then set the legal move for that die value
+
+                    if (illegalMoveTotal == false) {
+                        parState.setLegalMoves("dieValueTotal", i, finalMovingRectangleTotal);
+                    }
                 }
                 return true;
             }
@@ -836,10 +970,6 @@ public class ParLocalGame extends LocalGame {
             else if (action instanceof ParSelectAction) {
                 // set the radio button variable in the parState class after changing the radio button
                 parState.setRadioButtonChecked(((ParSelectAction) action).getPawnIdx());
-
-                ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(action.getPlayer());
-
-                sendAction(parCheckLegalMoveAction);
 
                 // ToDo: need to implement some way of changing the highlighted legal moves when changing the radio button selected
 
@@ -850,11 +980,6 @@ public class ParLocalGame extends LocalGame {
                 parState.setDieValueSelected(((ParUseDieAction) action).getTotalDieValue());
 
                 // ToDo: need to implement some way of changing the highlighted legal moves when changing the die value selected
-
-                // not necessarily needed in this action... but doesnt hurt to have it (at the moment)
-                ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(action.getPlayer());
-
-                sendAction(parCheckLegalMoveAction);
 
                 return true;
             }
