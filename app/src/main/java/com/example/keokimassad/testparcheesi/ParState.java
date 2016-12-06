@@ -485,10 +485,9 @@ public class ParState extends GameState {
         switch (playerIdx) {
             //red
             case 0:
-                // ToDo: CHANGE BACK TO 100!!!!!!! ONLY USED TO TEST THE CHECK LEGAL MOVE PORTION
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[0], pawnLocation.pawnLocationY[0]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[2], pawnLocation.pawnLocationY[2]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[6], pawnLocation.pawnLocationY[6]);
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
                 setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
                 break;
             //blue
@@ -533,6 +532,7 @@ public class ParState extends GameState {
                         setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
                         break;
                 }
+                break;
                 //blue
             case 1:
                 switch (pawnIdx) {
@@ -549,6 +549,7 @@ public class ParState extends GameState {
                         setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[107], pawnLocation.pawnLocationY[107]);
                         break;
                 }
+                break;
                 //yellow
             case 2:
                 switch (pawnIdx) {
@@ -565,6 +566,7 @@ public class ParState extends GameState {
                         setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[111], pawnLocation.pawnLocationY[111]);
                         break;
                 }
+                break;
                 //green
             case 3:
                 switch (pawnIdx) {
@@ -581,6 +583,7 @@ public class ParState extends GameState {
                         setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[115], pawnLocation.pawnLocationY[115]);
                         break;
                 }
+                break;
         }
     }
 }
