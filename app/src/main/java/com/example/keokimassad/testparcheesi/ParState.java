@@ -66,7 +66,7 @@ public class ParState extends GameState {
         Mid_Move = 2;
         Game_Over = 3;
         radioButtonChecked = p.getRadioButtonChecked();
-        dieValueSelected = p.
+        dieValueSelected = p.getDieValueSelected();
         currentSubstage = p.getCurrentSubstage();
         dieVals = p.getDiceVals();
         numOfDoubles = p.getNumOfDoubles();
