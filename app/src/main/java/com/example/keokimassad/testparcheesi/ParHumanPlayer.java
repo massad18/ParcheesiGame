@@ -26,6 +26,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
     private Button[] useDieButtons = new Button[3]; //array to hold buttons to select specific dice values to use
     private Button makeMoveButton;
+    private Button endTurnButton;
     private RadioGroup selectPawnButtons;
 
     private TextView textView;
@@ -211,6 +212,10 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             ParUseDieAction parUseDieAction = new ParUseDieAction(this, parState.getDice1Val() + parState.getDice2Val());
             game.sendAction(parUseDieAction);
         }
+        else if(button == endTurnButton)
+        {
+
+        }
         if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
         {
             if(button == makeMoveButton)
@@ -234,6 +239,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         this.useDieButtons[0] = (Button) activity.findViewById(R.id.useDie1);
         this.useDieButtons[1] = (Button) activity.findViewById(R.id.useDie2);
         this.useDieButtons[2] = (Button) activity.findViewById(R.id.useBothDice);
+        this.endTurnButton = (Button) activity.findViewById(R.id.endTurnButton);
         textView = (TextView) activity.findViewById(R.id.textView);
         textView1 = (TextView) activity.findViewById(R.id.textView1);
         // this is the view on which you will listen for touch events
@@ -249,6 +255,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         selectPawnButtons = (RadioGroup) activity.findViewById(R.id.selectPawn);
         selectPawnButtons.setOnCheckedChangeListener(this);
         selectPawnButtons.clearCheck();
+
+        endTurnButton.setOnClickListener(this);
 
         parSurfaceView.setOnTouchListener(this);
 
