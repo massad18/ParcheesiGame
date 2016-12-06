@@ -27,7 +27,10 @@ public class ParState extends GameState {
     // initialize the die value button selected
     int dieValueSelected;
     // initialize the legal move array
-    Hashtable<String, Integer> legalMoves = new Hashtable<>();
+    Hashtable<String, Integer> legalMoves0 = new Hashtable<>();
+    Hashtable<String, Integer> legalMoves1 = new Hashtable<>();
+    Hashtable<String, Integer> legalMoves2 = new Hashtable<>();
+    Hashtable<String, Integer> legalMoves3 = new Hashtable<>();
 
     //4 location arrays to hold locations of each players' pawns
     private int[] player0LocationsX = new int[4];
@@ -291,6 +294,10 @@ public class ParState extends GameState {
         }
         currentSubstage = Roll;
         numOfDoubles = 0;
+        legalMoves0.clear();
+        legalMoves1.clear();
+        legalMoves2.clear();
+        legalMoves3.clear();
     }
 
     //Getter to return integer array of both dice values
@@ -323,15 +330,52 @@ public class ParState extends GameState {
 
     public int getDieValueSelected() {return dieValueSelected;}
 
-    public void setLegalMoves(String die, int rectNumber) {
-        legalMoves.put(die, rectNumber);
+    public void setLegalMoves(String die, int index, int rectNumber) {
+        switch (index) {
+            case 0:
+                legalMoves0.put(die, rectNumber);
+                break;
+            case 1:
+                legalMoves1.put(die, rectNumber);
+                break;
+            case 2:
+                legalMoves2.put(die, rectNumber);
+                break;
+            case 3:
+                legalMoves3.put(die, rectNumber);
+                break;
+        }
     }
 
-    public int getLegalMoves(String die) {
-        return legalMoves.get(die);
+    public int getLegalMoves(String die, int index) {
+        switch (index) {
+            case 0:
+                return legalMoves0.get(die);
+            case 1:
+                return legalMoves1.get(die);
+            case 2:
+                return legalMoves2.get(die);
+            case 3:
+                return legalMoves3.get(die);
+        }
+        return -1;
     }
-    public void removeLegalMoves(String die) {
-        legalMoves.remove(die);
+    public void removeLegalMoves(String die, int index) {
+
+        switch (index) {
+            case 0:
+                legalMoves0.remove(die);
+            break;
+            case 1:
+                legalMoves1.remove(die);
+            break;
+            case 2:
+                legalMoves2.remove(die);
+            break;
+            case 3:
+                legalMoves3.remove(die);
+            break;
+        }
     }
 
     //Getter to return current substage
@@ -415,9 +459,9 @@ public class ParState extends GameState {
             //red
             case 0:
                 // ToDo: CHANGE BACK TO 100!!!!!!! ONLY USED TO TEST THE CHECK LEGAL MOVE PORTION
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[0], pawnLocation.pawnLocationY[0]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[2], pawnLocation.pawnLocationY[2]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[5], pawnLocation.pawnLocationY[5]);
                 setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
                 break;
             //blue

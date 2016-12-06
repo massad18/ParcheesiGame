@@ -127,8 +127,10 @@ public class ParLocalGame extends LocalGame {
             if (action instanceof ParRollAction) {
 
                 //Creates two random integers between 1 and 6 for the dice values
-                int randomDieVal1 = (int) (Math.random() * 6) + 1;
-                int randomDieVal2 = (int) (Math.random() * 6) + 1;
+//                int randomDieVal1 = (int) (Math.random() * 6) + 1;
+//                int randomDieVal2 = (int) (Math.random() * 6) + 1;
+                int randomDieVal1 = 4;
+                int randomDieVal2 = 3;
                 //assigns the die values to the random integers just generated
                 parState.setDieVals(randomDieVal1, randomDieVal2);
 
@@ -185,6 +187,67 @@ public class ParLocalGame extends LocalGame {
             // Move Action (called when confirm move is pressed)
             else if (action instanceof ParMoveAction) {
 
+                int radioButtonChecked = parState.radioButtonChecked;
+                int dieValueSelected = parState.dieValueSelected;
+
+                String dieValue = null;
+
+                switch (dieValueSelected) {
+                    case 0:
+                        dieValue = "dieValue1";
+                        break;
+                    case 1:
+                        dieValue = "dieValue2";
+                        break;
+                    case 2:
+                        dieValue = "dieValueTotal";
+                        break;
+                }
+
+                if (parState.legalMoves0.isEmpty() && parState.legalMoves1.isEmpty() && parState.legalMoves2.isEmpty() && parState.legalMoves3.isEmpty()) {
+                    // there are no legal moves, there for change the players turn
+                    // parState.setPlayerTurn();
+                }
+                else {
+                    // there is a legal move that can and will be made
+                    switch (parState.getRadioButtonChecked()) {
+                        case 0:
+                            if (parState.legalMoves0.isEmpty()) {
+                                // flash the screen
+                            }
+                            else {
+
+                            }
+                            break;
+                        case 1:
+                            if (parState.legalMoves1.isEmpty()) {
+                                // flash the screen
+                            }
+                            else {
+
+                            }
+                            break;
+
+                        case 2:
+                            if (parState.legalMoves2.isEmpty()) {
+                                // flash the screen
+                            }
+                            else {
+
+                            }
+                            break;
+                        case 3:
+                            if (parState.legalMoves3.isEmpty()) {
+                                // flash the screen
+                            }
+                            else {
+
+                            }
+                            break;
+                    }
+                }
+
+
                 // ToDo: confirm the move upon pressing the confirm move action and the given values for parState.radioButtonChecked, parState.dieValueSelected, etc.
 
                 // ToDo: use the parState.removeLegalMove when a legal move is used... (if one die is used... remove that die and the total die... if the total of the die are used, remove all three of the moves)
@@ -202,7 +265,20 @@ public class ParLocalGame extends LocalGame {
                 // ToDo: implement checking for legal moves and then highlighting them given the numbers on the die
 
                 // clears the legalMoves HashMap so that new entries can be entered
-                parState.legalMoves.clear();
+                switch (parState.getRadioButtonChecked()) {
+                    case 0:
+                        parState.legalMoves0.clear();
+                        break;
+                    case 1:
+                        parState.legalMoves1.clear();
+                        break;
+                    case 2:
+                        parState.legalMoves2.clear();
+                        break;
+                    case 3:
+                        parState.legalMoves3.clear();
+                        break;
+                }
 
                 // set the initial x and y locations of the pawn that is selected to move
                 movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), parState.getRadioButtonChecked());
@@ -246,7 +322,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart0 == false) {
-                                parState.setLegalMoves("dieValue1", 0);
+                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 0);
                             }
                         }
                         if (dieValue2 == 5) {
@@ -265,7 +341,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart0 == false) {
-                                parState.setLegalMoves("dieValue2", 0);
+                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 0);
                             }
                         }
                         if (dieValueTotal == 5) {
@@ -284,7 +360,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart0 == false) {
-                                parState.setLegalMoves("dieValueTotal", 0);
+                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 0);
                             }
                         }
                     }
@@ -309,7 +385,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart1 == false) {
-                                parState.setLegalMoves("dieValue1", 51);
+                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 51);
                             }
                         }
                         if (dieValue2 == 5) {
@@ -328,7 +404,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart1 == false) {
-                                parState.setLegalMoves("dieValue2", 51);
+                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 51);
                             }                        }
                         if (dieValueTotal == 5) {
                             outerloop:
@@ -346,7 +422,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart1 == false) {
-                                parState.setLegalMoves("dieValueTotal", 51);
+                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 51);
                             }
                         }
                     }
@@ -371,7 +447,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart2 == false) {
-                                parState.setLegalMoves("dieValue1", 34);
+                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 34);
                             }
                         }
                         if (dieValue2 == 5) {
@@ -390,7 +466,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart2 == false) {
-                                parState.setLegalMoves("dieValue2", 34);
+                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 34);
                             }                        }
                         if (dieValueTotal == 5) {
                             outerloop:
@@ -408,7 +484,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart2 == false) {
-                                parState.setLegalMoves("dieValueTotal", 34);
+                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 34);
                             }
                         }
                     }
@@ -433,7 +509,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart3 == false) {
-                                parState.setLegalMoves("dieValue1", 17);
+                                parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), 17);
                             }
                         }
                         if (dieValue2 == 5) {
@@ -452,7 +528,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart3 == false) {
-                                parState.setLegalMoves("dieValue2", 17);
+                                parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), 17);
                             }                        }
                         if (dieValueTotal == 5) {
                             outerloop:
@@ -470,7 +546,7 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
                             if (illegalMoveStart3 == false) {
-                                parState.setLegalMoves("dieValueTotal", 17);
+                                parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), 17);
                             }
                         }
                     }
@@ -598,7 +674,7 @@ public class ParLocalGame extends LocalGame {
                 // if there are no illegal moves... then set the legal move for that die value
 
                 if (illegalMove1 == false) {
-                    parState.setLegalMoves("dieValue1", finalMovingRectangle1);
+                    parState.setLegalMoves("dieValue1", parState.getRadioButtonChecked(), finalMovingRectangle1);
                 }
 
                 //
@@ -675,7 +751,7 @@ public class ParLocalGame extends LocalGame {
                 // if there are no illegal moves... then set the legal move for that die value
 
                 if (illegalMove2 == false) {
-                    parState.setLegalMoves("dieValue2", finalMovingRectangle2);
+                    parState.setLegalMoves("dieValue2", parState.getRadioButtonChecked(), finalMovingRectangle2);
                 }
 
                 //
@@ -752,7 +828,7 @@ public class ParLocalGame extends LocalGame {
                 // if there are no illegal moves... then set the legal move for that die value
 
                 if (illegalMoveTotal == false) {
-                    parState.setLegalMoves("dieValueTotal", finalMovingRectangleTotal);
+                    parState.setLegalMoves("dieValueTotal", parState.getRadioButtonChecked(), finalMovingRectangleTotal);
                 }
                 return true;
             }
