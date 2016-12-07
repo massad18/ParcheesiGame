@@ -15,6 +15,7 @@ public class Pawn {
     public float size = 10;
     public Paint paint = new Paint();
     public boolean safe = false;
+    public float selectedSize;
 
 
     public Pawn(float xCor, float yCor) {
@@ -28,19 +29,21 @@ public class Pawn {
         if(playerIndex == 0)
         {
             if (selected) {
-                paint.setColor(Color.DKGRAY);
+                paint.setColor(Color.LTGRAY);
+                selectedSize = size-5;
             }
             else {
                 paint.setColor(Color.BLACK);
+                selectedSize = size-2;
             }
             canvas.drawCircle(xCor, yCor, size, paint);
             paint.setColor(0xFF9F1515);
-            canvas.drawCircle(xCor, yCor, size-2, paint);
+            canvas.drawCircle(xCor, yCor, selectedSize, paint);
         }
         else if(playerIndex == 1)
         {
             if (selected) {
-                paint.setColor(Color.DKGRAY);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
@@ -52,7 +55,7 @@ public class Pawn {
         else if(playerIndex == 2)
         {
             if (selected) {
-                paint.setColor(Color.DKGRAY);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
@@ -64,7 +67,7 @@ public class Pawn {
         else
         {
             if (selected) {
-                paint.setColor(Color.DKGRAY);
+                paint.setColor(Color.LTGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);

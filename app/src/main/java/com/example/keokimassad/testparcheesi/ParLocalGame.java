@@ -159,7 +159,7 @@ public class ParLocalGame extends LocalGame {
                             movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), i);
                             movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), i);
 
-                            outerloop:
+                            outerloop: //checks to make sure not in end zone
                             for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
                                 for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
                                     if (pawnLocation.pawnLocationX[k] == curPawnX && pawnLocation.pawnLocationY[j] == curPawnY && k == j) {
@@ -169,8 +169,6 @@ public class ParLocalGame extends LocalGame {
                                 }
                             }
 
-                            //ToDo: add an if statement to make sure the pawn isn't in the end zone
-                            //
                             // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
                             // indexes #116 - 131
                             //
