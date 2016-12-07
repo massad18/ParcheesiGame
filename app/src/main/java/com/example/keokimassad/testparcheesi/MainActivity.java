@@ -70,7 +70,14 @@ public class MainActivity extends GameMainActivity{
             }
         });
 
-        // Create a game configuration class for Tic-tac-toe
+        // Mastermind, super intelligent, genius computer player - index 5
+        playerTypes.add(new GamePlayerType("Computer Player (Smart)") {
+            public GamePlayer createPlayer(String name) {
+                return new ParComputerPlayerH(name);
+            }
+        });
+
+        // Create a game configuration class for Parcheesi
         GameConfig defaultConfig = new GameConfig(playerTypes, 4,4, "Parcheesi", PORT_NUMBER);
 
         // Add the default players

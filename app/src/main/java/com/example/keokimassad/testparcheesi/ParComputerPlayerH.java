@@ -40,7 +40,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
     private int[] player2Rect = new int[4];
     private int[] player3Rect = new int[4];
 
-    public ParComputerPlayerE(String name) {
+    public ParComputerPlayerH(String name) {
         super(name);
     }
 
