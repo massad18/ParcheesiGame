@@ -10,6 +10,8 @@ import game.actionMsg.GameAction;
 
 public class ParRollAction extends GameAction {
 
+    private static final long serialVersionUID = 984123753985612978L;
+
     private GameMainActivity myActivity;
 
     public ParRollAction (GamePlayer player)

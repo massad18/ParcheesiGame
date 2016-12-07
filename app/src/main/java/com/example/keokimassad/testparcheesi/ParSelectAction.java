@@ -10,6 +10,7 @@ import game.actionMsg.GameAction;
  */
 
 public class ParSelectAction extends GameAction {
+    private static final long serialVersionUID = 4312438733974L;
 
     private GameMainActivity myActivity;
     private int pawnIdx;

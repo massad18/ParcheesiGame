@@ -9,6 +9,8 @@ import game.actionMsg.GameAction;
 
 public class ParMoveAction extends GameAction {
 
+    private static final long serialVersionUID = 7132574902623976182L;
+
     public ParMoveAction(GamePlayer player)
     {
         super(player);

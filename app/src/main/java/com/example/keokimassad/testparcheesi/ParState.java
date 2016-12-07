@@ -11,6 +11,8 @@ import game.infoMsg.GameState;
 
 public class ParState extends GameState {
 
+    private static final long serialVersionUID = 2387235129834730232L;
+
     //Defined integer constants for different substages of game
     protected static int Roll = 0;
     protected static int Begin_Move = 1;

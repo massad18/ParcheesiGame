@@ -9,6 +9,7 @@ import game.actionMsg.GameAction;
  */
 
 public class ParUseDieAction extends GameAction {
+    private static final long serialVersionUID = 3524324364298L;
 
     private GameMainActivity myActivity;
     private int totalDieValue;
