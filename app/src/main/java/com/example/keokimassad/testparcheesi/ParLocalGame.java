@@ -148,42 +148,41 @@ public class ParLocalGame extends LocalGame {
                         //Adds one to the total amount of doubles a player has rolled in the current turn
                         parState.setNumOfDoubles(parState.getNumOfDoubles() + 1);
 
-                        //Player has rolled doubles 3 times, furthest piece on board has to move back
-                        if (parState.getNumOfDoubles() >= 3) {
-                            int currentPlayer = parState.getPlayerTurn();
-                            int maxPawnLoc = 0;
-                            int maxPawnNum = 0;
-                            for (int i = 0; i < 4; i++) //loops through each pawn
-                            {
-                                int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
-                                int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
-                                int nextPawnLoc = parState.getRect(curPawnX, curPawnY); //finds the rectangle the pawn is currently in
+                    //Player has rolled doubles 3 times, furthest piece on board has to move back
+                    if(parState.getNumOfDoubles() >= 3)
+                    {
+                        int currentPlayer = parState.getPlayerTurn();
+                        int maxPawnLoc = 0;
+                        int maxPawnNum = 0;
+                        for(int i = 0; i < 4; i++) //loops through each pawn
+                        {
+                            int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
+                            int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
 
-                                movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), i);
-                                movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), i);
-
-                                outerloop:
-                                //checks to make sure not in end zone
-                                for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
-                                    for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
-                                        if (pawnLocation.pawnLocationX[k] == curPawnX && pawnLocation.pawnLocationY[j] == curPawnY && k == j) {
-                                            movingRectangle = k;
-                                            break outerloop;
-                                        }
+                            outerloop:
+                            for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
+                                for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
+                                    if (pawnLocation.pawnLocationX[k] == curPawnX && pawnLocation.pawnLocationY[j] == curPawnY && k == j) {
+                                        movingRectangle = k;
+                                        break outerloop;
                                     }
                                 }
+                            }
 
-                                // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
-                                // indexes #116 - 131
-                                //
-                                if (nextPawnLoc > maxPawnLoc) //finds the furthest pawn
-                                {
 
-                                    maxPawnLoc = nextPawnLoc;
+
+                            // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
+                            // indexes #116 - 131
+                            //
+                            if( movingRectangle <= 99) //finds the furthest pawn
+                            {
+                                if(movingRectangle>maxPawnLoc) {
+                                    maxPawnLoc = movingRectangle;
                                     maxPawnNum = i;
                                 }
                             }
-                            parState.resetPawnLocation(currentPlayer, maxPawnNum); //resets the location of the furthest pawn
+                        }
+                        parState.resetPawnLocation(currentPlayer,maxPawnNum); //resets the location of the furthest pawn
 
                             //Player's turn is over since they rolled to many doubles
                             //Calls setPlayerTurn() to change player's turn and reset numOfDoubles and the substage
@@ -1040,7 +1039,6 @@ public class ParLocalGame extends LocalGame {
             else if (action instanceof ParSelectAction) {
                 // set the radio button variable in the parState class after changing the radio button
                 parState.setRadioButtonChecked(((ParSelectAction) action).getPawnIdx());
-                Log.i("Selected Pawn " + action.getPlayer(), "" + ((ParSelectAction) action).getPawnIdx());
 
                 // ToDo: need to implement some way of changing the highlighted legal moves when changing the radio button selected
 
