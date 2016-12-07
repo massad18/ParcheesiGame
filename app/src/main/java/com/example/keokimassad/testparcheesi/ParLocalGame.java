@@ -155,6 +155,20 @@ public class ParLocalGame extends LocalGame {
                             int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
                             int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
                             int nextPawnLoc = parState.getRect(curPawnX, curPawnY); //finds the rectangle the pawn is currently in
+
+                            movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), i);
+                            movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), i);
+
+                            outerloop:
+                            for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
+                                for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
+                                    if (pawnLocation.pawnLocationX[k] == curPawnX && pawnLocation.pawnLocationY[j] == curPawnY && k == j) {
+                                        movingRectangle = k;
+                                        break outerloop;
+                                    }
+                                }
+                            }
+
                             //ToDo: add an if statement to make sure the pawn isn't in the end zone
                             //
                             // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is

@@ -28,7 +28,7 @@ public class Pawn {
         if(playerIndex == 0)
         {
             if (selected) {
-                paint.setColor(Color.LTGRAY);
+                paint.setColor(Color.DKGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
@@ -40,7 +40,7 @@ public class Pawn {
         else if(playerIndex == 1)
         {
             if (selected) {
-                paint.setColor(Color.LTGRAY);
+                paint.setColor(Color.DKGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
@@ -52,7 +52,7 @@ public class Pawn {
         else if(playerIndex == 2)
         {
             if (selected) {
-                paint.setColor(Color.LTGRAY);
+                paint.setColor(Color.DKGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
@@ -64,7 +64,7 @@ public class Pawn {
         else
         {
             if (selected) {
-                paint.setColor(Color.LTGRAY);
+                paint.setColor(Color.DKGRAY);
             }
             else {
                 paint.setColor(Color.BLACK);
