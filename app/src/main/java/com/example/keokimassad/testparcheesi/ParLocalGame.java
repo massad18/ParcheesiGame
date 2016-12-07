@@ -144,13 +144,13 @@ public class ParLocalGame extends LocalGame {
                     //Adds one to the total amount of doubles a player has rolled in the current turn
                     parState.setNumOfDoubles(parState.getNumOfDoubles() + 1);
 
-                    //Player has rolled doubles more than 3 times, furthest piece on board has to move back
-                    if(parState.getNumOfDoubles() > 3)
+                    //Player has rolled doubles 3 times, furthest piece on board has to move back
+                    if(parState.getNumOfDoubles() >= 3)
                     {
                         int currentPlayer = parState.getPlayerTurn();
                         int maxPawnLoc = 0;
                         int maxPawnNum = 0;
-                        for(int i = 0; i<4; i++) //loops through each pawn
+                        for(int i = 0; i < 4; i++) //loops through each pawn
                         {
                             int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
                             int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);

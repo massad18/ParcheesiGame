@@ -58,7 +58,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         if(info instanceof ParState)
         {
             state = (ParState)info;
-
             switch(state.getDice1Val())
             {
                 case 1:
@@ -124,9 +123,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
-
         switch(checkedId) {
-
             case R.id.radioPawn1:
                 ParSelectAction parSelectAction0 = new ParSelectAction(this, 0);
                 game.sendAction(parSelectAction0);
