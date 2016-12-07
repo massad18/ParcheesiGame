@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import java.util.Random;
 
 import game.GameComputerPlayer;
+import game.LocalGame;
 import game.infoMsg.GameInfo;
 import game.infoMsg.NotYourTurnInfo;
 
@@ -19,7 +20,6 @@ import game.infoMsg.NotYourTurnInfo;
 
 public class ParComputerPlayerE extends GameComputerPlayer {
 
-    ParLocalGame parLocalGame = new ParLocalGame();
     // ToDo: change to actual player numbers when we figure this shit out
     //int playerNumber = playerNum;
     int playerNumber;
@@ -36,45 +36,55 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
+        // ToDo: same as above... change to actual player numbers when we figure this shit out
         for (int i = 0; i < allPlayerNames.length; i++) {
             if (allPlayerNames[i].equals(name)) {
                 playerNumber = i;
             }
         }
-        if (parLocalGame.canMove(playerNumber)) {
-            if (info instanceof ParState) {
-                Log.i("Computer Player", "" + playerNumber);
-                // roll the die
+
+        if (!(info instanceof ParState)) return;
+        ParState parState = (ParState)info;
+
+        if (parState.getPlayerTurn() == playerNumber) {
+
+            // roll the die
+            if (parState.getCurrentSubstage() == parState.Roll) {
                 rollAction = new ParRollAction(this);
+                sleep(1000);
                 game.sendAction(rollAction);
+            }
 
-                Random rand = new Random();
-                do {
-                    // choose a random pawn
-                    int randSelect = rand.nextInt(4);
-                    selectAction = new ParSelectAction(this, randSelect);
-                    game.sendAction(selectAction);
+            Random rand = new Random();
+            if (((ParState) info).getEmptySet() == false) {
+                // choose a random pawn
+                int randSelect = rand.nextInt(4);
+                selectAction = new ParSelectAction(this, randSelect);
+                game.sendAction(selectAction);
 
-                    // choose a random die
-                    int randDie = rand.nextInt(3);
-                    switch (randDie) {
-                        case 0:
-                            useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
-                            game.sendAction(selectAction);
-                            break;
-                        case 1:
-                            useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
-                            game.sendAction(selectAction);
-                            break;
-                        case 2:
-                            useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
-                            game.sendAction(selectAction);
-                            break;
-                    }
+                // choose a random die
+                int randDie = rand.nextInt(3);
+                switch (randDie) {
+                    case 0:
+                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
+                        game.sendAction(useDieAction);
+                        break;
+                    case 1:
+                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
+                        game.sendAction(useDieAction);
+                        break;
+                    case 2:
+                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
+                        game.sendAction(useDieAction);
+                        break;
+                }
 
 
-                    moveAction = new ParMoveAction(this);
-                } while (((ParState) info).getEmptySet() == false);
+                moveAction = new ParMoveAction(this);
+                sleep(1000);
+                game.sendAction(moveAction);
+            }
+        }
 
 
 //               if (//4 objects are at home)
@@ -189,10 +199,6 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 //                        }
 //                    }, 2000);
 //                }
-            }
-        } else {
-            return;
-        }
     }
 
 }
