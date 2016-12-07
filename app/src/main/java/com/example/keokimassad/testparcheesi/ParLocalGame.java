@@ -133,6 +133,7 @@ public class ParLocalGame extends LocalGame {
         if (this.players[parState.getPlayerTurn()] == action.getPlayer()) {
             // Roll Action (called when either die button is pressed and the player needs to role the dice)
             if (action instanceof ParRollAction) {
+                // ToDo: BUG!!! can roll multiple times when one double is rolled, but anything is rolled after
                 int randomDieVal1;
                 int randomDieVal2;
                 if (parState.getCurrentSubstage() == parState.Roll) {
@@ -148,48 +149,49 @@ public class ParLocalGame extends LocalGame {
                         //Adds one to the total amount of doubles a player has rolled in the current turn
                         parState.setNumOfDoubles(parState.getNumOfDoubles() + 1);
 
-                    //Player has rolled doubles 3 times, furthest piece on board has to move back
-                    if(parState.getNumOfDoubles() >= 3)
-                    {
-                        int currentPlayer = parState.getPlayerTurn();
-                        int maxPawnLoc = 0;
-                        int maxPawnNum = 0;
-                        for(int i = 0; i < 4; i++) //loops through each pawn
+                        //Player has rolled doubles 3 times, furthest piece on board has to move back
+                        if(parState.getNumOfDoubles() >= 3)
                         {
-                            int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
-                            int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
+                            int currentPlayer = parState.getPlayerTurn();
+                            int maxPawnLoc = 0;
+                            int maxPawnNum = 0;
+                            for(int i = 0; i < 4; i++) //loops through each pawn
+                            {
+                                int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
+                                int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
 
-                            outerloop:
-                            for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
-                                for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
-                                    if (pawnLocation.pawnLocationX[k] == curPawnX && pawnLocation.pawnLocationY[j] == curPawnY && k == j) {
-                                        movingRectangle = k;
-                                        break outerloop;
+                                outerloop:
+                                for (int k = 0; k < pawnLocation.pawnLocationX.length; k++) {
+                                    for (int j = 0; j < pawnLocation.pawnLocationY.length; j++) {
+                                        if (pawnLocation.pawnLocationX[k] == curPawnX && pawnLocation.pawnLocationY[j] == curPawnY && k == j) {
+                                            movingRectangle = k;
+                                            break outerloop;
+                                        }
+                                    }
+                                }
+
+
+
+                                // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
+                                // indexes #116 - 131
+                                //
+                                if( movingRectangle <= 99) //finds the furthest pawn
+                                {
+                                    if(movingRectangle>maxPawnLoc) {
+                                        maxPawnLoc = movingRectangle;
+                                        maxPawnNum = i;
                                     }
                                 }
                             }
-
-
-
-                            // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
-                            // indexes #116 - 131
-                            //
-                            if( movingRectangle <= 99) //finds the furthest pawn
-                            {
-                                if(movingRectangle>maxPawnLoc) {
-                                    maxPawnLoc = movingRectangle;
-                                    maxPawnNum = i;
-                                }
-                            }
-                        }
-                        parState.resetPawnLocation(currentPlayer,maxPawnNum); //resets the location of the furthest pawn
+                            parState.resetPawnLocation(currentPlayer,maxPawnNum); //resets the location of the furthest pawn
 
                             //Player's turn is over since they rolled to many doubles
                             //Calls setPlayerTurn() to change player's turn and reset numOfDoubles and the substage
                             parState.setPlayerTurn();
                         }
+                        // Player rolled doubles, but not 3 or more times
                         else {
-                            // Player rolled doubles, but not 3 or more times
+                            //substage is changed to Begin_Move (1)
                             parState.setCurrentSubstage(parState.Begin_Move);
                         }
                     }
@@ -211,63 +213,50 @@ public class ParLocalGame extends LocalGame {
             else if (action instanceof ParMoveAction) {
                 // ToDo: implement checking if a pawn of a different player is in the possible legal moves, therefore the pawn will be "eaten" (i.e. sent back to their respective starting location through the parState.resetPawnLocation method)
 
-                int radioButtonChecked = parState.radioButtonChecked;
-                int dieSelected = parState.dieSelected;
+                if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
+                    int radioButtonChecked = parState.radioButtonChecked;
+                    int dieSelected = parState.dieSelected;
 
-                for (int i = 0; i < 4; i++) {
-                    player0LocationsX[i] = parState.getPawnLocationsXForPlayer(0,i);
-                    player1LocationsX[i] = parState.getPawnLocationsXForPlayer(1,i);
-                    player2LocationsX[i] = parState.getPawnLocationsXForPlayer(2,i);
-                    player3LocationsX[i] = parState.getPawnLocationsXForPlayer(3,i);
-                    player0LocationsY[i] = parState.getPawnLocationsYForPlayer(0,i);
-                    player1LocationsY[i] = parState.getPawnLocationsYForPlayer(1,i);
-                    player2LocationsY[i] = parState.getPawnLocationsYForPlayer(2,i);
-                    player3LocationsY[i] = parState.getPawnLocationsYForPlayer(3,i);
-                }
-                // get the rectangle of all of the pawns
-                // if the rectangle is -1... then it is in the starting locations
-                for (int i = 0; i < 4 ; i++) {
-                    player0Rect[i] = parState.getRect(player0LocationsX[i], player0LocationsY[i]);
-                    player1Rect[i] = parState.getRect(player1LocationsX[i], player1LocationsY[i]);
-                    player2Rect[i] = parState.getRect(player2LocationsX[i], player2LocationsY[i]);
-                    player3Rect[i] = parState.getRect(player3LocationsX[i], player3LocationsY[i]);
-                }
-
-                String dieValue = null;
-
-                switch (dieSelected) {
-                    case 0:
-                        dieValue = "dieValue1";
-                        break;
-                    case 1:
-                        dieValue = "dieValue2";
-                        break;
-                    case 2:
-                        dieValue = "dieValueTotal";
-                        break;
-                }
-
-                // ToDo: check if there are no more legal moves, change player turn (check if the legalMoves Hashmap in the ParState is empty)
-
-                if (parState.legalMoves0.isEmpty() && parState.legalMoves1.isEmpty() && parState.legalMoves2.isEmpty() && parState.legalMoves3.isEmpty()) {
-                    // there are no legal moves
-                    // check to see if rolled doubles or not
-                    // then determine if need to change player turn
-                    parState.setCurrentSubstage(parState.Roll);
-                    if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
-                        parState.setPlayerTurn();
+                    for (int i = 0; i < 4; i++) {
+                        player0LocationsX[i] = parState.getPawnLocationsXForPlayer(0, i);
+                        player1LocationsX[i] = parState.getPawnLocationsXForPlayer(1, i);
+                        player2LocationsX[i] = parState.getPawnLocationsXForPlayer(2, i);
+                        player3LocationsX[i] = parState.getPawnLocationsXForPlayer(3, i);
+                        player0LocationsY[i] = parState.getPawnLocationsYForPlayer(0, i);
+                        player1LocationsY[i] = parState.getPawnLocationsYForPlayer(1, i);
+                        player2LocationsY[i] = parState.getPawnLocationsYForPlayer(2, i);
+                        player3LocationsY[i] = parState.getPawnLocationsYForPlayer(3, i);
                     }
-                    // the legal moves sets are empty, therefore the player must roll
-                    parState.setEmptySet(true);
-                }
-                else {
+                    // get the rectangle of all of the pawns
+                    // if the rectangle is -1... then it is in the starting locations
+                    for (int i = 0; i < 4; i++) {
+                        player0Rect[i] = parState.getRect(player0LocationsX[i], player0LocationsY[i]);
+                        player1Rect[i] = parState.getRect(player1LocationsX[i], player1LocationsY[i]);
+                        player2Rect[i] = parState.getRect(player2LocationsX[i], player2LocationsY[i]);
+                        player3Rect[i] = parState.getRect(player3LocationsX[i], player3LocationsY[i]);
+                    }
+
+                    String dieValue = null;
+
+                    switch (dieSelected) {
+                        case 0:
+                            dieValue = "dieValue1";
+                            break;
+                        case 1:
+                            dieValue = "dieValue2";
+                            break;
+                        case 2:
+                            dieValue = "dieValueTotal";
+                            break;
+                    }
+
+                    // ToDo: check if there are no more legal moves, change player turn (check if the legalMoves Hashmap in the ParState is empty)
                     // there is a legal move that can and will be made
                     switch (parState.getRadioButtonChecked()) {
                         case 0:
                             if (parState.legalMoves0.isEmpty()) {
                                 // flash the screen
-                            }
-                            else {
+                            } else {
                                 // there is a legal move for the pawn 1
                                 if (parState.containsLegalMoves(dieValue, radioButtonChecked)) {
                                     // make the move
@@ -278,33 +267,28 @@ public class ParLocalGame extends LocalGame {
                                     // change the die values to disable the die/dice that were used
                                     if (dieSelected == 0) {
                                         parState.setDieVals(-1, parState.getDice2Val());
-                                    }
-                                    else if (dieSelected == 1) {
+                                    } else if (dieSelected == 1) {
                                         parState.setDieVals(parState.getDice1Val(), -1);
-                                    }
-                                    else {
-                                        parState.setDieVals(-1,-1);
+                                    } else {
+                                        parState.setDieVals(-1, -1);
                                     }
                                     // recalculate the values of the rectangles in which the pawns are in
                                     player0Rect[radioButtonChecked] = parState.getRect(locationX, locationY);
                                     // check to see if a pawn of the other player is being eaten
                                     outerloop:
-                                    for (int i = 0; i < 4; i ++) {
+                                    for (int i = 0; i < 4; i++) {
                                         if (player0Rect[radioButtonChecked] == player1Rect[i]) {
                                             parState.resetPawnLocation(1, i);
                                             break outerloop;
-                                        }
-                                        else if (player0Rect[radioButtonChecked] == player2Rect[i]) {
+                                        } else if (player0Rect[radioButtonChecked] == player2Rect[i]) {
                                             parState.resetPawnLocation(2, i);
                                             break outerloop;
-                                        }
-                                        else if (player0Rect[radioButtonChecked] == player3Rect[i]) {
+                                        } else if (player0Rect[radioButtonChecked] == player3Rect[i]) {
                                             parState.resetPawnLocation(3, i);
                                             break outerloop;
                                         }
                                     }
-                                }
-                                else {
+                                } else {
                                     // flash the screen
                                 }
                             }
@@ -312,8 +296,7 @@ public class ParLocalGame extends LocalGame {
                         case 1:
                             if (parState.legalMoves1.isEmpty()) {
                                 // flash the screen
-                            }
-                            else {
+                            } else {
                                 // there is a legal move for the pawn 2
                                 if (parState.containsLegalMoves(dieValue, radioButtonChecked)) {
                                     // make the move
@@ -324,33 +307,28 @@ public class ParLocalGame extends LocalGame {
                                     // change the die values to disable the die/dice that were used
                                     if (dieSelected == 0) {
                                         parState.setDieVals(-1, parState.getDice2Val());
-                                    }
-                                    else if (dieSelected == 1) {
+                                    } else if (dieSelected == 1) {
                                         parState.setDieVals(parState.getDice1Val(), -1);
-                                    }
-                                    else {
-                                        parState.setDieVals(-1,-1);
+                                    } else {
+                                        parState.setDieVals(-1, -1);
                                     }
                                     // recalculate the values of the rectangles in which the pawns are in
                                     player1Rect[radioButtonChecked] = parState.getRect(locationX, locationY);
                                     // check to see if a pawn of the other player is being eaten
                                     outerloop:
-                                    for (int i = 0; i < 4; i ++) {
+                                    for (int i = 0; i < 4; i++) {
                                         if (player1Rect[radioButtonChecked] == player0Rect[i]) {
                                             parState.resetPawnLocation(0, i);
                                             break outerloop;
-                                        }
-                                        else if (player1Rect[radioButtonChecked] == player2Rect[i]) {
+                                        } else if (player1Rect[radioButtonChecked] == player2Rect[i]) {
                                             parState.resetPawnLocation(2, i);
                                             break outerloop;
-                                        }
-                                        else if (player1Rect[radioButtonChecked] == player3Rect[i]) {
+                                        } else if (player1Rect[radioButtonChecked] == player3Rect[i]) {
                                             parState.resetPawnLocation(3, i);
                                             break outerloop;
                                         }
                                     }
-                                }
-                                else {
+                                } else {
                                     // flash the screen
                                 }
                             }
@@ -359,8 +337,7 @@ public class ParLocalGame extends LocalGame {
                         case 2:
                             if (parState.legalMoves2.isEmpty()) {
                                 // flash the screen
-                            }
-                            else {
+                            } else {
                                 // there is a legal move for the pawn 3
                                 if (parState.containsLegalMoves(dieValue, radioButtonChecked)) {
                                     // make the move
@@ -371,33 +348,28 @@ public class ParLocalGame extends LocalGame {
                                     // change the die values to disable the die/dice that were used
                                     if (dieSelected == 0) {
                                         parState.setDieVals(-1, parState.getDice2Val());
-                                    }
-                                    else if (dieSelected == 1) {
+                                    } else if (dieSelected == 1) {
                                         parState.setDieVals(parState.getDice1Val(), -1);
-                                    }
-                                    else {
-                                        parState.setDieVals(-1,-1);
+                                    } else {
+                                        parState.setDieVals(-1, -1);
                                     }
                                     // recalculate the values of the rectangles in which the pawns are in
                                     player2Rect[radioButtonChecked] = parState.getRect(locationX, locationY);
                                     // check to see if a pawn of the other player is being eaten
                                     outerloop:
-                                    for (int i = 0; i < 4; i ++) {
+                                    for (int i = 0; i < 4; i++) {
                                         if (player2Rect[radioButtonChecked] == player0Rect[i]) {
                                             parState.resetPawnLocation(0, i);
                                             break outerloop;
-                                        }
-                                        else if (player2Rect[radioButtonChecked] == player1Rect[i]) {
+                                        } else if (player2Rect[radioButtonChecked] == player1Rect[i]) {
                                             parState.resetPawnLocation(1, i);
                                             break outerloop;
-                                        }
-                                        else if (player2Rect[radioButtonChecked] == player3Rect[i]) {
+                                        } else if (player2Rect[radioButtonChecked] == player3Rect[i]) {
                                             parState.resetPawnLocation(3, i);
                                             break outerloop;
                                         }
                                     }
-                                }
-                                else {
+                                } else {
                                     // flash the screen
                                 }
                             }
@@ -405,8 +377,7 @@ public class ParLocalGame extends LocalGame {
                         case 3:
                             if (parState.legalMoves3.isEmpty()) {
                                 // flash the screen
-                            }
-                            else {
+                            } else {
                                 // there is a legal move for the pawn 4
                                 if (parState.containsLegalMoves(dieValue, radioButtonChecked)) {
                                     // make the move
@@ -417,33 +388,28 @@ public class ParLocalGame extends LocalGame {
                                     // change the die values to disable the die/dice that were used
                                     if (dieSelected == 0) {
                                         parState.setDieVals(-1, parState.getDice2Val());
-                                    }
-                                    else if (dieSelected == 1) {
+                                    } else if (dieSelected == 1) {
                                         parState.setDieVals(parState.getDice1Val(), -1);
-                                    }
-                                    else {
-                                        parState.setDieVals(-1,-1);
+                                    } else {
+                                        parState.setDieVals(-1, -1);
                                     }
                                     // recalculate the values of the rectangles in which the pawns are in
                                     player3Rect[radioButtonChecked] = parState.getRect(locationX, locationY);
                                     // check to see if a pawn of the other player is being eaten
                                     outerloop:
-                                    for (int i = 0; i < 4; i ++) {
+                                    for (int i = 0; i < 4; i++) {
                                         if (player3Rect[radioButtonChecked] == player0Rect[i]) {
                                             parState.resetPawnLocation(0, i);
                                             break outerloop;
-                                        }
-                                        else if (player3Rect[radioButtonChecked] == player1Rect[i]) {
+                                        } else if (player3Rect[radioButtonChecked] == player1Rect[i]) {
                                             parState.resetPawnLocation(1, i);
                                             break outerloop;
-                                        }
-                                        else if (player3Rect[radioButtonChecked] == player2Rect[i]) {
+                                        } else if (player3Rect[radioButtonChecked] == player2Rect[i]) {
                                             parState.resetPawnLocation(2, i);
                                             break outerloop;
                                         }
                                     }
-                                }
-                                else {
+                                } else {
                                     // flash the screen
                                 }
                             }
@@ -456,19 +422,6 @@ public class ParLocalGame extends LocalGame {
 
                 sendAction(parCheckLegalMoveAction);
 
-                if (parState.legalMoves0.isEmpty() && parState.legalMoves1.isEmpty() && parState.legalMoves2.isEmpty() && parState.legalMoves3.isEmpty()) {
-                    // there are no legal moves
-                    // check to see if rolled doubles or not
-                    // then determine if need to change player turn
-                    parState.setCurrentSubstage(parState.Roll);
-                    if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
-                        parState.setPlayerTurn();
-                    }
-                    // the legal moves sets are empty, therefore the player must roll
-                    parState.setEmptySet(true);
-                }
-                // the legal moves sets are empty, therefore the player must make a move
-                parState.setEmptySet(false);
                 return true;
             }
             else if (action instanceof ParCheckLegalMoveAction) {
@@ -492,8 +445,8 @@ public class ParLocalGame extends LocalGame {
                     }
 
                     // set the initial x and y locations of the pawn that is selected to move
-                        movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), i);
-                        movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), i);
+                    movingLocationX = parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), i);
+                    movingLocationY = parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), i);
 
                     int dieValue1 = parState.getDice1Val();
                     int dieValue2 = parState.getDice2Val();
@@ -1032,6 +985,21 @@ public class ParLocalGame extends LocalGame {
                     if (illegalMoveTotal == false) {
                         parState.setLegalMoves("dieValueTotal", i, finalMovingRectangleTotal);
                     }
+                }
+                if (parState.legalMoves0.isEmpty() && parState.legalMoves1.isEmpty() && parState.legalMoves2.isEmpty() && parState.legalMoves3.isEmpty()) {
+                    // there are no legal moves
+                    // check to see if rolled doubles or not
+                    // then determine if need to change player turn
+                    parState.setCurrentSubstage(parState.Roll);
+                    if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
+                        parState.setPlayerTurn();
+                    }
+                    // the legal moves sets are empty, therefore the player must roll
+                    parState.setEmptySet(true);
+                }
+                else {
+                    // the legal moves sets are empty, therefore the player must make a move
+                    parState.setEmptySet(false);
                 }
                 return true;
             }
