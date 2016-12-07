@@ -816,6 +816,12 @@ public class ParLocalGame extends LocalGame {
                             }
                         }
 
+                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
+                            if (finalMovingRectangle1 > 67) {
+                                finalMovingRectangle1 = finalMovingRectangle1 - 68;
+                            }
+                        }
+
                         outerloop:
                         for (int j = 0; j < i; j++) {
                             if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
@@ -887,6 +893,12 @@ public class ParLocalGame extends LocalGame {
 
                             if (finalMovingRectangle2 > 99) {
                                 illegalMove2 = true;
+                            }
+                        }
+
+                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
+                            if (finalMovingRectangle2 > 67) {
+                                finalMovingRectangle2 = finalMovingRectangle2 - 68;
                             }
                         }
 
@@ -964,6 +976,12 @@ public class ParLocalGame extends LocalGame {
                             }
                         }
 
+                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
+                            if (finalMovingRectangleTotal > 67) {
+                                finalMovingRectangleTotal = finalMovingRectangleTotal - 68;
+                            }
+                        }
+
                         outerloop:
                         for (int j = 0; j < i; j++) {
                             if (pawnLocation.pawnLocationX[finalMovingRectangleTotal] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
@@ -1018,6 +1036,11 @@ public class ParLocalGame extends LocalGame {
                 // set the radio button variable in the parState class after changing the radio button
                 parState.setRadioButtonChecked(((ParSelectAction) action).getPawnIdx());
 
+                // check for the legal moves after a pawn has been selected
+                ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(action.getPlayer());
+
+                sendAction(parCheckLegalMoveAction);
+
                 // ToDo: need to implement some way of changing the highlighted legal moves when changing the radio button selected
 
                 return true;
@@ -1026,6 +1049,11 @@ public class ParLocalGame extends LocalGame {
             else if (action instanceof ParUseDieAction) {
                 parState.setDieValueSelected(((ParUseDieAction) action).getTotalDieValue());
                 parState.setDieSelected(((ParUseDieAction) action).getDieIndex());
+
+                // check for the legal moves after a die has been selected
+                ParCheckLegalMoveAction parCheckLegalMoveAction = new ParCheckLegalMoveAction(action.getPlayer());
+
+                sendAction(parCheckLegalMoveAction);
 
                 // ToDo: need to implement some way of changing the highlighted legal moves when changing the die value selected
 

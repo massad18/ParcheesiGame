@@ -51,7 +51,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
             // roll the die
             if (parState.getCurrentSubstage() == parState.Roll) {
                 rollAction = new ParRollAction(this);
-                sleep(1000);
+                sleep(2000);
                 game.sendAction(rollAction);
             }
 
