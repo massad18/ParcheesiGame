@@ -133,11 +133,12 @@ public class ParLocalGame extends LocalGame {
         if (this.players[parState.getPlayerTurn()] == action.getPlayer()) {
             // Roll Action (called when either die button is pressed and the player needs to role the dice)
             if (action instanceof ParRollAction) {
-                // ToDo: BUG!!! can roll multiple times when one double is rolled, but anything is rolled after
-                int randomDieVal1;
-                int randomDieVal2;
                 if (parState.getCurrentSubstage() == parState.Roll) {
+                    // ToDo: BUG!!! can roll multiple times when one double is rolled, but anything is rolled after (called when
+                    int randomDieVal1;
+                    int randomDieVal2;
                     //Creates two random integers between 1 and 6 for the dice values
+                    // ToDo: CHANGE BACK TO RANDOM!!!
                     randomDieVal1 = (int) (Math.random() * 6) + 1;
                     randomDieVal2 = (int) (Math.random() * 6) + 1;
 
@@ -146,16 +147,16 @@ public class ParLocalGame extends LocalGame {
 
                     //Checks to see if the two random die values are equal. If they're equal a double has been rolled
                     if (randomDieVal1 == randomDieVal2) {
+                        parState.setDoublesThrown(true);
                         //Adds one to the total amount of doubles a player has rolled in the current turn
                         parState.setNumOfDoubles(parState.getNumOfDoubles() + 1);
 
                         //Player has rolled doubles 3 times, furthest piece on board has to move back
-                        if(parState.getNumOfDoubles() >= 3)
-                        {
+                        if (parState.getNumOfDoubles() >= 3) {
                             int currentPlayer = parState.getPlayerTurn();
                             int maxPawnLoc = 0;
                             int maxPawnNum = 0;
-                            for(int i = 0; i < 4; i++) //loops through each pawn
+                            for (int i = 0; i < 4; i++) //loops through each pawn
                             {
                                 int curPawnX = parState.getPawnLocationsXForPlayer(currentPlayer, i);
                                 int curPawnY = parState.getPawnLocationsXForPlayer(currentPlayer, i);
@@ -171,19 +172,18 @@ public class ParLocalGame extends LocalGame {
                                 }
 
 
-
                                 // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
                                 // indexes #116 - 131
                                 //
-                                if( movingRectangle <= 99) //finds the furthest pawn
+                                if (movingRectangle <= 99) //finds the furthest pawn
                                 {
-                                    if(movingRectangle>maxPawnLoc) {
+                                    if (movingRectangle > maxPawnLoc) {
                                         maxPawnLoc = movingRectangle;
                                         maxPawnNum = i;
                                     }
                                 }
                             }
-                            parState.resetPawnLocation(currentPlayer,maxPawnNum); //resets the location of the furthest pawn
+                            parState.resetPawnLocation(currentPlayer, maxPawnNum); //resets the location of the furthest pawn
 
                             //Player's turn is over since they rolled to many doubles
                             //Calls setPlayerTurn() to change player's turn and reset numOfDoubles and the substage
@@ -197,6 +197,7 @@ public class ParLocalGame extends LocalGame {
                     }
                     //Player hasn't rolled a double
                     else {
+                        parState.setDoublesThrown(false);
                         //substage is changed to Begin_Move (1)
                         parState.setCurrentSubstage(parState.Begin_Move);
                     }
@@ -206,7 +207,6 @@ public class ParLocalGame extends LocalGame {
 
                     sendAction(parCheckLegalMoveAction);
                 }
-
                 return true;
             }
             // Move Action (called when confirm move is pressed)
@@ -508,7 +508,7 @@ public class ParLocalGame extends LocalGame {
                                     parState.setLegalMoves("dieValue2", i, 0);
                                 }
                             }
-                            if (dieValueTotal == 5) {
+                            if (dieValue1 != -1 && dieValue2 != -1 && dieValueTotal == 5) {
                                 outerloop:
                                 for (int j = 0; j < i; j++) {
                                     if (finalMovingRectangleStart0 == parState.getRect(parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j),parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), j))) {
@@ -570,7 +570,7 @@ public class ParLocalGame extends LocalGame {
                                     parState.setLegalMoves("dieValue2", i, 51);
                                 }
                             }
-                            if (dieValueTotal == 5) {
+                            if (dieValue1 != -1 && dieValue2 != -1 && dieValueTotal == 5) {
                                 outerloop:
                                 for (int j = 0; j < i; j++) {
                                     if (finalMovingRectangleStart1 == parState.getRect(parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j),parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), j))) {
@@ -632,7 +632,7 @@ public class ParLocalGame extends LocalGame {
                                     parState.setLegalMoves("dieValue2", i, 34);
                                 }
                             }
-                            if (dieValueTotal == 5) {
+                            if (dieValue1 != -1 && dieValue2 != -1 && dieValueTotal == 5) {
                                 outerloop:
                                 for (int j = 0; j < i; j++) {
                                     if (finalMovingRectangleStart2 == parState.getRect(parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j),parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), j))) {
@@ -694,7 +694,7 @@ public class ParLocalGame extends LocalGame {
                                     parState.setLegalMoves("dieValue2", i, 17);
                                 }
                             }
-                            if (dieValueTotal == 5) {
+                            if (dieValue1 != -1 && dieValue2 != -1 && dieValueTotal == 5) {
                                 outerloop:
                                 for (int j = 0; j < i; j++) {
                                     if (finalMovingRectangleStart3 == parState.getRect(parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j),parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), j))) {
@@ -990,16 +990,26 @@ public class ParLocalGame extends LocalGame {
                     // there are no legal moves
                     // check to see if rolled doubles or not
                     // then determine if need to change player turn
-                    parState.setCurrentSubstage(parState.Roll);
-                    if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
+                    if (parState.getDoublesThrown()) {
+                        // check to see if you rolled doubles 3
+                        if (parState.getNumOfDoubles() >= 3) {
+                            parState.setPlayerTurn();
+                        } else {
+                            // you get to roll again after rolling doubles ONLY if you have
+                            // used up all of the values on the two die
+                            if (parState.getDice1Val() == -1 && parState.getDice2Val() == -1) {
+                                parState.setCurrentSubstage(parState.Roll);
+                            }
+                            // if you did not use all of the values, then you lose your turn
+                            else {
+                                parState.setPlayerTurn();
+                            }
+                        }
+                    }
+                    // you did not JUST throw doubles
+                    else {
                         parState.setPlayerTurn();
                     }
-                    // the legal moves sets are empty, therefore the player must roll
-                    parState.setEmptySet(true);
-                }
-                else {
-                    // the legal moves sets are empty, therefore the player must make a move
-                    parState.setEmptySet(false);
                 }
                 return true;
             }

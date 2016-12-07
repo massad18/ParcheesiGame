@@ -31,8 +31,9 @@ public class ParState extends GameState {
     // initialize the die that was selected
     int dieSelected = -1;
 
-    // initialize the empty set boolean
-    boolean emptySet = true;
+    // initialize the boolean to check if the last throw was a double
+    boolean doublesThrown = false;
+
     // initialize the legal move array
     Hashtable<String, Integer> legalMoves0 = new Hashtable<>();
     Hashtable<String, Integer> legalMoves1 = new Hashtable<>();
@@ -79,11 +80,11 @@ public class ParState extends GameState {
         dieValueSelected = p.getDieValueSelected();
         dieSelected = p.getDieSelected();
         currentSubstage = p.getCurrentSubstage();
-        emptySet = p.getEmptySet();
         for (int i = 0; i < 2; i++) {
             dieVals[i] = p.getDiceVals(i);
         }
         numOfDoubles = p.getNumOfDoubles();
+        doublesThrown = p.getDoublesThrown();
         playerTurn = p.getPlayerTurn();
         for (int i = 0; i < 4; i++) {
             player0LocationsX[i] = p.getPawnLocationsXForPlayer(0, i);
@@ -298,6 +299,14 @@ public class ParState extends GameState {
     //Setter to set the number of doubles the current player has had in a turn
     public void setNumOfDoubles(int amountOfDoubles) { numOfDoubles = amountOfDoubles; }
 
+    public void setDoublesThrown(boolean x) {
+        doublesThrown = x;
+    }
+
+    public boolean getDoublesThrown() {
+        return doublesThrown;
+    }
+
     //Getter to return who's turn it currently is
     public int getPlayerTurn() { return playerTurn; }
 
@@ -349,14 +358,6 @@ public class ParState extends GameState {
     public void setDieSelected (int x) { dieSelected = x;}
 
     public int getDieSelected() {return dieSelected;}
-
-    public void setEmptySet(boolean x) {
-        emptySet = x;
-    }
-
-    public boolean getEmptySet() {
-        return emptySet;
-    }
 
     public void setLegalMoves(String die, int index, int rectNumber) {
         switch (index) {

@@ -55,8 +55,8 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                 game.sendAction(rollAction);
             }
 
-            Random rand = new Random();
-            if (((ParState) info).getEmptySet() == false) {
+            if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
+                Random rand = new Random();
                 // choose a random pawn
                 int randSelect = rand.nextInt(4);
                 selectAction = new ParSelectAction(this, randSelect);
@@ -81,7 +81,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
 
                 moveAction = new ParMoveAction(this);
-                sleep(1000);
+                sleep(300);
                 game.sendAction(moveAction);
             }
         }
