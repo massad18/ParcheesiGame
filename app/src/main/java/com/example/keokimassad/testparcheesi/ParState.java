@@ -30,6 +30,9 @@ public class ParState extends GameState {
     int dieValueSelected = -1;
     // initialize the die that was selected
     int dieSelected = -1;
+
+    // initialize the empty set boolean
+    boolean emptySet = true;
     // initialize the legal move array
     Hashtable<String, Integer> legalMoves0 = new Hashtable<>();
     Hashtable<String, Integer> legalMoves1 = new Hashtable<>();
@@ -76,6 +79,7 @@ public class ParState extends GameState {
         dieValueSelected = p.getDieValueSelected();
         dieSelected = p.getDieSelected();
         currentSubstage = p.getCurrentSubstage();
+        emptySet = p.getEmptySet();
         for (int i = 0; i < 2; i++) {
             dieVals[i] = p.getDiceVals(i);
         }
@@ -345,6 +349,14 @@ public class ParState extends GameState {
     public void setDieSelected (int x) { dieSelected = x;}
 
     public int getDieSelected() {return dieSelected;}
+
+    public void setEmptySet(boolean x) {
+        emptySet = x;
+    }
+
+    public boolean getEmptySet() {
+        return emptySet;
+    }
 
     public void setLegalMoves(String die, int index, int rectNumber) {
         switch (index) {

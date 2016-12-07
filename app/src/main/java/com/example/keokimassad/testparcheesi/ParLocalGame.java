@@ -249,8 +249,8 @@ public class ParLocalGame extends LocalGame {
                     if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
                         parState.setPlayerTurn();
                     }
-                    // return false if the player has to roll
-                    return false;
+                    // the legal moves sets are empty, therefore the player must roll
+                    parState.setEmptySet(true);
                 }
                 else {
                     // there is a legal move that can and will be made
@@ -456,10 +456,11 @@ public class ParLocalGame extends LocalGame {
                     if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
                         parState.setPlayerTurn();
                     }
-                    // return false if the player has to roll
-                    return false;
+                    // the legal moves sets are empty, therefore the player must roll
+                    parState.setEmptySet(true);
                 }
-
+                // the legal moves sets are empty, therefore the player must make a move
+                parState.setEmptySet(false);
                 return true;
             }
             else if (action instanceof ParCheckLegalMoveAction) {

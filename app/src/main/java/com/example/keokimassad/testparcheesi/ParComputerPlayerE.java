@@ -23,7 +23,6 @@ public class ParComputerPlayerE extends GameComputerPlayer {
     ParRollAction rollAction;
     ParSelectAction selectAction;
     ParUseDieAction useDieAction;
-    ParCheckLegalMoveAction checkLegalMoveAction;
     ParMoveAction moveAction;
 
     public ParComputerPlayerE(String name) {
@@ -47,25 +46,56 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                 }, 2000);
 
                 Random rand = new Random();
-                // choose a random pawn
-                int randSelect = rand.nextInt(4);
-                selectAction = new ParSelectAction(this, randSelect);
-                game.sendAction(selectAction);
-                // choose a random die
-                int randDie = rand.nextInt(3);
-                switch (randDie) {
-                    case 0:
-                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
-                        break;
-                    case 1:
-                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
-                        break;
-                    case 2:
-                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
-                        break;
-                }
+                do {
+                    // choose a random pawn
+                    int randSelect = rand.nextInt(4);
+                    selectAction = new ParSelectAction(this, randSelect);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            game.sendAction(selectAction);
+                        }
+                    }, 2000);
 
-                moveAction = new ParMoveAction(this);
+                    // choose a random die
+                    int randDie = rand.nextInt(3);
+                    switch (randDie) {
+                        case 0:
+                            useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    game.sendAction(selectAction);
+                                }
+                            }, 2000);
+                            break;
+                        case 1:
+                            useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    game.sendAction(selectAction);
+                                }
+                            }, 2000);
+                            break;
+                        case 2:
+                            useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    game.sendAction(selectAction);
+                                }
+
+                            },2000);
+                            break;
+                    }
+
+
+                    moveAction = new ParMoveAction(this);
+                } while(((ParState) info).getEmptySet() == false);
+
+
+
 
 //               if (//4 objects are at home)
 //                        )

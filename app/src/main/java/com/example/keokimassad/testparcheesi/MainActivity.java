@@ -71,11 +71,13 @@ public class MainActivity extends GameMainActivity{
         });
 
         // Create a game configuration class for Tic-tac-toe
-        GameConfig defaultConfig = new GameConfig(playerTypes, 2,4, "Parcheesi", PORT_NUMBER);
+        GameConfig defaultConfig = new GameConfig(playerTypes, 4,4, "Parcheesi", PORT_NUMBER);
 
         // Add the default players
         defaultConfig.addPlayer("Human", 0);
-        defaultConfig.addPlayer("Computer", 4); //Easy Computer
+        defaultConfig.addPlayer("Computer1", 4); // E Comp
+        defaultConfig.addPlayer("Compter2", 4); // E Comp
+        defaultConfig.addPlayer("Computer3", 4); //Easy Computer
 
         // Set the initial information for the remote player
         defaultConfig.setRemoteData("Remote Player", "", 1);
