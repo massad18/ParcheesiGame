@@ -30,8 +30,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     private Button endTurnButton;
     private RadioGroup selectPawnButtons;
 
-    private TextView textView;
-    private TextView textView1;
+    //private TextView textView;
+    //private TextView textView1;
     private TextView currentSubstageText;
     private TextView playerTurnText;
     // this is the view on which you will listen for touch events
@@ -302,9 +302,9 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     // displays the rectangle in which the human is touching on the board (surface view)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        textView.setText("Touch coordinates : " +
-                String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-        textView1.setText(parState.containsInRect(event.getX(), event.getY()));
+        //textView.setText("Touch coordinates : " +
+        //        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+        //textView1.setText(parState.containsInRect(event.getX(), event.getY()));
 
 
         int x = (int) event.getX();
