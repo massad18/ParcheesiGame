@@ -454,9 +454,10 @@ public class ParLocalGame extends LocalGame {
                     if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
                         parState.setPlayerTurn();
                     }
+                    return true;
                 }
 
-                return true;
+                return false;
             }
             else if (action instanceof ParCheckLegalMoveAction) {
                 // ToDo: implement highlighting legal moves given the numbers on the die
