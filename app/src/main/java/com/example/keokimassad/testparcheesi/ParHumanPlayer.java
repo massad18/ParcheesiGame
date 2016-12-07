@@ -30,6 +30,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     private Button endTurnButton;
     private RadioGroup selectPawnButtons;
 
+    ParCheckLegalMoveAction checkLegalMoveAction;
+
     //private TextView textView;
     //private TextView textView1;
     private TextView currentSubstageText;
@@ -226,6 +228,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 ParRollAction actRoll = new ParRollAction(this);
                 game.sendAction(actRoll);
                 selectPawnButtons.clearCheck();
+                checkLegalMoveAction = new ParCheckLegalMoveAction(this);
+                game.sendAction(checkLegalMoveAction);
             }
         }
         //If the second die is pressed
@@ -236,6 +240,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 ParRollAction actRoll = new ParRollAction(this);
                 game.sendAction(actRoll);
                 selectPawnButtons.clearCheck();
+                checkLegalMoveAction = new ParCheckLegalMoveAction(this);
+                game.sendAction(checkLegalMoveAction);
             }
         }
         else if(button == useDieButtons[0])
@@ -267,6 +273,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
             ParMoveAction parMoveAction = new ParMoveAction(this);
             game.sendAction(parMoveAction);
+            checkLegalMoveAction = new ParCheckLegalMoveAction(this);
+            game.sendAction(checkLegalMoveAction);
         }
 //        }
     }

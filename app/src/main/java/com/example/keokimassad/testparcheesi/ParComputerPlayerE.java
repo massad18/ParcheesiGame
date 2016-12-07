@@ -28,6 +28,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
     ParSelectAction selectAction;
     ParUseDieAction useDieAction;
     ParMoveAction moveAction;
+    ParCheckLegalMoveAction checkLegalMoveAction;
     ParState parState;
 
     public ParComputerPlayerE(String name) {
@@ -48,41 +49,54 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
         if (parState.getPlayerTurn() == playerNumber) {
 
-            // roll the die
-            if (parState.getCurrentSubstage() == parState.Roll) {
-                rollAction = new ParRollAction(this);
-                sleep(2000);
-                game.sendAction(rollAction);
-            }
-
-            if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
-                Random rand = new Random();
-                // choose a random pawn
-                int randSelect = rand.nextInt(4);
-                selectAction = new ParSelectAction(this, randSelect);
-                game.sendAction(selectAction);
-
-                // choose a random die
-                int randDie = rand.nextInt(3);
-                switch (randDie) {
-                    case 0:
-                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
-                        game.sendAction(useDieAction);
-                        break;
-                    case 1:
-                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
-                        game.sendAction(useDieAction);
-                        break;
-                    case 2:
-                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
-                        game.sendAction(useDieAction);
-                        break;
+            if (parState.getCheckLegalMoveActionMade() == true) {
+                // roll the die
+                if (parState.getCurrentSubstage() == parState.Roll) {
+                    rollAction = new ParRollAction(this);
+                    sleep(2000);
+                    game.sendAction(rollAction);
+                    return;
+                } else if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
+                    if (parState.getPawnActionMade() == false) {
+                        Log.i("selecting pawn", "" + parState.getPawnActionMade());
+                        Random rand = new Random();
+                        // choose a random pawn
+                        int randSelect = rand.nextInt(4);
+                        selectAction = new ParSelectAction(this, randSelect);
+                        game.sendAction(selectAction);
+                        return;
+                    } else if (parState.getUseDieActionMade() == false) {
+                        Log.i("selecting use die", "" + parState.getUseDieActionMade());
+                        Random rand = new Random();
+                        // choose a random die
+                        int randDie = rand.nextInt(3);
+                        switch (randDie) {
+                            case 0:
+                                useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
+                                game.sendAction(useDieAction);
+                                break;
+                            case 1:
+                                useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
+                                game.sendAction(useDieAction);
+                                break;
+                            case 2:
+                                useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
+                                game.sendAction(useDieAction);
+                                break;
+                        }
+                        return;
+                    } else {
+                        Log.i("moving", parState.getPawnActionMade() + " " + parState.getUseDieActionMade());
+                        moveAction = new ParMoveAction(this);
+                        sleep(300);
+                        game.sendAction(moveAction);
+                        return;
+                    }
                 }
-
-
-                moveAction = new ParMoveAction(this);
-                sleep(300);
-                game.sendAction(moveAction);
+            } else {
+                checkLegalMoveAction = new ParCheckLegalMoveAction(this);
+                game.sendAction(checkLegalMoveAction);
+                return;
             }
         }
 

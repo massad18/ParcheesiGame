@@ -31,6 +31,13 @@ public class ParState extends GameState {
     // initialize the die that was selected
     int dieSelected = -1;
 
+    // initialize the pawnActionMade
+    boolean pawnActionMade = false;
+    // initialize the useDieActionMade
+    boolean useDieActionMade = false;
+    // initialize the checkLegalMoveActionMade
+    boolean checkLegalMoveActionMade = true;
+
     // initialize the boolean to check if the last throw was a double
     boolean doublesThrown = false;
 
@@ -80,6 +87,9 @@ public class ParState extends GameState {
         dieValueSelected = p.getDieValueSelected();
         dieSelected = p.getDieSelected();
         currentSubstage = p.getCurrentSubstage();
+        pawnActionMade = p.getPawnActionMade();
+        useDieActionMade = p.getUseDieActionMade();
+        checkLegalMoveActionMade = p.getCheckLegalMoveActionMade();
         for (int i = 0; i < 2; i++) {
             dieVals[i] = p.getDiceVals(i);
         }
@@ -275,10 +285,24 @@ public class ParState extends GameState {
     //TEMPORARY METHOD FOR AVAYA
 
     public int getRect (float x, float y) {
-        for (int i = 0; i < board.length; i++) {
-            Rect rect = board[i];
-            if (rect.contains(x, y)) {
-                return i;
+        if ((x == pawnLocation.pawnLocationX[116] || x == pawnLocation.pawnLocationX[117] || x == pawnLocation.pawnLocationX[118] || x == pawnLocation.pawnLocationX[119]) && (y == pawnLocation.pawnLocationY[116] || y == pawnLocation.pawnLocationY[117] || y == pawnLocation.pawnLocationY[118] || y == pawnLocation.pawnLocationY[119])){
+            return 75;
+        }
+        else if ((x == pawnLocation.pawnLocationX[120] || x == pawnLocation.pawnLocationX[121] || x == pawnLocation.pawnLocationX[122] || x == pawnLocation.pawnLocationX[123]) && (y == pawnLocation.pawnLocationY[120] || y == pawnLocation.pawnLocationY[121] || y == pawnLocation.pawnLocationY[122] || y == pawnLocation.pawnLocationY[123])) {
+            return 83;
+        }
+        else if ((x == pawnLocation.pawnLocationX[124] || x == pawnLocation.pawnLocationX[125] || x == pawnLocation.pawnLocationX[126] || x == pawnLocation.pawnLocationX[127]) && (y == pawnLocation.pawnLocationY[124] || y == pawnLocation.pawnLocationY[125] || y == pawnLocation.pawnLocationY[126] || y == pawnLocation.pawnLocationY[127])) {
+            return 91;
+        }
+        else if ((x == pawnLocation.pawnLocationX[128] || x == pawnLocation.pawnLocationX[129] || x == pawnLocation.pawnLocationX[130] || x == pawnLocation.pawnLocationX[131]) && (y == pawnLocation.pawnLocationY[128] || y == pawnLocation.pawnLocationY[129] || y == pawnLocation.pawnLocationY[130] || y == pawnLocation.pawnLocationY[131])) {
+            return 99;
+        }
+        else {
+            for (int i = 0; i < board.length; i++) {
+                Rect rect = board[i];
+                if (rect.contains(x, y)) {
+                    return i;
+                }
             }
         }
 
@@ -290,8 +314,19 @@ public class ParState extends GameState {
 
 
 
+    public void setUseDieActionMade(boolean x) {useDieActionMade = x;}
 
+    public boolean getUseDieActionMade() {return useDieActionMade;}
 
+    public void setPawnActionMade(boolean x) {pawnActionMade = x;}
+
+    public boolean getPawnActionMade() {return pawnActionMade;}
+
+    public void setCheckLegalMoveActionMade(boolean x) {
+        checkLegalMoveActionMade = x;
+    }
+
+    public boolean getCheckLegalMoveActionMade() {return checkLegalMoveActionMade;}
 
     //Getter to return the number of doubles the current player has had in the turn
     public int getNumOfDoubles() { return numOfDoubles; }
@@ -313,7 +348,6 @@ public class ParState extends GameState {
     //setter to set whose move it is
     // called when the players turn is completed
     public void setPlayerTurn() {
-        // ToDo:
         playerTurn++;
         if (playerTurn > 3) {
             playerTurn = 0;
@@ -515,11 +549,10 @@ public class ParState extends GameState {
         switch (playerIdx) {
             //red
             case 0:
-                // ToDo: CHANGE BACK TO 100, 101, 102 & 103!!!!!!!!!!
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[70], pawnLocation.pawnLocationY[70]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[71], pawnLocation.pawnLocationY[71]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[72], pawnLocation.pawnLocationY[72]);
-                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[73], pawnLocation.pawnLocationY[73]);
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
                 break;
             //blue
             case 1:
