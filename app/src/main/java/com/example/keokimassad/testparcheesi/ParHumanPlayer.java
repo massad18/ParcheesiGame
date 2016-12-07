@@ -62,7 +62,22 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
             state = (ParState)info;
 
-            playerTurnText.setText("Current Player Turn: " + state.getPlayerTurn());
+            String colorPlayer = null;
+            switch (state.getPlayerTurn()) {
+                case 0:
+                    colorPlayer = "Red";
+                    break;
+                case 1:
+                    colorPlayer = "Blue";
+                    break;
+                case 2:
+                    colorPlayer = "Yellow";
+                    break;
+                case 3:
+                    colorPlayer = "Green";
+                    break;
+            }
+            playerTurnText.setText("Current Player Turn: " + colorPlayer);
 
 
             if(state.getCurrentSubstage() == state.Roll) {

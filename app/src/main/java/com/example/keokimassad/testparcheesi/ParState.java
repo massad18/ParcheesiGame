@@ -421,6 +421,20 @@ public class ParState extends GameState {
         return false;
     }
 
+    public boolean isEmptyLegalMoves(int index) {
+        switch (index) {
+            case 0:
+                return legalMoves0.isEmpty();
+            case 1:
+                return legalMoves1.isEmpty();
+            case 2:
+                return legalMoves2.isEmpty();
+            case 3:
+                return legalMoves3.isEmpty();
+        }
+        return false;
+    }
+
     //Getter to return current substage
     public int getCurrentSubstage() { return currentSubstage; }
 
@@ -501,10 +515,11 @@ public class ParState extends GameState {
         switch (playerIdx) {
             //red
             case 0:
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
-                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
+                // ToDo: CHANGE BACK TO 100, 101, 102 & 103!!!!!!!!!!
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[70], pawnLocation.pawnLocationY[70]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[71], pawnLocation.pawnLocationY[71]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[72], pawnLocation.pawnLocationY[72]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[73], pawnLocation.pawnLocationY[73]);
                 break;
             //blue
             case 1:

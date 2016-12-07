@@ -139,8 +139,8 @@ public class ParLocalGame extends LocalGame {
                     int randomDieVal2;
                     //Creates two random integers between 1 and 6 for the dice values
                     // ToDo: CHANGE BACK TO RANDOM!!!
-                    randomDieVal1 = (int) (Math.random() * 6) + 1;
-                    randomDieVal2 = (int) (Math.random() * 6) + 1;
+                    randomDieVal1 = /*(int) (Math.random() * 6) + 1*/ 3;
+                    randomDieVal2 = /*(int) (Math.random() * 6) + 1*/ 3;
 
                     //assigns the die values to the random integers just generated
                     parState.setDieVals(randomDieVal1, randomDieVal2);
@@ -254,10 +254,12 @@ public class ParLocalGame extends LocalGame {
                     }
 
                     // ToDo: check if there are no more legal moves, change player turn (check if the legalMoves Hashmap in the ParState is empty)
-                    // there is a legal move that can and will be made
-                    switch (parState.getRadioButtonChecked()) {
+
+                    switch (parState.getPlayerTurn()) {
                         case 0:
-                            if (parState.legalMoves0.isEmpty()) {
+                            // there is a legal move that can and will be made for the selected
+                            // pawn of the given player... if so, make it
+                            if (parState.isEmptyLegalMoves(radioButtonChecked)) {
                                 // flash the screen
                             } else {
                                 // there is a legal move for the pawn 1
@@ -297,7 +299,7 @@ public class ParLocalGame extends LocalGame {
                             }
                             break;
                         case 1:
-                            if (parState.legalMoves1.isEmpty()) {
+                            if (parState.isEmptyLegalMoves(radioButtonChecked)) {
                                 // flash the screen
                             } else {
                                 // there is a legal move for the pawn 2
@@ -338,7 +340,7 @@ public class ParLocalGame extends LocalGame {
                             break;
 
                         case 2:
-                            if (parState.legalMoves2.isEmpty()) {
+                            if (parState.isEmptyLegalMoves(radioButtonChecked)) {
                                 // flash the screen
                             } else {
                                 // there is a legal move for the pawn 3
@@ -378,7 +380,7 @@ public class ParLocalGame extends LocalGame {
                             }
                             break;
                         case 3:
-                            if (parState.legalMoves3.isEmpty()) {
+                            if (parState.isEmptyLegalMoves(radioButtonChecked)) {
                                 // flash the screen
                             } else {
                                 // there is a legal move for the pawn 4
@@ -758,6 +760,12 @@ public class ParLocalGame extends LocalGame {
                                 illegalMove1 = true;
                             }
 
+                            // if the final move is going to end up in the homebase, set the pawns
+                            // to their respective positions within the homebase
+                            if (finalMovingRectangle1 == 75) {
+                                finalMovingRectangle1 = 116 + i;
+                            }
+
                         } else if (parState.getPlayerTurn() == 1) {
                             // moving into safe zone
                             //
@@ -778,6 +786,12 @@ public class ParLocalGame extends LocalGame {
                             if (finalMovingRectangle1 > 83) {
                                 illegalMove1 = true;
                             }
+
+                            // if the final move is going to end up in the homebase, set the pawns
+                            // to their respective positions within the homebase
+                            if (finalMovingRectangle1 == 83) {
+                                finalMovingRectangle1 = 120 + i;
+                            }
                         } else if (parState.getPlayerTurn() == 2) {
                             // moving into safe zone
                             //
@@ -797,6 +811,12 @@ public class ParLocalGame extends LocalGame {
 
                             if (finalMovingRectangle1 > 91) {
                                 illegalMove1 = true;
+                            }
+
+                            // if the final move is going to end up in the homebase, set the pawns
+                            // to their respective positions within the homebase
+                            if (finalMovingRectangle1 == 91) {
+                                finalMovingRectangle1 = 124 + i;
                             }
                         }
                         // player 3
@@ -820,6 +840,12 @@ public class ParLocalGame extends LocalGame {
                             if (finalMovingRectangle1 > 99) {
                                 illegalMove1 = true;
                             }
+
+                            // if the final move is going to end up in the homebase, set the pawns
+                            // to their respective positions within the homebase
+                            if (finalMovingRectangle1 == 99) {
+                                finalMovingRectangle1 = 128 + i;
+                            }
                         }
 
                         if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
@@ -828,16 +854,53 @@ public class ParLocalGame extends LocalGame {
                             }
                         }
 
+                        // checking to see if the projected move will "overlap" a pawn of the same
+                        // player, making it an illegal move
+
+                        // ToDo: COPY THIS INTO THE OTHER CASES FOR THE DIFFERENT DIE, BUT CHANGE THE FINALMOVERECTANGLE AND ILLEGALMOVE TO THEIR RESPECTIVE NUMBERS
                         outerloop:
                         for (int j = 0; j < i; j++) {
-                            if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
-                                illegalMove1 = true;
-                                break outerloop;
+                            if (finalMovingRectangle1 == parState.getRect(parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j),parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), j))) {
+                                switch (parState.getPlayerTurn()) {
+                                    case 0:
+                                        if (finalMovingRectangle1 == 75) {
+                                        }
+                                        else {
+                                            illegalMove1 = true;
+                                            break outerloop;
+                                        }
+                                        break;
+                                    case 1:
+                                        if (finalMovingRectangle1 == 83) {
+                                        }
+                                        else {
+                                            illegalMove1 = true;
+                                            break outerloop;
+                                        }
+                                        break;
+                                    case 2:
+                                        if (finalMovingRectangle1 == 91) {
+                                        }
+                                        else {
+                                            illegalMove1 = true;
+                                            break outerloop;
+                                        }
+                                        break;
+                                    case 3:
+                                        if (finalMovingRectangle1 == 99) {
+                                        }
+                                        else {
+                                            illegalMove1 = true;
+                                            break outerloop;
+                                        }
+                                        break;
+
+                                }
                             }
                         }
                         outerloop:
-                        for (int j = i + 1; j < 4; j++) {
-                            if (pawnLocation.pawnLocationX[finalMovingRectangle1] == parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j)) {
+                        for (int j = i+1; j < 4; j++) {
+                            if (finalMovingRectangle1 == parState.getRect(parState.getPawnLocationsXForPlayer(parState.getPlayerTurn(), j),parState.getPawnLocationsYForPlayer(parState.getPlayerTurn(), j))) {
                                 illegalMove1 = true;
                                 break outerloop;
                             }
@@ -871,6 +934,10 @@ public class ParLocalGame extends LocalGame {
                                 illegalMove2 = true;
                             }
 
+                            if (finalMovingRectangle2 == 75) {
+                                finalMovingRectangle2 = 116 + i;
+                            }
+
                         } else if (parState.getPlayerTurn() == 1) {
 
                             if (movingRectangle < 47 && finalMovingRectangle2 >= 47) {
@@ -880,6 +947,10 @@ public class ParLocalGame extends LocalGame {
                             if (finalMovingRectangle2 > 83) {
                                 illegalMove2 = true;
                             }
+
+                            if (finalMovingRectangle2 == 83) {
+                                finalMovingRectangle2 = 120 + i;
+                            }
                         } else if (parState.getPlayerTurn() == 2) {
 
                             if (movingRectangle < 30 && finalMovingRectangle2 >= 30) {
@@ -888,6 +959,10 @@ public class ParLocalGame extends LocalGame {
 
                             if (finalMovingRectangle2 > 91) {
                                 illegalMove2 = true;
+                            }
+
+                            if (finalMovingRectangle2 == 91) {
+                                finalMovingRectangle2 = 124 + i;
                             }
                         }
                         // player 3
@@ -899,6 +974,10 @@ public class ParLocalGame extends LocalGame {
 
                             if (finalMovingRectangle2 > 99) {
                                 illegalMove2 = true;
+                            }
+
+                            if (finalMovingRectangle2 == 99) {
+                                finalMovingRectangle2 = 128 + i;
                             }
                         }
 
@@ -951,6 +1030,10 @@ public class ParLocalGame extends LocalGame {
                                 illegalMoveTotal = true;
                             }
 
+                            if (finalMovingRectangleTotal == 75) {
+                                finalMovingRectangleTotal = 116 + i;
+                            }
+
                         } else if (parState.getPlayerTurn() == 1) {
 
                             if (movingRectangle < 47 && finalMovingRectangleTotal >= 47) {
@@ -960,6 +1043,10 @@ public class ParLocalGame extends LocalGame {
                             if (finalMovingRectangleTotal > 83) {
                                 illegalMoveTotal = true;
                             }
+
+                            if (finalMovingRectangleTotal == 83) {
+                                finalMovingRectangleTotal = 120 + i;
+                            }
                         } else if (parState.getPlayerTurn() == 2) {
 
                             if (movingRectangle < 30 && finalMovingRectangleTotal >= 30) {
@@ -968,6 +1055,10 @@ public class ParLocalGame extends LocalGame {
 
                             if (finalMovingRectangleTotal > 91) {
                                 illegalMoveTotal = true;
+                            }
+
+                            if (finalMovingRectangleTotal == 91) {
+                                finalMovingRectangleTotal = 124 + i;
                             }
                         }
                         // player 3
@@ -980,8 +1071,13 @@ public class ParLocalGame extends LocalGame {
                             if (finalMovingRectangleTotal > 99) {
                                 illegalMoveTotal = true;
                             }
+
+                            if (finalMovingRectangleTotal == 99) {
+                                finalMovingRectangleTotal = 128 + i;
+                            }
                         }
 
+                        // if the pawn is going to cross from 67 to 0 on the normal board pieces
                         if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
                             if (finalMovingRectangleTotal > 67) {
                                 finalMovingRectangleTotal = finalMovingRectangleTotal - 68;
@@ -1010,6 +1106,7 @@ public class ParLocalGame extends LocalGame {
                         parState.setLegalMoves("dieValueTotal", i, finalMovingRectangleTotal);
                     }
                 }
+
                 if (parState.legalMoves0.isEmpty() && parState.legalMoves1.isEmpty() && parState.legalMoves2.isEmpty() && parState.legalMoves3.isEmpty()) {
                     // there are no legal moves
                     // check to see if rolled doubles or not
