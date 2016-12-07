@@ -132,8 +132,8 @@ public class ParLocalGame extends LocalGame {
             if (action instanceof ParRollAction) {
 
                 //Creates two random integers between 1 and 6 for the dice values
-                int randomDieVal1 = (int) (Math.random() * 6) + 1;
-                int randomDieVal2 = (int) (Math.random() * 6) + 1;
+                int randomDieVal1 = /*(int) (Math.random() * 6) + 1*/ 5;
+                int randomDieVal2 = /*(int) (Math.random() * 6) + 1*/ 4;
 
                 //assigns the die values to the random integers just generated
                 parState.setDieVals(randomDieVal1, randomDieVal2);
@@ -245,6 +245,10 @@ public class ParLocalGame extends LocalGame {
                     // there are no legal moves
                     // check to see if rolled doubles or not
                     // then determine if need to change player turn
+                    parState.setCurrentSubstage(parState.Roll);
+                    if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
+                        parState.setPlayerTurn();
+                    }
                 }
                 else {
                     // there is a legal move that can and will be made
@@ -446,6 +450,10 @@ public class ParLocalGame extends LocalGame {
                     // there are no legal moves
                     // check to see if rolled doubles or not
                     // then determine if need to change player turn
+                    parState.setCurrentSubstage(parState.Roll);
+                    if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
+                        parState.setPlayerTurn();
+                    }
                 }
 
                 return true;
