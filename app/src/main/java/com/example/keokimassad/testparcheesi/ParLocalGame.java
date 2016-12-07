@@ -174,8 +174,9 @@ public class ParLocalGame extends LocalGame {
                                 // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
                                 // indexes #116 - 131
                                 //
-                                if (movingRectangle <= 99) //finds the furthest pawn
-                                {
+                                if (movingRectangle == 75 || movingRectangle == 83 || movingRectangle == 91 || movingRectangle == 99) {}
+                                else {
+                                    //finds the furthest pawn that is not in the homebase
                                     if (movingRectangle > maxPawnLoc) {
                                         maxPawnLoc = movingRectangle;
                                         maxPawnNum = i;
