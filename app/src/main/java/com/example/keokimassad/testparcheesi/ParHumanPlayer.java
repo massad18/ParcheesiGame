@@ -210,6 +210,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             {
                 ParRollAction actRoll = new ParRollAction(this);
                 game.sendAction(actRoll);
+                selectPawnButtons.clearCheck();
             }
         }
         //If the second die is pressed
@@ -219,6 +220,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             {
                 ParRollAction actRoll = new ParRollAction(this);
                 game.sendAction(actRoll);
+                selectPawnButtons.clearCheck();
             }
         }
         else if(button == useDieButtons[0])
@@ -243,6 +245,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         {
 
         }
+
 //        if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
 //        {
         else if(button == makeMoveButton)
