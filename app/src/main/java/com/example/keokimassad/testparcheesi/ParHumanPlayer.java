@@ -32,6 +32,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     private TextView textView;
     private TextView textView1;
+    private TextView currentSubstageText;
+    private TextView playerTurnText;
     // this is the view on which you will listen for touch events
 
     private ParSurfaceView parSurfaceView;
@@ -59,7 +61,14 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         if(info instanceof ParState)
         {
             state = (ParState)info;
+
+            playerTurnText.setText("Current Player Turn: " + state.getPlayerTurn());
+
+
             if(state.getCurrentSubstage() == state.Roll) {
+
+                currentSubstageText.setText("Current substage: Roll");
+
                 switch (state.getDice1Val()) {
                     case 1:
                         diceButtons[0].setBackgroundResource(R.drawable.die1);
@@ -103,6 +112,8 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             }
             else
             {
+                currentSubstageText.setText("Current substage: Move ");
+
                 switch (state.getDice1Val()) {
                     case 1:
                         diceButtons[0].setBackgroundResource(R.drawable.used1);
@@ -258,8 +269,11 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         this.useDieButtons[2] = (Button) activity.findViewById(R.id.useBothDice);
         this.makeMoveButton = (Button) activity.findViewById(R.id.makeMoveButton);
         this.endTurnButton = (Button) activity.findViewById(R.id.endTurnButton);
-        textView = (TextView) activity.findViewById(R.id.textView);
-        textView1 = (TextView) activity.findViewById(R.id.textView1);
+        //textView = (TextView) activity.findViewById(R.id.textView);
+        //textView1 = (TextView) activity.findViewById(R.id.textView1);
+        playerTurnText = (TextView) activity.findViewById(R.id.playerTurnText);
+        currentSubstageText = (TextView) activity.findViewById(R.id.currentSubstageText);
+
         // this is the view on which you will listen for touch events
         parSurfaceView = (ParSurfaceView) activity.findViewById(R.id.surfaceView);
 
