@@ -249,6 +249,8 @@ public class ParLocalGame extends LocalGame {
                     if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
                         parState.setPlayerTurn();
                     }
+                    // return false if the player has to roll
+                    return false;
                 }
                 else {
                     // there is a legal move that can and will be made
@@ -454,10 +456,11 @@ public class ParLocalGame extends LocalGame {
                     if (parState.getNumOfDoubles() >= 3 || parState.getNumOfDoubles() == 0) {
                         parState.setPlayerTurn();
                     }
-                    return true;
+                    // return false if the player has to roll
+                    return false;
                 }
 
-                return false;
+                return true;
             }
             else if (action instanceof ParCheckLegalMoveAction) {
                 // ToDo: implement highlighting legal moves given the numbers on the die
