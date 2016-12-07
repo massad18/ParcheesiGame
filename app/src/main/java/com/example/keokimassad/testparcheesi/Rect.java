@@ -1,10 +1,14 @@
 package com.example.keokimassad.testparcheesi;
 
+import java.io.Serializable;
+
 /**
  * Created by KeokiMassad on 11/18/16.
  */
 
-public class Rect {
+public class Rect implements Serializable{
+
+    private static final long serialVersionUID = 3443192416886596539L;
 
     private float top;
     private float bottom;

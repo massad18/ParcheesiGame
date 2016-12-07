@@ -4,11 +4,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import java.io.Serializable;
+
 /**
  * Created by AvayaBhattarai on 11/20/16.
  */
 
-public class Pawn {
+public class Pawn implements Serializable {
+
+    private static final long serialVersionUID = 3443195316586596539L;
 
     public float xCor;
     public float yCor;

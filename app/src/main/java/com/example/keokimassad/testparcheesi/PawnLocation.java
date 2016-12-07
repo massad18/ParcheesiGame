@@ -1,10 +1,14 @@
 package com.example.keokimassad.testparcheesi;
 
+import java.io.Serializable;
+
 /**
  * Created by KeokiMassad on 11/21/16.
  */
 
-public class PawnLocation {
+public class PawnLocation implements Serializable {
+
+    private static final long serialVersionUID = 3443192416586592439L;
 
     private int xPos;
     private int yPos;
