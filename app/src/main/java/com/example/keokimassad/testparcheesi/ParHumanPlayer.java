@@ -195,41 +195,19 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         //If the first die is pressed
         if(button == diceButtons[0])
         {
-            switch (state.getCurrentSubstage())
+            if(state.getCurrentSubstage() == state.Roll)
             {
-                //Player needs to role the dice
-                case 0:
-                    //ParRollAction is called to roll the dice
-                    ParRollAction actRoll = new ParRollAction(this);
-                    game.sendAction(actRoll);
-                    break;
-                //Player has rolled and has to move pawns
-                case 1:
-                case 2:
-                    //ParMoveAction is called to move a pawn
-                    //ParMoveAction actMove = new ParMoveAction(this); //ToDo: REDO THIS STUFF, AVAYA STILL MESSING AROUND
-                    //game.sendAction(actMove); //ToDo: Look above
-                    break;
+                ParRollAction actRoll = new ParRollAction(this);
+                game.sendAction(actRoll);
             }
         }
         //If the second die is pressed
         else if(button == diceButtons[1])
         {
-            switch (state.getCurrentSubstage())
+            if(state.getCurrentSubstage() == state.Roll)
             {
-                //Player needs to role the dice
-                case 0:
-                    //ParRollAction is called to roll the dice
-                    ParRollAction actRoll = new ParRollAction(this);
-                    game.sendAction(actRoll);
-                    break;
-                //Player has rolled and has to move pawns
-                case 1:
-                case 2:
-                    //ParMoveAction is called to move a pawn
-                    //ParMoveAction actMove = new ParMoveAction(this); //ToDo: REDO THIS STUFF, AVAYA STILL MESSING AROUND
-                    //game.sendAction(actMove); //ToDo: Look above
-                    break;
+                ParRollAction actRoll = new ParRollAction(this);
+                game.sendAction(actRoll);
             }
         }
         else if(button == useDieButtons[0])
