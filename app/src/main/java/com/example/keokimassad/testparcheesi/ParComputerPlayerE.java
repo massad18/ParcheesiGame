@@ -2,6 +2,7 @@ package com.example.keokimassad.testparcheesi;
 
 import android.graphics.Color;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -9,6 +10,7 @@ import java.util.Random;
 
 import game.GameComputerPlayer;
 import game.infoMsg.GameInfo;
+import game.infoMsg.NotYourTurnInfo;
 
 
 /**
@@ -18,12 +20,15 @@ import game.infoMsg.GameInfo;
 public class ParComputerPlayerE extends GameComputerPlayer {
 
     ParLocalGame parLocalGame = new ParLocalGame();
-    int playerNumber = playerNum;
+    // ToDo: change to actual player numbers when we figure this shit out
+    //int playerNumber = playerNum;
+    int playerNumber;
     private int[] location = new int[4];
     ParRollAction rollAction;
     ParSelectAction selectAction;
     ParUseDieAction useDieAction;
     ParMoveAction moveAction;
+    ParState parState;
 
     public ParComputerPlayerE(String name) {
         super(name);
@@ -31,70 +36,45 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
-        if(parLocalGame.canMove(playerNumber))
-        {
-            if(info instanceof ParState)
-            {
+        for (int i = 0; i < allPlayerNames.length; i++) {
+            if (allPlayerNames[i].equals(name)) {
+                playerNumber = i;
+            }
+        }
+        if (parLocalGame.canMove(playerNumber)) {
+            if (info instanceof ParState) {
+                Log.i("Computer Player", "" + playerNumber);
                 // roll the die
                 rollAction = new ParRollAction(this);
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        game.sendAction(rollAction);
-                    }
-                }, 2000);
+                game.sendAction(rollAction);
 
                 Random rand = new Random();
                 do {
                     // choose a random pawn
                     int randSelect = rand.nextInt(4);
                     selectAction = new ParSelectAction(this, randSelect);
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            game.sendAction(selectAction);
-                        }
-                    }, 2000);
+                    game.sendAction(selectAction);
 
                     // choose a random die
                     int randDie = rand.nextInt(3);
                     switch (randDie) {
                         case 0:
                             useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    game.sendAction(selectAction);
-                                }
-                            }, 2000);
+                            game.sendAction(selectAction);
                             break;
                         case 1:
                             useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    game.sendAction(selectAction);
-                                }
-                            }, 2000);
+                            game.sendAction(selectAction);
                             break;
                         case 2:
                             useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    game.sendAction(selectAction);
-                                }
-
-                            },2000);
+                            game.sendAction(selectAction);
                             break;
                     }
 
 
                     moveAction = new ParMoveAction(this);
-                } while(((ParState) info).getEmptySet() == false);
-
-
+                } while (((ParState) info).getEmptySet() == false);
 
 
 //               if (//4 objects are at home)
@@ -210,9 +190,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 //                    }, 2000);
 //                }
             }
-        }
-        else
-        {
+        } else {
             return;
         }
     }

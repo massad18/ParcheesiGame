@@ -46,6 +46,7 @@ public class ParLocalGame extends LocalGame {
 
     //Constructor
     public ParLocalGame () {
+        super();
         parState = new ParState(); //initializes an instance of parState
     }
 

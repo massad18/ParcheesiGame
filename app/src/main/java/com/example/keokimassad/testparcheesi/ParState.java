@@ -22,7 +22,7 @@ public class ParState extends GameState {
     private int currentSubstage; //integer to hold current substage of the game
     private int [] dieVals = new int[2]; //array to hold current dice values
     private int numOfDoubles; //holds number of doubles current player has had in the turn
-    int playerTurn; //holds who's turn it currently is
+    private int playerTurn; //holds who's turn it currently is
 
     // initialize the radio button that is checked
     int radioButtonChecked = -1;
