@@ -17,7 +17,6 @@ import game.actionMsg.GameAction;
 public class ParLocalGame extends LocalGame {
 
     ParState parState;
-    //GameAction myAction;
 
     PawnLocation pawnLocation = new PawnLocation();
 

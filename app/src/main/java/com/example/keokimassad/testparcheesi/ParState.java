@@ -69,6 +69,7 @@ public class ParState extends GameState {
 
     private PawnLocation pawnLocation = new PawnLocation();
 
+    //Constructor
     public ParState() {
         super();
         initBoardPieces();
@@ -278,7 +279,6 @@ public class ParState extends GameState {
                 return type + " " + i;
             }
         }
-
         return "Error " + -1;
     }
 
@@ -308,11 +308,6 @@ public class ParState extends GameState {
 
         return -1;
     }
-
-
-
-
-
 
     public void setUseDieActionMade(boolean x) {useDieActionMade = x;}
 
@@ -345,17 +340,23 @@ public class ParState extends GameState {
     //Getter to return who's turn it currently is
     public int getPlayerTurn() { return playerTurn; }
 
-    //setter to set whose move it is
+    //method to change the player's turn
     // called when the players turn is completed
     public void setPlayerTurn() {
+        //Moves player turn up by one (back to zero if last player
         playerTurn++;
         if (playerTurn > 3) {
             playerTurn = 0;
         }
+        //Resets the substage of the game to Roll (0)
         currentSubstage = Roll;
+        //Resets the counter for number of doubles back to 0
         numOfDoubles = 0;
+        //Resets teh radio button that's checked
         radioButtonChecked = -1;
+        //Unselects the current die value selected
         dieValueSelected = -1;
+        //Resets the legal moves
         legalMoves0.clear();
         legalMoves1.clear();
         legalMoves2.clear();
@@ -380,22 +381,29 @@ public class ParState extends GameState {
         dieVals[1] = dieVal2;
     }
 
+    //Setter to set which radio button is selected
     public void setRadioButtonChecked(int x) {
         radioButtonChecked = x;
     }
 
+    //Getter to return which radio button is selectec
     public int getRadioButtonChecked() {
         return radioButtonChecked;
     }
 
+    //Setter to select which die value is selected
     public void setDieValueSelected (int x) { dieValueSelected = x;}
 
+    //Getter to return which die value is selected
     public int getDieValueSelected() {return dieValueSelected;}
 
+    //Setter to select which die is selected
     public void setDieSelected (int x) { dieSelected = x;}
 
+    //Getter to return which die is selected
     public int getDieSelected() {return dieSelected;}
 
+    //Setter to set which moves are legal
     public void setLegalMoves(String die, int index, int rectNumber) {
         switch (index) {
             case 0:
@@ -413,6 +421,7 @@ public class ParState extends GameState {
         }
     }
 
+    //Getter to return which moves are legal moves
     public int getLegalMoves(String die, int index) {
         switch (index) {
             case 0:
@@ -426,6 +435,8 @@ public class ParState extends GameState {
         }
         return -1;
     }
+
+    //Method to remove which moves are considered legal
     public void removeLegalMoves(String die, int index) {
 
         switch (index) {
@@ -443,6 +454,8 @@ public class ParState extends GameState {
             break;
         }
     }
+
+    //Method to see if there is a legal move for the die value
     public boolean containsLegalMoves(String die, int index) {
         switch (index) {
             case 0:
@@ -457,6 +470,7 @@ public class ParState extends GameState {
         return false;
     }
 
+    //Method that checks to see if there are no legal moves
     public boolean isEmptyLegalMoves(int index) {
         switch (index) {
             case 0:
@@ -474,11 +488,13 @@ public class ParState extends GameState {
     //Getter to return current substage
     public int getCurrentSubstage() { return currentSubstage; }
 
+    //Setter to reset the current substage
     public void setCurrentSubstage(int newSubstage)
     {
         currentSubstage = newSubstage;
     }
 
+    //Getter to set the current location
     public int getSelectedLocation () {
         return selectedLocation;
     }
@@ -487,6 +503,7 @@ public class ParState extends GameState {
         return board;
     }
 
+    //Returns x coordinates of pawn location
     public int getPawnLocationsXForPlayer(int playerIdx, int pawnIdx)
     {
         switch (playerIdx)
@@ -505,6 +522,7 @@ public class ParState extends GameState {
         }
     }
 
+    //Getter to obtain y coords for pawn
     public int getPawnLocationsYForPlayer(int playerIdx, int pawnIdx)
     {
         switch (playerIdx)
@@ -523,6 +541,7 @@ public class ParState extends GameState {
         }
     }
 
+    //Setter to set pawn locations for player (both x and y coords)
     public void setPawnLocationsForPlayer(int playerIdx, int pawnIndex, int locationX, int locationY)
     {
         switch (playerIdx)
@@ -580,6 +599,7 @@ public class ParState extends GameState {
         }
     }
 
+    //Method to reset pawn locations for players
     public void resetPawnLocation(int playerIdx, int pawnIdx) {
         switch (playerIdx) {
             //red
