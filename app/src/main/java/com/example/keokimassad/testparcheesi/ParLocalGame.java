@@ -853,7 +853,7 @@ public class ParLocalGame extends LocalGame {
                             }
                         }
 
-                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
+                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67 && movingRectangle >=56) {
                             if (finalMovingRectangle1 > 67) {
                                 finalMovingRectangle1 = finalMovingRectangle1 - 68;
                             }
@@ -1017,7 +1017,7 @@ public class ParLocalGame extends LocalGame {
                             }
                         }
 
-                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
+                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67 && movingRectangle >=56) {
                             if (finalMovingRectangle2 > 67) {
                                 finalMovingRectangle2 = finalMovingRectangle2 - 68;
                             }
@@ -1180,7 +1180,7 @@ public class ParLocalGame extends LocalGame {
                         }
 
                         // if the pawn is going to cross from 67 to 0 on the normal board pieces
-                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67) {
+                        if (parState.getPlayerTurn() != 0 && movingRectangle <= 67 && movingRectangle >=56) {
                             if (finalMovingRectangleTotal > 67) {
                                 finalMovingRectangleTotal = finalMovingRectangleTotal - 68;
                             }

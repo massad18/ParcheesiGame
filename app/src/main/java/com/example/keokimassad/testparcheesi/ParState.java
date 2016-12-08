@@ -285,16 +285,16 @@ public class ParState extends GameState {
     //TEMPORARY METHOD FOR AVAYA
 
     public int getRect (float x, float y) {
-        if ((x == pawnLocation.pawnLocationX[116] || x == pawnLocation.pawnLocationX[117] || x == pawnLocation.pawnLocationX[118] || x == pawnLocation.pawnLocationX[119]) && (y == pawnLocation.pawnLocationY[116] || y == pawnLocation.pawnLocationY[117] || y == pawnLocation.pawnLocationY[118] || y == pawnLocation.pawnLocationY[119])){
+        if ((x == pawnLocation.pawnLocationX[116] && y == pawnLocation.pawnLocationY[116]) || (x == pawnLocation.pawnLocationX[117] && y == pawnLocation.pawnLocationY[117]) || (x == pawnLocation.pawnLocationX[118] && y == pawnLocation.pawnLocationY[118]) || (x == pawnLocation.pawnLocationX[119] && y == pawnLocation.pawnLocationY[119])){
             return 75;
         }
-        else if ((x == pawnLocation.pawnLocationX[120] || x == pawnLocation.pawnLocationX[121] || x == pawnLocation.pawnLocationX[122] || x == pawnLocation.pawnLocationX[123]) && (y == pawnLocation.pawnLocationY[120] || y == pawnLocation.pawnLocationY[121] || y == pawnLocation.pawnLocationY[122] || y == pawnLocation.pawnLocationY[123])) {
+        else if ((x == pawnLocation.pawnLocationX[120] && y == pawnLocation.pawnLocationY[120]) || (x == pawnLocation.pawnLocationX[121] && y == pawnLocation.pawnLocationY[121]) || (x == pawnLocation.pawnLocationX[122] && y == pawnLocation.pawnLocationY[122]) || (x == pawnLocation.pawnLocationX[123] && y == pawnLocation.pawnLocationY[123])) {
             return 83;
         }
-        else if ((x == pawnLocation.pawnLocationX[124] || x == pawnLocation.pawnLocationX[125] || x == pawnLocation.pawnLocationX[126] || x == pawnLocation.pawnLocationX[127]) && (y == pawnLocation.pawnLocationY[124] || y == pawnLocation.pawnLocationY[125] || y == pawnLocation.pawnLocationY[126] || y == pawnLocation.pawnLocationY[127])) {
+        else if ((x == pawnLocation.pawnLocationX[124] && y == pawnLocation.pawnLocationY[124]) || (x == pawnLocation.pawnLocationX[125] && y == pawnLocation.pawnLocationY[125]) || (x == pawnLocation.pawnLocationX[126] && y == pawnLocation.pawnLocationY[126]) || (x == pawnLocation.pawnLocationX[127] && y == pawnLocation.pawnLocationY[127])) {
             return 91;
         }
-        else if ((x == pawnLocation.pawnLocationX[128] || x == pawnLocation.pawnLocationX[129] || x == pawnLocation.pawnLocationX[130] || x == pawnLocation.pawnLocationX[131]) && (y == pawnLocation.pawnLocationY[128] || y == pawnLocation.pawnLocationY[129] || y == pawnLocation.pawnLocationY[130] || y == pawnLocation.pawnLocationY[131])) {
+        else if ((x == pawnLocation.pawnLocationX[128] && y == pawnLocation.pawnLocationY[128]) || (x == pawnLocation.pawnLocationX[129] && y == pawnLocation.pawnLocationY[129]) || (x == pawnLocation.pawnLocationX[130] && y == pawnLocation.pawnLocationY[130]) || (x == pawnLocation.pawnLocationX[131] && y == pawnLocation.pawnLocationY[131])) {
             return 99;
         }
         else {
@@ -570,31 +570,35 @@ public class ParState extends GameState {
         switch (playerIdx) {
             //red
             case 0:
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[100], pawnLocation.pawnLocationY[100]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[101], pawnLocation.pawnLocationY[101]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[102], pawnLocation.pawnLocationY[102]);
-                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[103], pawnLocation.pawnLocationY[103]);
+                // ToDo: CHANGE BACK TO 100, 101, 102, 103!!!
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[60], pawnLocation.pawnLocationY[60]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[61], pawnLocation.pawnLocationY[61]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[62], pawnLocation.pawnLocationY[62]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[63], pawnLocation.pawnLocationY[63]);
                 break;
             //blue
             case 1:
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[104], pawnLocation.pawnLocationY[104]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[105], pawnLocation.pawnLocationY[105]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[106], pawnLocation.pawnLocationY[106]);
-                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[107], pawnLocation.pawnLocationY[107]);
+                // ToDo: CHANGE BACK TO 104, 105, 106, 107!!!
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[43], pawnLocation.pawnLocationY[43]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[44], pawnLocation.pawnLocationY[44]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[45], pawnLocation.pawnLocationY[45]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[46], pawnLocation.pawnLocationY[46]);
                 break;
             //yellow
             case 2:
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[108], pawnLocation.pawnLocationY[108]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[109], pawnLocation.pawnLocationY[109]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[110], pawnLocation.pawnLocationY[110]);
-                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[111], pawnLocation.pawnLocationY[111]);
+                // ToDo: CHANGE BACK TO 108, 109, 110, 111!!!
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[26], pawnLocation.pawnLocationY[26]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[27], pawnLocation.pawnLocationY[27]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[28], pawnLocation.pawnLocationY[28]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[29], pawnLocation.pawnLocationY[29]);
                 break;
             //green
             case 3:
-                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[112], pawnLocation.pawnLocationY[112]);
-                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[113], pawnLocation.pawnLocationY[113]);
-                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[114], pawnLocation.pawnLocationY[114]);
-                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[115], pawnLocation.pawnLocationY[115]);
+                // ToDo: CHANGE BACK TO 112, 113, 114, 115!!!
+                setPawnLocationsForPlayer(playerIdx, 0, pawnLocation.pawnLocationX[9], pawnLocation.pawnLocationY[9]);
+                setPawnLocationsForPlayer(playerIdx, 1, pawnLocation.pawnLocationX[10], pawnLocation.pawnLocationY[10]);
+                setPawnLocationsForPlayer(playerIdx, 2, pawnLocation.pawnLocationX[11], pawnLocation.pawnLocationY[11]);
+                setPawnLocationsForPlayer(playerIdx, 3, pawnLocation.pawnLocationX[12], pawnLocation.pawnLocationY[12]);
                 break;
         }
     }
