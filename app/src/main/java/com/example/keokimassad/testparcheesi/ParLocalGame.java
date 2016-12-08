@@ -70,6 +70,7 @@ public class ParLocalGame extends LocalGame {
     @Override
     //Method to check if a player has met the winning conditions (returns string of player if yes and NULL if not)
     protected String checkIfGameOver() {
+        //ToDo: Bug! Not sure if not displaying properly or not but nothing occured when all pawns reached the end
         //Checks every player for winning condition
         for (int playerIdx = 0; playerIdx < players.length; playerIdx++) {
             //holds number of pawns at center for given player
