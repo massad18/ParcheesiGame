@@ -53,9 +53,8 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                 // roll the die
                 if (parState.getCurrentSubstage() == parState.Roll) {
                     rollAction = new ParRollAction(this);
-                    sleep(4000);
                     game.sendAction(rollAction);
-                    sleep (2000);
+                    sleep(2000);
                     return;
                 } else if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
                     if (parState.getPawnActionMade() == false) {
@@ -89,7 +88,6 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                     } else {
                         Log.i("moving", parState.getPawnActionMade() + " " + parState.getUseDieActionMade());
                         moveAction = new ParMoveAction(this);
-                        sleep(300);
                         game.sendAction(moveAction);
                         return;
                     }

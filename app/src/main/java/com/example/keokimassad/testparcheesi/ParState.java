@@ -354,6 +354,8 @@ public class ParState extends GameState {
         }
         currentSubstage = Roll;
         numOfDoubles = 0;
+        radioButtonChecked = -1;
+        dieValueSelected = -1;
         legalMoves0.clear();
         legalMoves1.clear();
         legalMoves2.clear();

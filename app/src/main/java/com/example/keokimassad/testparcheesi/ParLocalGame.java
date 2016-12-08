@@ -424,6 +424,12 @@ public class ParLocalGame extends LocalGame {
                     }
                 }
 
+                // resets the radio button to what it originally was so that the "setEnabled"
+                // methods for the useDie buttons can refresh
+                int savedRadioButton = parState.getRadioButtonChecked();
+                parState.setRadioButtonChecked(-1);
+                parState.setRadioButtonChecked(savedRadioButton);
+
                 parState.setCheckLegalMoveActionMade(false);
 
                 return true;
@@ -471,7 +477,7 @@ public class ParLocalGame extends LocalGame {
                     }
 
                     // if either of the die values = 5 or the sum up to 5
-                    // and the pawn is in the homebase
+                    // and the pawn is in the starting zone
 
                     if (parState.getPlayerTurn() == 0) {
                         if (movingRectangle == 100 + i) {

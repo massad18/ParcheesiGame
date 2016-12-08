@@ -175,6 +175,35 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                         break;
                 }
             }
+
+            for (int i = 0; i < 3; i++) {
+                useDieButtons[i].setEnabled(false);
+            }
+
+            // checks if the die value has already been used and if so, disables the button corresponding to that die
+            if (state.containsLegalMoves("dieValueTotal", state.getRadioButtonChecked())) {
+                if (state.getDice1Val() == -1 || state.getDice2Val() == -1) {
+                }
+                else {
+                    useDieButtons[2].setEnabled(true);
+                }
+
+            }
+            if (state.containsLegalMoves("dieValue1", state.getRadioButtonChecked())) {
+                if (state.getDice1Val() == -1) {
+                }
+                else {
+                    useDieButtons[0].setEnabled(true);
+                }
+            }
+            if (state.containsLegalMoves("dieValue2", state.getRadioButtonChecked())) {
+                if (state.getDice2Val() == -1) {
+                }
+                else {
+                    useDieButtons[1].setEnabled(true);
+                }
+            }
+
         }
 
         if (parSurfaceView == null) return;
@@ -274,10 +303,13 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 //        {
         else if(button == makeMoveButton)
         {
-            ParMoveAction parMoveAction = new ParMoveAction(this);
-            game.sendAction(parMoveAction);
-            checkLegalMoveAction = new ParCheckLegalMoveAction(this);
-            game.sendAction(checkLegalMoveAction);
+            // can only makes moves when it is a move substage
+            if (state.getCurrentSubstage() == state.Begin_Move || state.getCurrentSubstage() == state.Mid_Move) {
+                ParMoveAction parMoveAction = new ParMoveAction(this);
+                game.sendAction(parMoveAction);
+                checkLegalMoveAction = new ParCheckLegalMoveAction(this);
+                game.sendAction(checkLegalMoveAction);
+            }
         }
 //        }
     }
