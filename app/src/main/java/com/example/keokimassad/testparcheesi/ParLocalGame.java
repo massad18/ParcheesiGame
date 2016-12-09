@@ -72,85 +72,82 @@ public class ParLocalGame extends LocalGame {
     protected String checkIfGameOver() {
         //ToDo: Bug!!! Only reports that the game has been won by the Red Player (whether they are Human or Computer)... does not say that the other colors have won
         //Checks every player for winning condition
-        for (int playerIdx = 0; playerIdx < players.length; playerIdx++) {
-            //holds number of pawns at center for given player
-            int totalPawnsAtGoalForPlayer = 0;
+        //holds number of pawns at center for given player
+        int totalPawnsAtGoalForPlayer = 0;
 
-            for (int i = 0; i < 4; i++) {
-                player0LocationsX[i] = parState.getPawnLocationsXForPlayer(0, i);
-                player1LocationsX[i] = parState.getPawnLocationsXForPlayer(1, i);
-                player2LocationsX[i] = parState.getPawnLocationsXForPlayer(2, i);
-                player3LocationsX[i] = parState.getPawnLocationsXForPlayer(3, i);
-                player0LocationsY[i] = parState.getPawnLocationsYForPlayer(0, i);
-                player1LocationsY[i] = parState.getPawnLocationsYForPlayer(1, i);
-                player2LocationsY[i] = parState.getPawnLocationsYForPlayer(2, i);
-                player3LocationsY[i] = parState.getPawnLocationsYForPlayer(3, i);
-            }
-            // get the rectangle of all of the pawns
-            // if the rectangle is -1... then it is in the starting locations
-            for (int i = 0; i < 4; i++) {
-                player0Rect[i] = parState.getRect(player0LocationsX[i], player0LocationsY[i]);
-                player1Rect[i] = parState.getRect(player1LocationsX[i], player1LocationsY[i]);
-                player2Rect[i] = parState.getRect(player2LocationsX[i], player2LocationsY[i]);
-                player3Rect[i] = parState.getRect(player3LocationsX[i], player3LocationsY[i]);
-            }
-
-            //Checks every pawn that player has
-            for (int pawnIdx = 0; pawnIdx < 4; pawnIdx++) {
-                switch (playerIdx) {
-                    // red player
-                    case 0:
-                        if (player0Rect[pawnIdx] == 75) {
-                            totalPawnsAtGoalForPlayer++;
-                        }
-                        break;
-                    // blue player
-                    case 1:
-                        if (player1Rect[pawnIdx] == 83) {
-                            totalPawnsAtGoalForPlayer++;
-                        }
-                        break;
-                    // yellow player
-                    case 2:
-                        if (player2Rect[pawnIdx] == 91) {
-                            totalPawnsAtGoalForPlayer++;
-                        }
-                        break;
-                    // green player
-                    case 3:
-                        if (player3Rect[pawnIdx] == 99) {
-                            totalPawnsAtGoalForPlayer++;
-                        }
-                        break;
-                }
-            }
-            //Checks if player has 4 pawns at goal
-            if (totalPawnsAtGoalForPlayer == 4) {
-                //Sets the substate of the game to Game_Over (4)
-                parState.setCurrentSubstage(parState.Game_Over);
-                //If so, the player has won the game
-
-                String playerColor = null;
-
-                switch (playerIdx) {
-                    case 0:
-                        playerColor = "Red";
-                        break;
-                    case 1:
-                        playerColor = "Blue";
-                        break;
-                    case 2:
-                        playerColor = "Yellow";
-                        break;
-                    case 3:
-                        playerColor = "Green";
-                        break;
-                }
-                return (playerColor + " Player has won!");
-            }
-            return null; //returns null if no player has 4 pawns at goal
+        for (int i = 0; i < 4; i++) {
+            player0LocationsX[i] = parState.getPawnLocationsXForPlayer(0, i);
+            player1LocationsX[i] = parState.getPawnLocationsXForPlayer(1, i);
+            player2LocationsX[i] = parState.getPawnLocationsXForPlayer(2, i);
+            player3LocationsX[i] = parState.getPawnLocationsXForPlayer(3, i);
+            player0LocationsY[i] = parState.getPawnLocationsYForPlayer(0, i);
+            player1LocationsY[i] = parState.getPawnLocationsYForPlayer(1, i);
+            player2LocationsY[i] = parState.getPawnLocationsYForPlayer(2, i);
+            player3LocationsY[i] = parState.getPawnLocationsYForPlayer(3, i);
         }
-        return null;
+        // get the rectangle of all of the pawns
+        // if the rectangle is -1... then it is in the starting locations
+        for (int i = 0; i < 4; i++) {
+            player0Rect[i] = parState.getRect(player0LocationsX[i], player0LocationsY[i]);
+            player1Rect[i] = parState.getRect(player1LocationsX[i], player1LocationsY[i]);
+            player2Rect[i] = parState.getRect(player2LocationsX[i], player2LocationsY[i]);
+            player3Rect[i] = parState.getRect(player3LocationsX[i], player3LocationsY[i]);
+        }
+
+        //Checks every pawn that player has
+        for (int pawnIdx = 0; pawnIdx < 4; pawnIdx++) {
+            switch (parState.getPlayerTurn()) {
+                // red player
+                case 0:
+                    if (player0Rect[pawnIdx] == 75) {
+                        totalPawnsAtGoalForPlayer++;
+                    }
+                    break;
+                // blue player
+                case 1:
+                    if (player1Rect[pawnIdx] == 83) {
+                        totalPawnsAtGoalForPlayer++;
+                    }
+                    break;
+                // yellow player
+                case 2:
+                    if (player2Rect[pawnIdx] == 91) {
+                        totalPawnsAtGoalForPlayer++;
+                    }
+                    break;
+                // green player
+                case 3:
+                    if (player3Rect[pawnIdx] == 99) {
+                        totalPawnsAtGoalForPlayer++;
+                    }
+                    break;
+            }
+        }
+        //Checks if player has 4 pawns at goal
+        if (totalPawnsAtGoalForPlayer == 4) {
+            //Sets the substate of the game to Game_Over (4)
+            parState.setCurrentSubstage(parState.Game_Over);
+            //If so, the player has won the game
+
+            String playerColor = null;
+
+            switch (parState.getPlayerTurn()) {
+                case 0:
+                    playerColor = "Red";
+                    break;
+                case 1:
+                    playerColor = "Blue";
+                    break;
+                case 2:
+                    playerColor = "Yellow";
+                    break;
+                case 3:
+                    playerColor = "Green";
+                    break;
+            }
+            return (playerColor + " Player has won!");
+        }
+        return null; //returns null if no player has 4 pawns at goal
     }
 
     // canMove method is called before the makeMove method
