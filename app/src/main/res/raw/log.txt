@@ -1,7 +1,7 @@
-Document all outside help in this file.
+Document of all outside help in this file.
 
-Author: Justin Hathaway, Keoki Massad, Avaya Bhattarai, Goutham Massad
-Version: October 16, 2016
+Authors: Justin Hathaway, Keoki Massad, Avaya Bhattarai, Goutham Massad
+Version: December 9, 2016
 
 Sources:
 *Java constants
@@ -49,4 +49,5 @@ Sources:
     *https://developer.android.com/reference/java/lang/Thread.html
     *https://developer.android.com/guide/components/processes-and-threads.html
     *http://stackoverflow.com/questions/4722974/threading-example-in-android
+    *http://www.techotopia.com/index.php/A_Basic_Overview_of_Android_Threads_and_Thread_handlers
 *
