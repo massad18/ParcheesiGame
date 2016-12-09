@@ -65,72 +65,96 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             state = (ParState)info;
 
             String colorPlayer = null;
+            //Switch that performs different actions based on which player's turn it is
             switch (state.getPlayerTurn()) {
                 case 0:
                     colorPlayer = "Red";
-                    playerTurnText.setTextColor(Color.RED);
+                    playerTurnText.setTextColor(Color.RED); //changes text that display's who's turn it is to Red
                     break;
                 case 1:
                     colorPlayer = "Blue";
-                    playerTurnText.setTextColor(Color.BLUE);
+                    playerTurnText.setTextColor(Color.BLUE); //changes text that display's who's turn it is to Blue
                     break;
                 case 2:
                     colorPlayer = "Yellow";
-                    playerTurnText.setTextColor(Color.YELLOW);
+                    playerTurnText.setTextColor(Color.YELLOW); //changes text that display's who's turn it is to Yellow
                     break;
                 case 3:
                     colorPlayer = "Green";
-                    playerTurnText.setTextColor(Color.GREEN);
+                    playerTurnText.setTextColor(Color.GREEN); //changes text that display's who's turn it is to Green
                     break;
             }
 
+            //Resets text that display's who's turn it is
             playerTurnText.setText("Current Player Turn: " + colorPlayer);
 
+            //Display's die 1's values by constantly checking the dice 1 value in the state
             switch (state.getDice1Val()) {
+                //die value of 1
                 case 1:
                     diceButtons[0].setBackgroundResource(R.drawable.die1);
                     break;
+                //die value of 2
                 case 2:
                     diceButtons[0].setBackgroundResource(R.drawable.die2);
                     break;
+                //die value of 3
                 case 3:
                     diceButtons[0].setBackgroundResource(R.drawable.die3);
                     break;
+                //die value of 4
                 case 4:
                     diceButtons[0].setBackgroundResource(R.drawable.die4);
                     break;
+                //die value of 5
                 case 5:
                     diceButtons[0].setBackgroundResource(R.drawable.die5);
                     break;
+                //die value of 6
                 case 6:
                     diceButtons[0].setBackgroundResource(R.drawable.die6);
                     break;
             }
+            //Display's die 2's values by constantly checking the dice 2 value in the state
             switch (state.getDice2Val()) {
                 case 1:
+                    //die value of 1
                     diceButtons[1].setBackgroundResource(R.drawable.die1);
                     break;
                 case 2:
+                    //die value of 2
                     diceButtons[1].setBackgroundResource(R.drawable.die2);
                     break;
                 case 3:
+                    //die value of 3
                     diceButtons[1].setBackgroundResource(R.drawable.die3);
                     break;
                 case 4:
+                    //die value of 4
                     diceButtons[1].setBackgroundResource(R.drawable.die4);
                     break;
                 case 5:
+                    //die value of 5
                     diceButtons[1].setBackgroundResource(R.drawable.die5);
                     break;
                 case 6:
+                    //die value of 6
                     diceButtons[1].setBackgroundResource(R.drawable.die6);
                     break;
             }
 
+            /* Sets the text displaying the substage of the game (Roll or Move) */
+            //Roll
             if(state.getCurrentSubstage() == state.Roll)
             {
                 currentSubstageText.setText("Current substage: Roll");
             }
+            //Game over
+            else if (state.getCurrentSubstage() == state.Game_Over)
+            {
+                currentSubstageText.setText("Current substage: Game Over!");
+            }
+            //Move
             else
             {
                 currentSubstageText.setText("Current substage: Move");
@@ -182,9 +206,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     }
     }
 
-
-
-
+    //Method to check the status of the radio buttons and which one is checked
     public void onCheckedChanged(RadioGroup group, int checkedId)
     {
         switch(checkedId) {
@@ -255,8 +277,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             game.sendAction(parUseDieAction);
         }
 
-//        if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
-//        {
         else if(button == makeMoveButton)
         {
             // can only makes moves when it is a move substage
@@ -267,7 +287,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
                 game.sendAction(checkLegalMoveAction);
             }
         }
-//        }
     }
 
     @Override
@@ -285,8 +304,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         this.useDieButtons[1] = (Button) activity.findViewById(R.id.useDie2);
         this.useDieButtons[2] = (Button) activity.findViewById(R.id.useBothDice);
         this.makeMoveButton = (Button) activity.findViewById(R.id.makeMoveButton);
-        //textView = (TextView) activity.findViewById(R.id.textView);
-        //textView1 = (TextView) activity.findViewById(R.id.textView1);
         playerTurnText = (TextView) activity.findViewById(R.id.playerTurnText);
         currentSubstageText = (TextView) activity.findViewById(R.id.currentSubstageText);
 
@@ -316,11 +333,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
     // displays the rectangle in which the human is touching on the board (surface view)
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        //textView.setText("Touch coordinates : " +
-        //        String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-        //textView1.setText(parState.containsInRect(event.getX(), event.getY()));
-
-
         int x = (int) event.getX();
         int y = (int) event.getY();
         int rectNum = parState.getRect(x, y);
@@ -329,9 +341,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             ParMoveAction action  = new ParMoveAction(this);
             //surfaceView.invalidate();
         }
-
-
-
 
         return true;
     }
