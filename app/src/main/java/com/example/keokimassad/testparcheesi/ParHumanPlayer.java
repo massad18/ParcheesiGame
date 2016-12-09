@@ -3,6 +3,7 @@ package com.example.keokimassad.testparcheesi;
 
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     private ParSurfaceView parSurfaceView;
 
-    // ToDo: Possibly add a method to change the background color of the use die buttons if there is a legal move for that die (http://stackoverflow.com/questions/7957494/change-background-color-of-a-button-in-an-android-application)
     // ToDo: Possibly add a method to change the boarder color of the die if the player can roll
 
     /**
@@ -341,8 +341,5 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
         return true;
     }
-
-
-
 
 }

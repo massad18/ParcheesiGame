@@ -3,6 +3,8 @@ package com.example.keokimassad.testparcheesi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +19,7 @@ import game.GamePlayer;
 import game.LocalGame;
 import game.config.GameConfig;
 import game.config.GamePlayerType;
-
+import game.util.MessageBox;
 
 
 //CHECK OVERRIDE OF ONCLICK
@@ -97,7 +99,4 @@ public class MainActivity extends GameMainActivity{
     {
         return new ParLocalGame();
     }
-
-
-
 }

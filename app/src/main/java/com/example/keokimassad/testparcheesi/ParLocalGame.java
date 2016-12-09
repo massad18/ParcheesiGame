@@ -70,7 +70,6 @@ public class ParLocalGame extends LocalGame {
     @Override
     //Method to check if a player has met the winning conditions (returns string of player if yes and NULL if not)
     protected String checkIfGameOver() {
-        //ToDo: Bug!!! Only reports that the game has been won by the Red Player (whether they are Human or Computer)... does not say that the other colors have won
         //Checks every player for winning condition
         //holds number of pawns at center for given player
         int totalPawnsAtGoalForPlayer = 0;
@@ -158,7 +157,6 @@ public class ParLocalGame extends LocalGame {
             // Roll Action (called when either die button is pressed and the player needs to role the dice)
             if (action instanceof ParRollAction) {
                 if (parState.getCurrentSubstage() == parState.Roll) {
-                    // ToDo: BUG!!! can roll multiple times when one double is rolled, but anything is rolled after (called when
                     int randomDieVal1;
                     int randomDieVal2;
                     //Creates two random integers between 1 and 6 for the dice values
@@ -240,8 +238,6 @@ public class ParLocalGame extends LocalGame {
                 // ToDo: implement checking if a pawn of a different player is in the possible legal moves, therefore the pawn will be "eaten" (i.e. sent back to their respective starting location through the parState.resetPawnLocation method)
 
 
-                // ToDo: BUG!!! when eating from player 0 onto player 1, the player 0 pawn is drawn onto that rectangle, but does not reset the player 1 pawn who is getting eaten... then you cannot move player 1's piece for certain cases
-                // ToDo: BUG!!! same for player 2 eating player 1
                 if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
                     int radioButtonChecked = parState.radioButtonChecked;
                     int dieSelected = parState.dieSelected;
@@ -461,8 +457,6 @@ public class ParLocalGame extends LocalGame {
             else if (action instanceof ParCheckLegalMoveAction) {
                 // ToDo: implement highlighting legal moves given the numbers on the die
 
-                // ToDo: BUG!!! determine if the pawn is going into the safe zone... and if so, draw the coordinates using the indexes of #116-131 instead of the actual number of the rectangle for the homebase
-                // ToDo: BUG!!! fix moving into the blue safezone
                 // ToDo: problems with using 5's when on the normal board piece
                 for (int i = 0; i < 4; i++) {
                     // clears the legalMoves HashMap so that new entries can be entered
