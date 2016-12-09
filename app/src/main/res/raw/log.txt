@@ -1,6 +1,6 @@
 Document of all outside help in this file.
 
-Authors: Justin Hathaway, Keoki Massad, Avaya Bhattarai, Goutham Massad
+Authors: Justin Hathaway, Keoki Massad, Avaya Bhattarai, Goutham Sundaram
 Version: December 9, 2016
 
 Sources:
