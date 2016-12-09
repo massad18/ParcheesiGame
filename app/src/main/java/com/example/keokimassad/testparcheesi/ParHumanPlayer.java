@@ -27,16 +27,13 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
 
     private ImageButton[] diceButtons = new ImageButton[2]; //array to hold dice button variables
     private Button[] useDieButtons = new Button[3]; //array to hold buttons to select specific dice values to use
-    private Button makeMoveButton;
-    private Button endTurnButton;
-    private RadioGroup selectPawnButtons;
+    private Button makeMoveButton; //button used to confirm move player wants to take
+    private RadioGroup selectPawnButtons; //radio group used to select which pawn you want to move
 
     ParCheckLegalMoveAction checkLegalMoveAction;
 
-    //private TextView textView;
-    //private TextView textView1;
-    private TextView currentSubstageText;
-    private TextView playerTurnText;
+    private TextView currentSubstageText; //text to display current substage
+    private TextView playerTurnText; //text to display current player turn
     // this is the view on which you will listen for touch events
 
     private ParSurfaceView parSurfaceView;
@@ -257,10 +254,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             ParUseDieAction parUseDieAction = new ParUseDieAction(this, state.getDice1Val() + state.getDice2Val(), 2);
             game.sendAction(parUseDieAction);
         }
-        else if(button == endTurnButton)
-        {
-
-        }
 
 //        if((parState.getCurrentSubstage() == parState.Begin_Move) || (parState.getCurrentSubstage() == parState.Mid_Move))
 //        {
@@ -292,7 +285,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         this.useDieButtons[1] = (Button) activity.findViewById(R.id.useDie2);
         this.useDieButtons[2] = (Button) activity.findViewById(R.id.useBothDice);
         this.makeMoveButton = (Button) activity.findViewById(R.id.makeMoveButton);
-        this.endTurnButton = (Button) activity.findViewById(R.id.endTurnButton);
         //textView = (TextView) activity.findViewById(R.id.textView);
         //textView1 = (TextView) activity.findViewById(R.id.textView1);
         playerTurnText = (TextView) activity.findViewById(R.id.playerTurnText);
@@ -313,8 +305,6 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
         selectPawnButtons.clearCheck();
 
         makeMoveButton.setOnClickListener(this);
-
-        endTurnButton.setOnClickListener(this);
 
         parSurfaceView.setOnTouchListener(this);
 
