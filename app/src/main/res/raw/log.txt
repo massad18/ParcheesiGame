@@ -50,4 +50,6 @@ Sources:
     *https://developer.android.com/guide/components/processes-and-threads.html
     *http://stackoverflow.com/questions/4722974/threading-example-in-android
     *http://www.techotopia.com/index.php/A_Basic_Overview_of_Android_Threads_and_Thread_handlers
+*Implement board by not using buttons
+    *Dr. Nuxoll and Dr. Vegdahl
 *
