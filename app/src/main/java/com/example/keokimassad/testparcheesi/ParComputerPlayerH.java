@@ -71,7 +71,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                 }
                 //find out if a pawn needs to be moved
                 if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
-
+                    //find each pawn location
                     for (int i = 0; i < 4; i++) {
                         player0LocationsX[i] = parState.getPawnLocationsXForPlayer(0, i);
                         player1LocationsX[i] = parState.getPawnLocationsXForPlayer(1, i);
