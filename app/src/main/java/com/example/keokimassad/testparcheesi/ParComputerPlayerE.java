@@ -16,12 +16,13 @@ import game.infoMsg.NotYourTurnInfo;
 
 /**
  * Created by KeokiMassad on 11/20/16.
+ * Will create a computer player that will go through all legal moves
+ * and will randomly pick one of them to execute
  */
 
 public class ParComputerPlayerE extends GameComputerPlayer {
 
-    // ToDo: change to actual player numbers when we figure this shit out
-    //int playerNumber = playerNum;
+    // May need to change to actual player numbers
     int playerNumber;
     private int[] location = new int[4];
     ParRollAction rollAction;
@@ -37,7 +38,8 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
-        // ToDo: same as above... change to actual player numbers when we figure this shit out
+        //Updating proper computer player's move
+        //May need to change to actual player numbers
         for (int i = 0; i < allPlayerNames.length; i++) {
             if (allPlayerNames[i].equals(name)) {
                 playerNumber = i;
@@ -46,7 +48,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
 
         if (!(info instanceof ParState)) return;
         ParState parState = (ParState)info;
-
+        //check if it's a computer player's turn
         if (parState.getPlayerTurn() == playerNumber) {
 
             if (parState.getCheckLegalMoveActionMade() == true) {
@@ -57,13 +59,16 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                     game.sendAction(rollAction);
                     sleep(2000);
                     return;
+                    //find out if it's time to move a pawn
                 } else if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
                     if (parState.getPawnActionMade() == false) {
                         Log.i("selecting pawn", "" + parState.getPawnActionMade());
                         Random rand = new Random();
-                        // choose a random pawn
+                        // choosing a random pawn
                         int randSelect = rand.nextInt(4);
+                        //make action
                         selectAction = new ParSelectAction(this, randSelect);
+                        //execute action
                         game.sendAction(selectAction);
                         return;
                     } else if (parState.getUseDieActionMade() == false) {
@@ -72,14 +77,17 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                         // choose a random die
                         int randDie = rand.nextInt(3);
                         switch (randDie) {
+                            //using first dice
                             case 0:
                                 useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), randDie);
                                 game.sendAction(useDieAction);
                                 break;
+                            //using second dice
                             case 1:
                                 useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), randDie);
                                 game.sendAction(useDieAction);
                                 break;
+                            //using total of die
                             case 2:
                                 useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), randDie);
                                 game.sendAction(useDieAction);
@@ -93,6 +101,7 @@ public class ParComputerPlayerE extends GameComputerPlayer {
                         return;
                     }
                 }
+                //skipping
             } else {
                 checkLegalMoveAction = new ParCheckLegalMoveAction(this);
                 game.sendAction(checkLegalMoveAction);
@@ -100,119 +109,6 @@ public class ParComputerPlayerE extends GameComputerPlayer {
             }
         }
 
-
-//               if (//4 objects are at home)
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice be three and one dice be 2.
-//                            //bring one piece out.
-//                        }
-//                    }, 2000);
-//
-//                }
-//                else if(//3 objects are at home and first object is on first square )
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice roll 3 and one dice roll 1.
-//                            //advance that one object four spots.
-//                        }
-//                    }, 2000);
-//                }
-//                else if(//3 objects are at home and first object is not on first square)
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice roll 3 and one dice roll 2.
-//                            //bring one object out.
-//                        }
-//                    }, 2000);
-//                }
-//                else if(//2 objects are at home and object is on first square)
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice roll 2 and one dice roll 1.
-//                            //advance that one object three spots.
-//                        }
-//                    }, 2000);
-//                }
-//                else if(//2 objects are at home and no objects on first square )
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice roll 3 and one dice roll 2.
-//                            //bring one object out.
-//                        }
-//                    }, 2000);
-//                }
-//                else if(//1 object is at home and 1 object on first square)
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice roll 1 and one dice roll 1.
-//                            //advance object 2 spots.
-//                        }
-//                    }, 2000);
-//                }
-//                else if(//1 object is at home and 0 objects on first square)
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //have one dice roll 3 and one dice roll 2.
-//                            //advance last object out of home spot.
-//                        }
-//                    }, 2000);
-//                }
-//                else if(//0 objects at home and pawn 1 can move one forward and pawn 2 can move one forward)
-//                        )
-//                {
-//                    Random ran = new Random();
-//                    int rand = ran.nextInt(4);
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //roll two 1's
-//                            // advance each of the first two pieces one spot
-//                        }
-//                    }, 2000);
-//
-//                }
-//                else if(//0 objects at home and pawn 1 can move one forward and pawn 2 cannot move one forward)
-//                        )
-//                {
-//                    final Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            //roll two 1's
-//                            // advance first piece forward and advance third piece one spot
-//                        }
-//                    }, 2000);
-//                }
     }
 
 }
