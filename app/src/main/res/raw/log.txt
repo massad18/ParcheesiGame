@@ -4,3 +4,20 @@ Author: Justin Hathaway, Keoki Massad, Avaya Bhattarai, Goutham Massad
 Version: October 16, 2016
 
 Sources:
+*Java constants
+    *http://stackoverflow.com/questions/66066/what-is-the-best-way-to-implement-constants-in-java
+*Learning about enums
+    *http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
+*ImageViews
+    *How to change color of texts review
+        *https://developer.android.com/reference/android/widget/ImageView.html
+        *http://blog.syedgakbar.com/2012/07/changing-color-of-the-drawable-or-imageview-at-runtime-in-android/
+*Radio Buttons
+    *https://developer.android.com/guide/topics/ui/controls/radiobutton.html
+    *http://androidexample.com/Radio_Button_Basics/index.php?view=article_discription&aid=78&aaid=102
+    *https://developer.att.com/technical-library/ui-elements/radio-button-for-android
+*Copy Constructors
+    *previous code examples (Pig Game, Tic Tac Toe, etc.)
+    *http://www.javapractices.com/topic/TopicAction.do?Id=12
+    *http://www.geeksforgeeks.org/copy-constructor-in-java/
+*
