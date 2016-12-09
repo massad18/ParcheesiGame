@@ -16,8 +16,37 @@ Sources:
     *https://developer.android.com/guide/topics/ui/controls/radiobutton.html
     *http://androidexample.com/Radio_Button_Basics/index.php?view=article_discription&aid=78&aaid=102
     *https://developer.att.com/technical-library/ui-elements/radio-button-for-android
+    *How to see which one is selected by default
+        *http://stackoverflow.com/questions/5592345/how-to-select-a-radio-button-by-default
 *Copy Constructors
     *previous code examples (Pig Game, Tic Tac Toe, etc.)
     *http://www.javapractices.com/topic/TopicAction.do?Id=12
     *http://www.geeksforgeeks.org/copy-constructor-in-java/
+*Switching background drawables for ImageButtons
+    *http://stackoverflow.com/questions/12523005/how-set-background-drawable-programmatically-in-android
+    *http://stackoverflow.com/questions/11947603/setbackground-vs-setbackgrounddrawable-android
+    *https://developer.android.com/reference/android/graphics/drawable/Drawable.html
+*Sending actions
+    *Sample code (Pig and TTT Games)
+    *http://stackoverflow.com/questions/9730243/how-to-filter-specific-apps-for-action-send-intent-and-set-a-different-text-for
+*Refresher on making instances of classes
+    *http://stackoverflow.com/questions/19672780/how-to-create-an-instance-of-a-class
+    *https://developer.android.com/reference/java/lang/Class.html
+*Touch screen
+    *https://developer.android.com/training/gestures/index.html
+    *https://source.android.com/devices/input/touch-devices.html
+*Refresher on how to pick random values in certain range
+    *https://developer.android.com/reference/java/lang/Math.html
+    *http://stackoverflow.com/questions/2405411/how-to-generate-a-random-number-then-display-it-on-screen
+*Hashtable examples and review
+    *http://stackoverflow.com/questions/18736782/put-two-arrays-as-key-and-value-in-hashtable
+    *http://www.javaworld.com/article/2077346/core-java/hashtables.html
+*Arraylist review
+    *https://developer.android.com/reference/java/util/ArrayList.html
+    *http://stackoverflow.com/questions/15523966/add-item-in-array-list-of-android
+    *http://stackoverflow.com/questions/5070830/populating-a-listview-using-an-arraylist
+*Threading review
+    *https://developer.android.com/reference/java/lang/Thread.html
+    *https://developer.android.com/guide/components/processes-and-threads.html
+    *http://stackoverflow.com/questions/4722974/threading-example-in-android
 *
