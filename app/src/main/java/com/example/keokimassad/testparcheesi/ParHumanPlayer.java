@@ -71,19 +71,23 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             switch (state.getPlayerTurn()) {
                 case 0:
                     colorPlayer = "Red";
+                    playerTurnText.setTextColor(Color.RED);
                     break;
                 case 1:
                     colorPlayer = "Blue";
+                    playerTurnText.setTextColor(Color.BLUE);
                     break;
                 case 2:
                     colorPlayer = "Yellow";
+                    playerTurnText.setTextColor(Color.YELLOW);
                     break;
                 case 3:
                     colorPlayer = "Green";
+                    playerTurnText.setTextColor(Color.GREEN);
                     break;
             }
-            playerTurnText.setText("Current Player Turn: " + colorPlayer);
 
+            playerTurnText.setText("Current Player Turn: " + colorPlayer);
 
             switch (state.getDice1Val()) {
                 case 1:
@@ -132,7 +136,7 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             }
             else
             {
-                currentSubstageText.setText("Current substage: Move ");
+                currentSubstageText.setText("Current substage: Move");
             }
 
             for (int i = 0; i < 3; i++) {
