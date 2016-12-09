@@ -85,95 +85,54 @@ public class ParHumanPlayer extends GameHumanPlayer implements View.OnClickListe
             playerTurnText.setText("Current Player Turn: " + colorPlayer);
 
 
-            if(state.getCurrentSubstage() == state.Roll) {
+            switch (state.getDice1Val()) {
+                case 1:
+                    diceButtons[0].setBackgroundResource(R.drawable.die1);
+                    break;
+                case 2:
+                    diceButtons[0].setBackgroundResource(R.drawable.die2);
+                    break;
+                case 3:
+                    diceButtons[0].setBackgroundResource(R.drawable.die3);
+                    break;
+                case 4:
+                    diceButtons[0].setBackgroundResource(R.drawable.die4);
+                    break;
+                case 5:
+                    diceButtons[0].setBackgroundResource(R.drawable.die5);
+                    break;
+                case 6:
+                    diceButtons[0].setBackgroundResource(R.drawable.die6);
+                    break;
+            }
+            switch (state.getDice2Val()) {
+                case 1:
+                    diceButtons[1].setBackgroundResource(R.drawable.die1);
+                    break;
+                case 2:
+                    diceButtons[1].setBackgroundResource(R.drawable.die2);
+                    break;
+                case 3:
+                    diceButtons[1].setBackgroundResource(R.drawable.die3);
+                    break;
+                case 4:
+                    diceButtons[1].setBackgroundResource(R.drawable.die4);
+                    break;
+                case 5:
+                    diceButtons[1].setBackgroundResource(R.drawable.die5);
+                    break;
+                case 6:
+                    diceButtons[1].setBackgroundResource(R.drawable.die6);
+                    break;
+            }
 
+            if(state.getCurrentSubstage() == state.Roll)
+            {
                 currentSubstageText.setText("Current substage: Roll");
-
-                switch (state.getDice1Val()) {
-                    case 1:
-                        diceButtons[0].setBackgroundResource(R.drawable.die1);
-                        break;
-                    case 2:
-                        diceButtons[0].setBackgroundResource(R.drawable.die2);
-                        break;
-                    case 3:
-                        diceButtons[0].setBackgroundResource(R.drawable.die3);
-                        break;
-                    case 4:
-                        diceButtons[0].setBackgroundResource(R.drawable.die4);
-                        break;
-                    case 5:
-                        diceButtons[0].setBackgroundResource(R.drawable.die5);
-                        break;
-                    case 6:
-                        diceButtons[0].setBackgroundResource(R.drawable.die6);
-                        break;
-                }
-                switch (state.getDice2Val()) {
-                    case 1:
-                        diceButtons[1].setBackgroundResource(R.drawable.die1);
-                        break;
-                    case 2:
-                        diceButtons[1].setBackgroundResource(R.drawable.die2);
-                        break;
-                    case 3:
-                        diceButtons[1].setBackgroundResource(R.drawable.die3);
-                        break;
-                    case 4:
-                        diceButtons[1].setBackgroundResource(R.drawable.die4);
-                        break;
-                    case 5:
-                        diceButtons[1].setBackgroundResource(R.drawable.die5);
-                        break;
-                    case 6:
-                        diceButtons[1].setBackgroundResource(R.drawable.die6);
-                        break;
-                }
             }
             else
             {
                 currentSubstageText.setText("Current substage: Move ");
-
-                switch (state.getDice1Val()) {
-                    case 1:
-                        diceButtons[0].setBackgroundResource(R.drawable.used1);
-                        break;
-                    case 2:
-                        diceButtons[0].setBackgroundResource(R.drawable.used2);
-                        break;
-                    case 3:
-                        diceButtons[0].setBackgroundResource(R.drawable.used3);
-                        break;
-                    case 4:
-                        diceButtons[0].setBackgroundResource(R.drawable.used4);
-                        break;
-                    case 5:
-                        diceButtons[0].setBackgroundResource(R.drawable.used5);
-                        break;
-                    case 6:
-                        diceButtons[0].setBackgroundResource(R.drawable.used6);
-                        break;
-                }
-                switch (state.getDice2Val()) {
-                    case 1:
-                        diceButtons[1].setBackgroundResource(R.drawable.used1);
-                        break;
-                    case 2:
-                        diceButtons[1].setBackgroundResource(R.drawable.used2);
-                        break;
-                    case 3:
-                        diceButtons[1].setBackgroundResource(R.drawable.used3);
-                        break;
-                    case 4:
-                        diceButtons[1].setBackgroundResource(R.drawable.used4);
-                        break;
-                    case 5:
-                        diceButtons[1].setBackgroundResource(R.drawable.used5);
-                        break;
-                    case 6:
-                        diceButtons[1].setBackgroundResource(R.drawable.used6);
-                        break;
-                }
             }
 
             for (int i = 0; i < 3; i++) {
