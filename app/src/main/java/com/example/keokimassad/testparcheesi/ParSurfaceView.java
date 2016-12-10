@@ -17,28 +17,13 @@ import android.view.SurfaceView;
 
 public class ParSurfaceView extends SurfaceView {
 
-    // some constants, which are percentages with respect to the minimum
-    // of the height and the width. All drawing will be done in the "middle
-    // square".
-    //
-    // The divisions both horizontally and vertically within the
-    // playing square are:
-    // - first square starts at 5% and goes to 33%
-    // - second square starts at 36% and goes to 64%
-    // - third square starts at 67& and goes to 95%
-    // There is therefore a 5% border around the edges; each square
-    // is 28% high/wide, and the lines between squares are 3%
-    private final static float BORDER_PERCENT = 5; // size of the border
-    private final static float SQUARE_SIZE_PERCENT = 28; // size of each of our 9 squares
-    private final static float LINE_WIDTH_PERCENT = 3; // width of a tic-tac-toe line
-    private final static float SQUARE_DELTA_PERCENT = SQUARE_SIZE_PERCENT
-            + LINE_WIDTH_PERCENT; // distance from left (or top) edge of square to the next one
-    private static int playerXCor = 0;
-    private static int playerYCor = 0;
 
     /*
      * Instance variables
 	 */
+    //Holds the location of the players pawn in question
+    private static int playerXCor = 0;
+    private static int playerYCor = 0;
 
     // the game's state
     protected ParState parState;
@@ -72,15 +57,8 @@ public class ParSurfaceView extends SurfaceView {
         this.parState = state;
     }
 
-    /**
-     * @return the color to paint the tic-tac-toe lines, and the X's and O's
-     */
-    public int foregroundColor() {
-        return Color.YELLOW;
-    }
 
     /**
-     * @return the color to paint the tic-tac-toe lines, and the X's and O's
      */
     public int backgroundColor() {
         return Color.TRANSPARENT;
@@ -99,7 +77,7 @@ public class ParSurfaceView extends SurfaceView {
         // update the variables that relate
         // to the dimensions of the animation surface
 
-        // paint the TTT-board's horizontal and vertical lines
+        // display the Parcheesi gameboard image
         setBackgroundResource(R.drawable.parcheesiboard);
 
         // if we don't have any state, there's nothing more to draw, so return
@@ -107,13 +85,12 @@ public class ParSurfaceView extends SurfaceView {
             return;
         }
 
-        // for each square that has an X or O, draw it on the appropriate
-        // place on the canvas
+        //loops through each player and each pawn and draws each one by calling the Pawn class
         for (int i = 0; i < 4 /* number of players */; i++) {
             for (int j = 0; j < 4; j++) {
-                playerXCor = parState.getPawnLocationsXForPlayer(i, j);
-                playerYCor = parState.getPawnLocationsYForPlayer(i, j);
-                Pawn currLoc = new Pawn(playerXCor, playerYCor);
+                playerXCor = parState.getPawnLocationsXForPlayer(i, j); //gets x coordinate of the current pawn and player in question
+                playerYCor = parState.getPawnLocationsYForPlayer(i, j); //gets y coordinate of the current pawn and player in question
+                Pawn currLoc = new Pawn(playerXCor, playerYCor); //Creates a pawn object
                 // change the background color of the selected pawn for the player whos turn it is
                 if (i == parState.getPlayerTurn() && j == parState.getRadioButtonChecked()) {
                     selected = true;
@@ -121,9 +98,7 @@ public class ParSurfaceView extends SurfaceView {
                 else {
                     selected = false;
                 }
-                // ToDo: add the ability to draw the outline of a rectangle around the legal moves on the board (if want to)
-                // ToDo: additional to above... add somewhere that gets the die value that is selected from the ParState and changes the color of the rectangle for the legal move that corresponds to that die value
-                currLoc.drawOn(playerXCor, playerYCor, g, i, selected);
+                currLoc.drawOn(playerXCor, playerYCor, g, i, selected); //draws each pawn according to player, pawn number, and if its selected
             }
         }
     }
