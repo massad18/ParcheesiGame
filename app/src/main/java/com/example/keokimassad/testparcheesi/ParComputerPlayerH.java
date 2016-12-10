@@ -333,7 +333,6 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             if (smartMoveSafeZone == false) {
                                 // iterate over all of the pawns for the player that can move
                                 for (int i = 0; i < 4; i++) {
-                                    //ToDo: check if you can eat another pawn...
                                     // check if the player who is moving has a legal move that allows
                                     // them to eat another players pawn
                                     switch (parState.getPlayerTurn()) {
@@ -942,7 +941,6 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             game.sendAction(useDieAction);
                         } else {
                             moveAction = new ParMoveAction(this);
-                            sleep(300);
                             game.sendAction(moveAction);
                             smartMove = false;
                             smartMoveStartingZone = false;
@@ -955,6 +953,9 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             return;
                         }
                     } else {
+
+                        // ToDo: HARD CPU makes random legal moves much slower than the DUMB CPU...
+
                         // if there is no smart move, then make a random move from the possible
                         // legal moves available
                         if (parState.getPawnActionMade() == false) {
@@ -992,7 +993,6 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             return;
                         } else {
                             moveAction = new ParMoveAction(this);
-                            sleep(300);
                             game.sendAction(moveAction);
                             return;
                         }

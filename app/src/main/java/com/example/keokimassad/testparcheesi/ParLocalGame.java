@@ -195,7 +195,6 @@ public class ParLocalGame extends LocalGame {
 
                                 // Look at the PawnLocation class and pawnLocationX and pawnLocationY... if the pawn is in the homebase, it is
                                 // indexes #116 - 131
-                                //
                                 if (movingRectangle == 75 || movingRectangle == 83 || movingRectangle == 91 || movingRectangle == 99) {}
                                 else {
                                     // ToDo: BUG!!! doesnt necessarily take the further pawn on the board, but instead takes the pawn that is on the highest board index... i.e. for green, position 6 is "further" than position 50
@@ -235,9 +234,6 @@ public class ParLocalGame extends LocalGame {
                 // allow for the computer player to select a pawn and use die again
                 parState.setPawnActionMade(false);
                 parState.setUseDieActionMade(false);
-
-                // ToDo: implement checking if a pawn of a different player is in the possible legal moves, therefore the pawn will be "eaten" (i.e. sent back to their respective starting location through the parState.resetPawnLocation method)
-
 
                 if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
                     int radioButtonChecked = parState.radioButtonChecked;
@@ -455,8 +451,6 @@ public class ParLocalGame extends LocalGame {
             }
             else if (action instanceof ParCheckLegalMoveAction) {
                 // ToDo: implement highlighting legal moves given the numbers on the die
-
-                // ToDo: problems with using 5's when on the normal board piece
                 for (int i = 0; i < 4; i++) {
                     // clears the legalMoves HashMap so that new entries can be entered
                     switch (i) {

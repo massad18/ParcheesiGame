@@ -578,9 +578,6 @@ public class ParState extends GameState {
     }
 
     public void initPawnLocation(int playerIdx) {
-
-        // ToDo: CHANGE BACK TO ORIGINAL NUMBERS!!!
-
         // initialize the locations of the pawns
         switch (playerIdx) {
             //red
