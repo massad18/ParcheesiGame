@@ -40,15 +40,6 @@ public class ParComputerPlayerH extends GameComputerPlayer {
     int smartDieValueIndex = -1;
     int smartDieValueNumber = -1;
 
-    // the instance variables that hold the important information about a normal move around the
-    // board when no smart move is found
-    int normPawn = -1;
-    String normDieValue = null;
-    int normDieValueIndex = -1;
-    int normDieValueNumber = -1;
-    boolean legalMove = false;
-    boolean checkNormalMoves = false;
-
     //locations of pawns
     private int[] player0LocationsX = new int[4];
     private int[] player1LocationsX = new int[4];
@@ -200,7 +191,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                 // check if the player is able to move into their safe zone/home base
                                 switch (parState.getPlayerTurn()) {
                                     case 0:
-                                        if (parState.getLegalMoves("dieValue1", i) >= 68 && parState.getLegalMoves("dieValue1", i) <= 75) {
+                                        if (parState.getLegalMoves("dieValue1", i) >= 68 && (parState.getLegalMoves("dieValue1", i) <= 75 || (parState.getLegalMoves("dieValue1", i) >= 116 && parState.getLegalMoves("dieValue1", i) <= 119))) {
                                             if (smartMoveSafeZone == false) {
                                                 // if there is no smartMoveSafeZone, then set it to be so
                                                 smartMoveSafeZone = true;
@@ -214,7 +205,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue1";
                                             }
-                                        } else if (parState.getLegalMoves("dieValue2", i) >= 68 && parState.getLegalMoves("dieValue2", i) <= 75) {
+                                        }
+                                        if (parState.getLegalMoves("dieValue2", i) >= 68 && (parState.getLegalMoves("dieValue2", i) <= 75 || (parState.getLegalMoves("dieValue2", i) >= 116 && parState.getLegalMoves("dieValue2", i) <= 119))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -223,7 +215,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue2";
                                             }
-                                        } else if (parState.getLegalMoves("dieValueTotal", i) >= 68 && parState.getLegalMoves("dieValueTotal", i) <= 75) {
+                                        }
+                                        if (parState.getLegalMoves("dieValueTotal", i) >= 68 && (parState.getLegalMoves("dieValueTotal", i) <= 75 || (parState.getLegalMoves("dieValueTotal", i) >= 116 && parState.getLegalMoves("dieValueTotal", i) <= 119))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -236,7 +229,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                         }
                                         break;
                                     case 1:
-                                        if (parState.getLegalMoves("dieValue1", i) >= 76 && parState.getLegalMoves("dieValue1", i) <= 83) {
+                                        if (parState.getLegalMoves("dieValue1", i) >= 76 && (parState.getLegalMoves("dieValue1", i) <= 83 || (parState.getLegalMoves("dieValue1", i) >= 120 && parState.getLegalMoves("dieValue1", i) <= 123))) {
                                             // check if the new value is further along in the safezone than the previously determined legal move that moves into the safe zone
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
@@ -246,7 +239,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue1";
                                             }
-                                        } else if (parState.getLegalMoves("dieValue2", i) >= 76 && parState.getLegalMoves("dieValue2", i) <= 83) {
+                                        }
+                                        if (parState.getLegalMoves("dieValue2", i) >= 76 && (parState.getLegalMoves("dieValue2", i) <= 83 || (parState.getLegalMoves("dieValue2", i) >= 120 && parState.getLegalMoves("dieValue2", i) <= 123))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -255,7 +249,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue2";
                                             }
-                                        } else if (parState.getLegalMoves("dieValueTotal", i) >= 76 && parState.getLegalMoves("dieValueTotal", i) <= 83) {
+                                        }
+                                        if (parState.getLegalMoves("dieValueTotal", i) >= 76 && (parState.getLegalMoves("dieValueTotal", i) <= 83 || (parState.getLegalMoves("dieValueTotal", i) >= 120 && parState.getLegalMoves("dieValueTotal", i) <= 123))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -267,7 +262,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                         }
                                         break;
                                     case 2:
-                                        if (parState.getLegalMoves("dieValue1", i) >= 84 && parState.getLegalMoves("dieValue1", i) <= 91) {
+                                        if (parState.getLegalMoves("dieValue1", i) >= 84 && (parState.getLegalMoves("dieValue1", i) <= 91 || (parState.getLegalMoves("dieValue1", i) >= 124 && parState.getLegalMoves("dieValue1", i) <= 127))) {
                                             // check if the new value is further along in the safezone than the previously determined legal move that moves into the safe zone
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
@@ -277,7 +272,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue1";
                                             }
-                                        } else if (parState.getLegalMoves("dieValue2", i) >= 84 && parState.getLegalMoves("dieValue2", i) <= 91) {
+                                        }
+                                        if (parState.getLegalMoves("dieValue2", i) >= 84 && (parState.getLegalMoves("dieValue2", i) <= 91 || (parState.getLegalMoves("dieValue2", i) >= 124 && parState.getLegalMoves("dieValue2", i) <= 127))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -286,7 +282,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue2";
                                             }
-                                        } else if (parState.getLegalMoves("dieValueTotal", i) >= 84 && parState.getLegalMoves("dieValueTotal", i) <= 91) {
+                                        }
+                                        if (parState.getLegalMoves("dieValueTotal", i) >= 84 && (parState.getLegalMoves("dieValueTotal", i) <= 91 || (parState.getLegalMoves("dieValueTotal", i) >= 124 && parState.getLegalMoves("dieValueTotal", i) <= 127))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -298,7 +295,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                         }
                                         break;
                                     case 3:
-                                        if (parState.getLegalMoves("dieValue1", i) >= 92 && parState.getLegalMoves("dieValue1", i) <= 99) {
+                                        if (parState.getLegalMoves("dieValue1", i) >= 92 && (parState.getLegalMoves("dieValue1", i) <= 99 || (parState.getLegalMoves("dieValue1", i) >= 128 && parState.getLegalMoves("dieValue1", i) <= 131))) {
                                             // check if the new value is further along in the safezone than the previously determined legal move that moves into the safe zone
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
@@ -308,7 +305,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue1";
                                             }
-                                        } else if (parState.getLegalMoves("dieValue2", i) >= 92 && parState.getLegalMoves("dieValue2", i) <= 99) {
+                                        }
+                                        if (parState.getLegalMoves("dieValue2", i) >= 92 && (parState.getLegalMoves("dieValue2", i) <= 99 || (parState.getLegalMoves("dieValue2", i) >= 128 && parState.getLegalMoves("dieValue2", i) <= 131))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -317,7 +315,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 smartPawn = i;
                                                 smartDieValue = "dieValue2";
                                             }
-                                        } else if (parState.getLegalMoves("dieValueTotal", i) >= 92 && parState.getLegalMoves("dieValueTotal", i) <= 99) {
+                                        }
+                                        if (parState.getLegalMoves("dieValueTotal", i) >= 92 && (parState.getLegalMoves("dieValueTotal", i) <= 99 || (parState.getLegalMoves("dieValueTotal", i) >= 128 && parState.getLegalMoves("dieValueTotal", i) <= 131))) {
                                             if (smartMoveSafeZone == false) {
                                                 smartMoveSafeZone = true;
                                                 smartPawn = i;
@@ -351,7 +350,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player1Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player1Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -360,7 +360,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player1Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player1Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -372,7 +373,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 2
-                                                else if (parState.getLegalMoves("dieValue1", i) == player2Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player2Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -381,7 +382,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player2Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player2Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -390,7 +392,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player2Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player2Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -402,7 +405,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 3
-                                                else if (parState.getLegalMoves("dieValue1", i) == player3Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player3Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -411,7 +414,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player3Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player3Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -420,7 +424,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player3Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player3Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -451,7 +456,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player0Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player0Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -466,7 +472,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player0Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player0Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -484,7 +491,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 2
-                                                else if (parState.getLegalMoves("dieValue1", i) == player2Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player2Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -499,7 +506,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player2Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player2Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -514,7 +522,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player2Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player2Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -532,7 +541,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 3
-                                                else if (parState.getLegalMoves("dieValue1", i) == player3Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player3Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -547,7 +556,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player3Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player3Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -562,7 +572,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player3Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player3Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -599,7 +610,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player0Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player0Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -614,7 +626,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player0Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player0Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -632,7 +645,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 1
-                                                else if (parState.getLegalMoves("dieValue1", i) == player1Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player1Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -647,7 +660,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player1Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player1Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -662,7 +676,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player1Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player1Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -680,7 +695,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 3
-                                                else if (parState.getLegalMoves("dieValue1", i) == player3Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player3Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -695,7 +710,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player3Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player3Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -710,7 +726,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player3Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player3Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -747,7 +764,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player0Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player0Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -762,7 +780,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player0Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player0Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -780,7 +799,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 1
-                                                else if (parState.getLegalMoves("dieValue1", i) == player1Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player1Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -795,7 +814,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player1Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player1Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -810,7 +830,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player1Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player1Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -828,7 +849,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                 }
 
                                                 // check the legal moves against player 2
-                                                else if (parState.getLegalMoves("dieValue1", i) == player2Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
+                                                if (parState.getLegalMoves("dieValue1", i) == player2Rect[j] && parState.getLegalMoves("dieValue1", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -843,7 +864,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue1";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValue2", i) == player2Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValue2", i) == player2Rect[j] && parState.getLegalMoves("dieValue2", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -858,7 +880,8 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                                         smartPawn = i;
                                                         smartDieValue = "dieValue2";
                                                     }
-                                                } else if (parState.getLegalMoves("dieValueTotal", i) == player2Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
+                                                }
+                                                if (parState.getLegalMoves("dieValueTotal", i) == player2Rect[j] && parState.getLegalMoves("dieValueTotal", i) != -1) {
                                                     if (smartMoveEating == false) {
                                                         smartMoveEating = true;
                                                         smartPawn = i;
@@ -882,7 +905,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                                 if (smartMoveEating == true) {
                                     smartMove = true;
                                 }
-                                // else, there was no smart move for eating, moving into the safe zone
+                                // else, there was NO smart move for eating, moving into the safe zone
                                 // or homebase, AND moving out of the starting zone
                                 else {
                                     smartMove = false;
@@ -890,7 +913,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             }
                             // if there was a smartMove for going into the safe zone or home base
                             else {
-                                smartMove = false;
+                                smartMove = true;
                             }
                         }
                         // if there was a smartMove for moving out of the starting zone
@@ -925,6 +948,10 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             smartMoveStartingZone = false;
                             smartMoveSafeZone = false;
                             smartMoveEating = false;
+                            int smartPawn = -1;
+                            String smartDieValue = null;
+                            int smartDieValueIndex = -1;
+                            int smartDieValueNumber = -1;
                             return;
                         }
                     } else {
@@ -969,114 +996,11 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             game.sendAction(moveAction);
                             return;
                         }
-                        // ToDo: if non of the above changes the "smartMove = true", then make a normal move on the board
-
-//                    // ToDo: select the pawns with a more thoughtful method
-//                    if (parState.getPawnActionMade() == false) {
-//                        Log.i("selecting pawn", "" + parState.getPawnActionMade());
-//                        Random rand = new Random();
-//                        // choose a random pawn
-//                        int randSelect = rand.nextInt(4);
-//                        selectAction = new ParSelectAction(this, randSelect);
-//                        game.sendAction(selectAction);
-//                        return;
-//                    }
-//
-//                    else if (parState.getUseDieActionMade() == false) {
-//                        for (int a = 0; a < 4; a++) {
-//
-//
-//
-//                            //Will go through each computer player
-//                            switch (playerNumber) {
-//                                //first pawn
-//                                case 0:
-//                                    //is using first dice moving pawn further
-//                                    if ((parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("dieVal2", a)) && (parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using second dice moving pawn further
-//                                    } else if ((parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using total of die moving pawn further
-//                                    } else if ((parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal2", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                    }
-//                                    //second pawn
-//                                case 1:
-//                                    //is using first dice moving pawn further
-//                                    if ((parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("dieVal2", a)) && (parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using second dice moving pawn further
-//                                    } else if ((parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using total of die moving pawn further
-//                                    } else if ((parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal2", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                    }
-//                                //third pawn
-//                                case 2:
-//                                    //is using first dice moving pawn further
-//                                    if ((parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("dieVal2", a)) && (parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using second dice moving pawn further
-//                                    } else if ((parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using total of die moving pawn further
-//                                    } else if ((parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal2", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                    }
-//
-//                                //fourth pawn
-//                                case 3:
-//                                    //is using first dice moving pawn further
-//                                    if ((parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("dieVal2", a)) && (parState.getLegalMoves("dieVal1", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using second dice moving pawn further
-//                                    } else if ((parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("dieVal2", a) > parState.getLegalMoves("totalDieVal", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                        //is using total of die moving pawn further
-//                                    } else if ((parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal1", a)) && (parState.getLegalMoves("totalDieVal", a) > parState.getLegalMoves("dieVal2", a))) {
-//                                        useDieAction = new ParUseDieAction(this, ((ParState) info).getDice1Val() + ((ParState) info).getDice2Val(), 0);
-//                                        game.sendAction(selectAction);
-//                                        return;
-//                                    }
-//
-//
-//                            }
-//                        }
-//                    }
-//                    //skipping
-//                    else {
-//                        moveAction = new ParMoveAction(this);
-//                        sleep(300);
-//                        game.sendAction(moveAction);
-//                        return;
-//                    }
                     }
                 }
-            }else {
+            }
+            // check if there are legal moves
+            else {
                 checkLegalMoveAction = new ParCheckLegalMoveAction(this);
                 game.sendAction(checkLegalMoveAction);
                 return;
