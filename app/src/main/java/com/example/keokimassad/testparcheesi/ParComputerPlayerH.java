@@ -84,6 +84,7 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                 }
                 //find out if a pawn needs to be moved
                 else if (parState.getCurrentSubstage() == parState.Begin_Move || parState.getCurrentSubstage() == parState.Mid_Move) {
+                    // ToDo: implement a way to determine if there is a pawn on the location just outside of the starting location... we want to move it so that the next time a pawn is able to come out of the home base, we can take that pawn out instead of it being blocked by its own pawn when we could have moved it an avoided the situation
                     if (smartMove == false) {
                         //find each original pawn location
                         for (int i = 0; i < 4; i++) {
@@ -953,9 +954,6 @@ public class ParComputerPlayerH extends GameComputerPlayer {
                             return;
                         }
                     } else {
-
-                        // ToDo: HARD CPU makes random legal moves much slower than the DUMB CPU...
-
                         // if there is no smart move, then make a random move from the possible
                         // legal moves available
                         if (parState.getPawnActionMade() == false) {
