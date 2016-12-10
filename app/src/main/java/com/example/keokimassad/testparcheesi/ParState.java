@@ -425,12 +425,24 @@ public class ParState extends GameState {
     public int getLegalMoves(String die, int index) {
         switch (index) {
             case 0:
+                if (legalMoves0.get(die) == null) {
+                    return -1;
+                }
                 return legalMoves0.get(die);
             case 1:
+                if (legalMoves1.get(die) == null) {
+                    return -1;
+                }
                 return legalMoves1.get(die);
             case 2:
+                if (legalMoves2.get(die) == null) {
+                    return -1;
+                }
                 return legalMoves2.get(die);
             case 3:
+                if (legalMoves3.get(die) == null) {
+                    return -1;
+                }
                 return legalMoves3.get(die);
         }
         return -1;
